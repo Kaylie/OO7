@@ -35,6 +35,7 @@ public class Game {
 
 	static Player currentPlayer;
 	static Player startingPlayer;
+	static Player lastPlayer;
 
 	/**
 	 * @name : Table
@@ -146,22 +147,6 @@ public class Game {
 
 	}
 
-	/*
-	 * @name : declareWinner
-	 * 
-	 * @author : Kaylie Anderson
-	 * 
-	 * @decr : Set GUI items to display the winner of a round or if there is
-	 * only one player left set GUI items to display remaining player as game
-	 * winner.
-	 * 
-	 * @param : void
-	 */
-	private static void declareWinner() {
-		// TODO
-		players.peek();
-	}
-
 
 	/*
 	 * @name : validateBid
@@ -220,6 +205,8 @@ public class Game {
 	public static boolean validateChallenge() {
 		
 		boolean isChallengerWinner = true;
+		Player winner;
+		Player loser;
 
 		// add all Player die vales to array
 		// each index represents a face value
@@ -268,18 +255,44 @@ public class Game {
 		if (totalDieOfFaceValue >= dieNum) {
 			//bidder wins
 			isChallengerWinner = false; 
+
+			//lastPlayerset as winner
+			//currentPlayer set as loser
+			removePlayer(currentPlayer);
+		} else {
+			removePlayer(currentPlayer);
+			//currentPlayer set as winner
+			// lastPlayer set as loser
+			removePlayer(lastPlayer);
 		}
-		
-		// set game table GUI to reflect winner & loser
 		
 		return isChallengerWinner;
 		
 	}
 	
 	
-	
+	//static Player currentPlayer;
+	//static Player startingPlayer;
+	//static Player lastPlayer;
 	public static void turnOver(Player p) {
 		// get next player
+		int index = players.indexOf(p);
+		
+		lastPlayer = players.elementAt(index);
+		
+		//Increment index to next position
+		index++;
+		
+		// if index is greater then stack size 
+		// the next player is at Stack index 0
+		if (index < players.size() ) {
+			currentPlayer = players.elementAt(index);
+		} else {
+			currentPlayer = players.elementAt(0);
+		}
+		
+		// TODO - comment in
+		//currentPlayer.play();
 	}
 	
 	/*
@@ -290,15 +303,20 @@ public class Game {
 	 * @decr : Remove player from game. This Function disables players portal,
 	 * grays out their name in the Game Table, and removes them from the stack.
 	 * 
-	 * @param : void
+	 * @param : Player p
 	 */
-	private static void removePlayers() {
-		// TODO
-		// lots more to do here
-		players.pop();
-
-		// check if game should continue
-		validateGame();
+	private static void removePlayer(Player p) {
+		/* TODO comment in
+		// check if losing player should be removed
+		if ( p.getNumberOfDice() == 0) {
+			// remove player
+			int index = players.indexOf(p);
+			players.removeElementAt(index);
+			
+			// check if game should continue
+		    validateGame();
+		}
+		*/
 	}
 
 
@@ -310,13 +328,11 @@ public class Game {
 	 * @decr : Check if there are at least 2 players in stack. If there are less
 	 * then 2 Players return false. Else return true
 	 * 
-	 * @param :
+	 * @param : void
 	 */
-	private static boolean validateGame() {
+	private static void validateGame() {
 		if (players.size() < 2) {
-			return false;
-		} else {
-			return true;
+			// set GUI to display winner
 		}
 	} // end validateGame
 
