@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities;
 
 public class Player {
 	
-	Player(int id) {
+/*	Player(int id) {
 
 				final Portal p = new Portal();
 
@@ -28,6 +28,57 @@ public class Player {
 
 				}); // end SwingUtilities
 	}
+*/
+	int PlayerID;
+//    private Cup PlayersCup = new Cup();
+    
+     public Player(){        
+    }
+    
+     public Player(int x){
+        PlayerID = x;
+        //if int 0 set players GUI to play        
+        Cup playerCup = new Cup();
+        playerCup.shake();
+        playerCup.displayDiceValues();
+        Portal screen = new Portal();
+        screen.createAndShowGUI();        
+        screen.portalPanel();        
+        if (PlayerID != 0){        	
+        	screen.actionPanel.setVisible(false);
+        	screen.actionPanel.setBackground(Color.BLACK);
+        	screen.bidPanel.setEnabled(false);
+        	screen.btnBid.setEnabled(false);
+        	screen.btnChallenge.setEnabled(false);
+        
+        	}
+        this.play();
+        
+        
+    }
+    
+    public void setPlayerID(int x){
+        PlayerID = x ;
+        
+    }
+    
+    public int getPlayerID(){
+        return PlayerID;
+        
+    }
+    
+    private void bid(int a, int b){ //diceNum  faceValue
+        
+    }
+    
+    private boolean challenge(){
+        
+        return false;
+    }
+    
+    public void play(){
+    	
+    }
 	
     /**
      * @name   : Portal
@@ -195,15 +246,14 @@ public class Player {
 		 * @param  : void
 	     */
 	    public void createAndShowGUI() {
-
 	        JFrame.setDefaultLookAndFeelDecorated(true);
-	        JFrame frame = new JFrame("Playern's Portal");
+	        JFrame frame = new JFrame("Player" + PlayerID + " Portal");
 
 	        //create and set up the jframe.
 	        Portal p = new Portal();
 	        frame.setContentPane(p.portalPanel());
 
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setSize(500, 280);
 	        frame.setVisible(true);
 	    }
