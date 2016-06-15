@@ -1,14 +1,20 @@
+
 /**
  * @author : Kaylie Anderson
  * @date   : 6/12/2016
  * @version: version1
  */
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 /**
@@ -21,11 +27,14 @@ public class Game {
 	// Game class variables
 
 	// TODO: until class Player is finished use Stack<String>
-	static Stack<String> players = new Stack<String>();
+	static Stack<Player> players = new Stack<Player>();
 
 	static int[] currentValidBid = { 0, 0 };
+	
+	static int playerNum = 2; // TODO this value gets set by gameTable GUI
 
-	static String currentPlayer;
+	static Player currentPlayer;
+	static Player startingPlayer;
 
 	/**
 	 * @name : Table
@@ -33,59 +42,108 @@ public class Game {
 	 * @decr :
 	 */
 	public static class Table implements ActionListener {
+		// Global variable definitions for GUI items
 
-		/*
-		 * @name   : actionPerformed
-		 * @author : 
-		 * @decr   : java.awt.event.ActionListener#actionPerformed(java.awt.event.
-		 * ActionEvent) Catches any event triggered that has an ActionListener
-		 * attached
-		 * @param  : ActionEvent e
-		 */
-		public void actionPerformed(ActionEvent e) {
-			// TODO
+		JPanel row1;
+
+		JButton btnBid;
+
+		public JPanel tablePanel() {
+
+			// We create a bottom JPanel to place everything on.
+			JPanel portalGUI = new JPanel();
+			portalGUI.setLayout(null);
+
+			// Creation of a Panel to contain the title labels
+			row1 = new JPanel();
+			row1.setLayout(null);
+			row1.setLocation(10, 10);
+			row1.setSize(480, 40);
+			// row1.setBackground(Color.blue);
+			portalGUI.add(row1);
+
+			// We create a button and manipulate it using the syntax we have
+			// used before. Now each button has an ActionListener which posts
+			// its action out when the button is pressed.
+			btnBid = new JButton("Hi");
+			btnBid.setLocation(10, 10);
+			btnBid.setSize(100, 40);
+			btnBid.addActionListener(this);
+			row1.add(btnBid);
+
+			portalGUI.setOpaque(true);
+			return portalGUI;
 		}
 
 		/*
-		 * @name   : createAndShowGUI
-		 * @author : 
-		 * @decr   :
-		 * @param  : void
+		 * @name : actionPerformed
+		 * 
+		 * @author :
+		 * 
+		 * @decr :
+		 * 
+		 * @param : ActionEvent e
+		 */
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == btnBid) {
+
+				if (btnBid.getText().equals("Hi")) {
+					btnBid.setText("Bye");
+				} else {
+					btnBid.setText("Hi");
+				}
+
+			}
+		}
+
+		/*
+		 * @name : createAndShowGUI
+		 * 
+		 * @author : Kaylie Anderson
+		 * 
+		 * @decr : creates and opens GUI
+		 * 
+		 * @param : void
 		 */
 		public static void createAndShowGUI() {
-			// TODO
+
+			JFrame.setDefaultLookAndFeelDecorated(true);
+			JFrame frame = new JFrame("Game Table");
+
+			// create and set up the jframe.
+			Table t = new Table();
+			frame.setContentPane(t.tablePanel());
+
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(500, 280);
+			frame.setVisible(true);
 		}
 
 	} // end class Table
 
 	/*
 	 * @name : createPlayers
+	 * 
 	 * @author : Kaylie Anderson
+	 * 
 	 * @decr : creates the number of player objects user selected from GUI item
 	 * cmbNumPlayers after btnStart event is triggered.
+	 * 
 	 * @param : void
 	 */
 	private static void createPlayers() {
-		// TODO
-		// called by btnStart event
-		// get value from cmbNumPlayers
-		int numPlayers = 0;
+		
+		for (int i = 0; i < playerNum; i++ ) {
+			
+			players.push(new Player(i));
+			
+			// set starting player of first round
+			if (i == 0) {
+				currentPlayer = players.elementAt(i);
+				startingPlayer = players.elementAt(i);
+			} // end if
+		} // end for
 
-		// create new players based on numPlayers
-		// and store Players in Stack
-		for (int i = 0; i < numPlayers; i++) {
-			// TODO
-
-			// PlayerID
-			// This line will be moved into Player Class
-			// And a new Player obj created here
-			String playerID = "Player" + i;
-			players.push(playerID);
-
-			// Create new player
-			// Player p = newPlayer(i);
-			// players.push(p);
-		}
 	}
 
 	/*
@@ -104,6 +162,126 @@ public class Game {
 		players.peek();
 	}
 
+
+	/*
+	 * @name : validateBid
+	 * 
+	 * @author : Kaylie Anderson
+	 * 
+	 * @decr : Make sure a players bid is valid by checking that is is greater
+	 * then currentValidBid[], and that the bid is comprised of valid numbers
+	 * ranges.
+	 * 
+	 * @param : int dieNum, int faceValue
+	 */
+	public static boolean validateBid(int dieNum, int faceValue) {
+		
+		// only need to check one var for zero
+		// if true this is the first bid in a round
+		currentValidBid[0] = 0;
+		
+		// dieNum must be greater than 1
+		if (dieNum < 1) { 
+			return false; 
+		}
+				
+		// faceValue can only be values 1 - 5 exclusive
+		if(faceValue < 1 || faceValue > 6) { 
+			return false; 
+		}
+		
+		// compare new bid against current bid, 
+		// if new bid is valid assign it as the current bid
+		if(dieNum <= currentValidBid[0] && faceValue <= currentValidBid[1]) { 
+			return false; 
+		}
+			
+		// if code reaches this far the new bid is valid
+		// assign bid as new bid
+		currentValidBid[0] = dieNum;
+		currentValidBid[1] = faceValue;
+				
+		return true;
+	}
+	
+	
+
+	/*
+	 * @name : validateChallenge
+	 * 
+	 * @author : Kaylie Anderson
+	 * 
+	 * @decr : Decide if the bidder or challenger is the winner of a round. This
+	 * method kicks off the LoseDie Use Case. Loseing Player is assigned as
+	 * currentPlayer.
+	 * 
+	 * @param : void
+	 */
+	public static boolean validateChallenge() {
+		
+		boolean isChallengerWinner = true;
+
+		// add all Player die vales to array
+		// each index represents a face value
+		int[] diceValues = {0,1,2,3,4,5,6};
+		
+		// get dice values
+		for (int i = 0; i < players.size(); i++ ) {
+			Stack<String> playersDice = new Stack<String>();
+			//Stack<Die> playersDice = players.elementAt(i).getDieValues();
+			
+			// add all die values
+			for (int j = 0; j < playersDice.size(); j++ ) {
+			   
+			   //TODO //switch ( playersDice.elementAt(j).faceValue(); ) {
+			   switch ( 2 ) {
+			   	case 1 : diceValues[i] += 1;
+			   		break;
+			   	case 2 : diceValues[i] += 2;
+			   		break;
+			   	case 3 : diceValues[i] += 3;
+			   		break;
+			   	case 4 : diceValues[i] += 4;
+			   		break;
+			   	case 5 : diceValues[i] += 5;
+			   		break;
+			   	case 6 : diceValues[i] += 6;
+			   		break;
+			   	default: System.out.println("Error: in default switch case of validateChallenge");
+			   		break;
+			   } // end switch
+			} // end for
+
+		} // end for
+		
+		//currentValidBid[0] = dieNum;
+		//currentValidBid[1] = faceValue;
+		int dieNum = currentValidBid[0];
+		int faceValue = currentValidBid[1];
+		int totalBidValue = currentValidBid[0] * currentValidBid[1];
+		
+		// total num of dice equaling facValue = num of dice of that value 
+		// for the whole game table.
+		int totalDieOfFaceValue = diceValues[faceValue] / faceValue;
+		
+		// decide winner
+		if (totalDieOfFaceValue >= dieNum) {
+			//bidder wins
+			isChallengerWinner = false; 
+		}
+		
+		// set game table GUI to reflect winner & loser
+		
+		return isChallengerWinner;
+		
+	}
+	
+	
+	
+	public static void turnOver(Player p) {
+		// get next player
+	}
+	
 	/*
 	 * @name : removePlayers
 	 * 
@@ -123,39 +301,6 @@ public class Game {
 		validateGame();
 	}
 
-	/*
-	 * @name : validateBid
-	 * 
-	 * @author : Kaylie Anderson
-	 * 
-	 * @decr : Make sure a players bid is valid by checking that is is greater
-	 * then currentValidBid[], and that the bid is comprised of valid numbers
-	 * ranges.
-	 * 
-	 * @param : int dieNum, int faceValue
-	 */
-	private static int[] validateBid(int dieNum, int faceValue) {
-		// TODO
-		return null;
-	}
-
-	/*
-	 * @name : validateChallenge
-	 * 
-	 * @author : Kaylie Anderson
-	 * 
-	 * @decr : Decide if the bidder or challenger is the winner of a round. This
-	 * method kicks off the LoseDie Use Case. Loseing Player is assigned as
-	 * currentPlayer.
-	 * 
-	 * @param : int dieNum, int faceValue
-	 */
-	private static boolean validateChallenge(int dieNum, int faceValue) {
-		// TODO
-		// currentPlayer == loser
-		// loser.loseDie();
-		return false;
-	}
 
 	/*
 	 * @name : validateGame
@@ -183,14 +328,8 @@ public class Game {
 	 *            String[] args
 	 */
 	public static void main(String[] args) {
-		
+
 		System.out.println("I am alive!!!!");
-
-		// Create Game
-		// Game g = new Game();
-
-		// Create Game Table
-		//final Table gameTable = new Table();
 
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
@@ -198,44 +337,14 @@ public class Game {
 
 			@Override
 			public void run() {
-				//gameTable.createAndShowGUI();
+				Table.createAndShowGUI();
 			}
 
 		}); // end SwingUtilities
-
-		int i = 0;
-		int playerIndex = 0;
-
-		// not sure if the below will work
-		do {
-
-			// get first player in line to start round
-			if (i == 0 && currentPlayer != null) {
-				playerIndex = players.search(currentPlayer);
-			}
-
-			// first round of game
-			if (currentPlayer == null) {
-				playerIndex = 0;
-			}
-
-			// TODO: comment this in
-			// players.elementAt(i).play();
-			
-			// player will trigger either validateBid() or
-			// validateChallenge() from play()
-
-			// get next player
-			// if at stak's last element and loop not done set
-			// player index to 0
-			//if (players.lastElement() == players.elementAt(i)) {
-			//	playerIndex = 0;
-			//}
-
-			// increase loopCount
-			i++;
-
-		} while (validateGame());
+		
+		int playerNum = 2;
+		createPlayers();
+		
 
 	} // end main
 

@@ -8,8 +8,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 
 public class Player {
+	
+	Player(int id) {
+
+				final Portal p = new Portal();
+
+				// Schedule a job for the event-dispatching thread:
+				// creating and showing this application's GUI.
+				SwingUtilities.invokeLater(new Runnable() {
+
+					@Override
+					public void run() {
+						p.createAndShowGUI();
+					}
+
+				}); // end SwingUtilities
+	}
 	
     /**
      * @name   : Portal
@@ -153,6 +171,7 @@ public class Player {
 	        } else if (e.getSource() == btnChallenge) {
 	        	
 	            btnChallenge.setText("Challenge Placed");
+	            handleBid();
 	            
 	        } else if(e.getSource() == btnHideDice) {
 	        	// need if statement for show or hide text
@@ -190,6 +209,17 @@ public class Player {
 	    }
 	    
 } // end class Portal
+	
+	private void handleBid () {
+		boolean isBidValid = Game.validateBid(1, 1);
+		
+		if (isBidValid) {
+			// call next player
+			Game.turnOver(this);
+		} else {
+			// signal to player to reenter bid
+		}
+	}
 
 
 } // end class Player
