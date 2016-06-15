@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -67,7 +68,7 @@ public class Player {
         
     }
     
-    private void bid(int a, int b){ //diceNum  faceValue
+    private void bid(){ //diceNum  faceValue
         
     }
     
@@ -94,6 +95,8 @@ public class Player {
 	    JLabel lblErrorMsg, lblCurrentBid, lblPlayerID,
 	           lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
 	    
+	    JLabel[] lblDice = {lblDie1, lblDie2, lblDie3, lblDie4, lblDie5};
+	    
 	    JButton btnBid, btnChallenge, btnHideDice;
 	    
 	    JTextField txtBidDieValue, txtBidDieNum; 
@@ -112,14 +115,14 @@ public class Player {
 	        //row1.setBackground(Color.blue);
 	        portalGUI.add(row1);
 	        
-	        lblCurrentBid = new JLabel("Current Bid");
+	        lblCurrentBid = new JLabel("Current Bid = 0");
 	        lblCurrentBid.setLocation(0, 0);
 	        lblCurrentBid.setSize(100, 40);
 	        lblCurrentBid.setHorizontalAlignment(0);
 	        lblCurrentBid.setForeground(Color.black);
 	        row1.add(lblCurrentBid);
 	        
-	        lblPlayerID = new JLabel("Player n");
+	        lblPlayerID = new JLabel("Player" + PlayerID);
 	        lblPlayerID.setLocation(240, 0);
 	        lblPlayerID.setSize(380, 40);
 	        lblPlayerID.setHorizontalAlignment(0);
@@ -174,12 +177,16 @@ public class Player {
 	        txtBidDieValue = new JTextField("Enter Die Value");
 	        txtBidDieValue.setLocation(0, 0);
 	        txtBidDieValue.setSize(100, 40);
+	        txtBidDieValue.setFont(new Font("Lucida",Font.PLAIN,10)); 
+	        txtBidDieValue.setVisible(false);
 	        txtBidDieValue.addActionListener(this);
 	        bidPanel.add(txtBidDieValue);
 	        
 	        txtBidDieNum = new JTextField("Enter Die Num");
 	        txtBidDieNum.setLocation(0, 40);
 	        txtBidDieNum.setSize(100, 40);
+	        txtBidDieNum.setFont(new Font("Lucida",Font.PLAIN,10)); 
+	        txtBidDieNum.setVisible(false);
 	        txtBidDieNum.addActionListener(this);
 	        bidPanel.add(txtBidDieNum);
 	       
@@ -203,6 +210,18 @@ public class Player {
 	        btnHideDice.addActionListener(this);
 	        cupPanel.add(btnHideDice);
 	        
+	        
+	        for (int i = 0; i < lblDice.length; i++) {
+	        	lblDice[i] = new JLabel(" D ");
+	        	lblDice[i].setLocation( ( (i+1) *50) , 50);
+	        	lblDice[i].setSize(40, 40);
+	        	lblDice[i].setFont(new Font("Lucida",Font.PLAIN,30)); //24 = size
+	        	lblDice[i].setHorizontalAlignment(0);
+	        	lblDice[i].setForeground(Color.black);
+	        	lblDice[i].setVisible(false);
+	        	cupPanel.add(lblDice[i]);
+	        }
+	        
 	        portalGUI.setOpaque(true);
 	        return portalGUI;
 	    }
@@ -217,16 +236,46 @@ public class Player {
 	    public void actionPerformed(ActionEvent e) {
 	        if (e.getSource() == btnBid) {
 	        	
-	        	actionPanel.setVisible(true);
-	            
+	        	if (btnBid.getText().equals("Bid")) {
+					btnBid.setText("Enter Bid");
+					
+					// set text fields to true so player can enter bid
+		        	txtBidDieValue.setVisible(true);
+		        	txtBidDieNum.setVisible(true);
+		        	
+				} else if (btnBid.getText().equals("Enter Bid")) {
+					btnBid.setText("Bid Entered");
+					txtBidDieValue.setVisible(false);
+		        	txtBidDieNum.setVisible(false);
+		        	
+		        	// call bid() to process text filed data
+		        	bid();
+				}
+	        	
+	           
 	        } else if (e.getSource() == btnChallenge) {
 	        	
-	            btnChallenge.setText("Challenge Placed");
-	            handleBid();
+	        	if (btnChallenge.getText().equals("C1")) {
+	        		btnChallenge.setText("C0");
+				} else {
+					btnChallenge.setText("C1");
+				}
+	        	
+	            challenge();
 	            
 	        } else if(e.getSource() == btnHideDice) {
-	        	// need if statement for show or hide text
-	        	btnHideDice.setText("Hide Dice");
+	        	
+	        	if (btnHideDice.getText().equals("Show Dice")) {
+	        		btnHideDice.setText("Hide Dice");
+	        		for (int i = 0; i < lblDice.length; i++) {
+	        			lblDice[i].setVisible(true);	
+	        		}
+				} else {
+					btnHideDice.setText("Show Dice");
+					for (int i = 0; i < lblDice.length; i++) {
+	        			lblDice[i].setVisible(false);	
+	        		}
+				}
 	        
 	        } else if(e.getSource() == txtBidDieValue) {
 

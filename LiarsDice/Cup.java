@@ -19,6 +19,11 @@ public class Cup {
        System.out.println("");
     }
     
+    public Stack<Die> getDice(){   //needed dice values for player and game
+        
+        return dice;
+    }
+    
     public void loseDie(){      //This removes a die from the stack.
     
      dice.pop();
