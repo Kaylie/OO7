@@ -12,36 +12,20 @@ import javax.swing.SwingUtilities;
 
 
 public class Player {
-	
-/*	Player(int id) {
-
-				final Portal p = new Portal();
-
-				// Schedule a job for the event-dispatching thread:
-				// creating and showing this application's GUI.
-				SwingUtilities.invokeLater(new Runnable() {
-
-					@Override
-					public void run() {
-						p.createAndShowGUI();
-					}
-
-				}); // end SwingUtilities
-	}
-*/
 	int PlayerID;
-//    private Cup PlayersCup = new Cup();
-    
+    private Cup playerCup;
+    private Portal screen;
+ 
      public Player(){        
     }
     
      public Player(int x){
         PlayerID = x;
         //if int 0 set players GUI to play        
-        Cup playerCup = new Cup();
+        playerCup = new Cup();
         playerCup.shake();
         playerCup.displayDiceValues();
-        Portal screen = new Portal();
+        screen = new Portal();
         screen.createAndShowGUI();        
         screen.portalPanel();        
         if (PlayerID != 0){        	
@@ -49,8 +33,7 @@ public class Player {
         	screen.actionPanel.setBackground(Color.BLACK);
         	screen.bidPanel.setEnabled(false);
         	screen.btnBid.setEnabled(false);
-        	screen.btnChallenge.setEnabled(false);
-        
+        	screen.btnChallenge.setEnabled(false);        
         	}
         this.play();
         
@@ -67,8 +50,43 @@ public class Player {
         
     }
     
-    private void bid(int a, int b){ //diceNum  faceValue
-        
+    private void bid(){ //diceNum  faceValue
+        //send diceNum and faceValue to 
+    	String faceValue = screen.txtBidDieValue.getText();
+    	String dieNum = screen.txtBidDieNum.getText(); 	
+    	boolean valid = true;
+    	if (faceValue.length()<1)
+    		valid = false;
+    	for (int i = 0; i<faceValue.length(); i++){
+    		char c = faceValue.charAt(i);
+    		if (Character.isDigit(c) || c=='.'){    			
+    		}else{
+    			valid = false;
+    		}
+    	if (dieNum.length()<1)
+        	valid = false;
+        for (int a = 0; i<dieNum.length(); a++){
+        	char b = faceValue.charAt(a);
+        	if (Character.isDigit(b) || c=='.'){    			
+        	}else{
+        		valid = false;
+        	}	
+        if (valid == true){
+        	int face = Integer.parseInt(faceValue);
+        	int die = Integer.parseInt(dieNum);
+        	if (Game.validateBid(die, face) == true){
+        		Game.turnOver(this);        	
+        	}
+        }else{
+        	screen.lblErrorMsg.setVisible(true);
+        	// enter code to renable screen for player to enter new bid or challenge
+        	}
+        }	
+    }
+    	
+    		
+    	
+    	
     }
     
     private boolean challenge(){
@@ -260,7 +278,7 @@ public class Player {
 	    
 } // end class Portal
 	
-	private void handleBid () {
+	private void handleBid() {
 		boolean isBidValid = Game.validateBid(1, 1);
 		
 		if (isBidValid) {
