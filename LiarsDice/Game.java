@@ -44,6 +44,7 @@ public class Game {
 	 */
 	public static class Table implements ActionListener {
 		// Global variable definitions for GUI items
+		// Here is where i will be working later
 
 		JPanel row1;
 
