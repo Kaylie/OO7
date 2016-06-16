@@ -44,6 +44,7 @@ public class Game {
 	 */
 	public static class Table implements ActionListener {
 		// Global variable definitions for GUI items
+		// Here is where i will be working later
 
 		JPanel row1;
 
@@ -121,6 +122,22 @@ public class Game {
 		}
 
 	} // end class Table
+	
+	
+	/*
+	 * @name   : getCurrentBid
+	 * 
+	 * @author : Kaylie Anderson
+	 * 
+	 * @decr   : returns current bid
+	 * 
+	 * @param  : int[] currentValidBid
+	 */
+	private static int[] getCurrentValidBid() {
+		return currentValidBid;
+
+	}
+
 
 	/*
 	 * @name : createPlayers
@@ -271,9 +288,17 @@ public class Game {
 	}
 	
 	
-	//static Player currentPlayer;
-	//static Player startingPlayer;
-	//static Player lastPlayer;
+	/*
+	 * @name   : turnOver
+	 * 
+	 * @author : Kaylie Anderson
+	 * 
+	 * @decr   : After player's turn is over they let the 
+	 * game know by calling this function. This method then sets
+	 * the next player.
+	 * 
+	 * @param : Player p
+	 */
 	public static void turnOver(Player p) {
 		// get next player
 		int index = players.indexOf(p);
@@ -306,9 +331,9 @@ public class Game {
 	 * @param : Player p
 	 */
 	private static void removePlayer(Player p) {
-		/* TODO comment in
+		// TODO comment in
 		// check if losing player should be removed
-		if ( p.getNumberOfDice() == 0) {
+		//if ( p.getNumberOfDice() == 0) {
 			// remove player
 			int index = players.indexOf(p);
 			players.removeElementAt(index);
@@ -316,8 +341,8 @@ public class Game {
 			// check if game should continue
 		    validateGame();
 		}
-		*/
-	}
+		
+	//}
 
 
 	/*
