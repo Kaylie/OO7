@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import org.omg.CORBA.Request;
+
 
 public class Player {
 	int PlayerID;
@@ -55,46 +57,37 @@ public class Player {
         //send diceNum and faceValue to 
     	String faceValue = screen.txtBidDieValue.getText();
     	String dieNum = screen.txtBidDieNum.getText(); 	
-    	boolean valid = true;
-    	if (faceValue.length()<1)
-    		valid = false;
+    	boolean valid = true;        	
     	for (int i = 0; i<faceValue.length(); i++){
     		char c = faceValue.charAt(i);
-    		if (Character.isDigit(c) || c=='.'){    			
-    		}else{
+    		if (!Character.isDigit(c)){  
     			valid = false;
     		}
-    	if (dieNum.length()<1)
-        	valid = false;
-        for (int a = 0; i<dieNum.length(); a++){
+    	}		    	
+        for (int a = 0; a<dieNum.length(); a++){
         	char b = faceValue.charAt(a);
-        	if (Character.isDigit(b) || c=='.'){    			
-        	}else{
+        	if (!Character.isDigit(b)){ 
         		valid = false;
         	}	
+        }
         if (valid == true){
         	int face = Integer.parseInt(faceValue);
         	int die = Integer.parseInt(dieNum);
         	if (Game.validateBid(die, face) == true){
-        		Game.turnOver(this);        	
+        		Game.turnOver(this);        		
         	}
-        }else{
-        	screen.lblErrorMsg.setVisible(true);
+        }else{        	    	
+        	//screen.lblErrorMsg.setVisible(true);
+        	//screen.lblErrorMsg.setText("Invalid bid. Please enter a new bid or challenge.");
+        	screen.test("invalid");
         	// enter code to renable screen for player to enter new bid or challenge
         	}
-        }	
-    }
-    	
+        }
 
-    }
-    
-    private boolean challenge(){
-        
-        return false;
-    }
-    
     public void play(){
+    	//enable this players buttons
     	
+    	//disable this players buttons
     }
 	
     /**
@@ -117,6 +110,11 @@ public class Player {
 	    
 	    JTextField txtBidDieValue, txtBidDieNum; 
 
+	    public void test(String s){
+	    	lblErrorMsg.setText(s);
+	    	
+	    }
+	    
 	    public JPanel portalPanel () {
 
 	        // We create a bottom JPanel to place everything on.
@@ -152,12 +150,13 @@ public class Player {
 	        //row2.setBackground(Color.black);
 	        portalGUI.add(row2);
 	        
-	        lblErrorMsg = new JLabel("Invalid bid. Please enter a new bid or challenge.");
+	        //lblErrorMsg = new JLabel("Invalid bid. Please enter a new bid or challenge.");
+	        lblErrorMsg = new JLabel("");
 	        lblErrorMsg.setLocation(0, 0);
 	        lblErrorMsg.setSize(480, 20);
 	        lblErrorMsg.setHorizontalAlignment(0);
 	        lblErrorMsg.setForeground(Color.red);
-	        lblErrorMsg.setVisible(false); // if bid invalid show this error
+	        //lblErrorMsg.setVisible(false); // if bid invalid show this error
 	        row2.add(lblErrorMsg);
 	        
 	        row3 = new JPanel();
@@ -277,7 +276,7 @@ public class Player {
 					btnChallenge.setText("C1");
 				}
 	        	
-	            challenge();
+	        	Game.validateChallenge();
 	            
 	        } else if(e.getSource() == btnHideDice) {
 	        	
