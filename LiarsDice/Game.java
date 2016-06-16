@@ -58,6 +58,8 @@ public class Game {
 		
 		JScrollPane spRules;
 		
+		JTextField txtBidDiceNum,txtBidDieValue;
+		
 		public JPanel tablePanel() {
 
 			// We create a bottom JPanel to place everything on.
