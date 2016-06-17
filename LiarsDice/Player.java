@@ -1,3 +1,4 @@
+import java.util.Stack;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
@@ -37,7 +38,7 @@ public class Player extends JFrame implements ActionListener {
 
 	JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlAction, pnlBid, pnlCup;
 
-	JLabel lblErrorMsg, lblCurrentBid, lblPlayerID, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
+	JLabel lblErrorMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
 
 	JLabel[] lblDice = { lblDie1, lblDie2, lblDie3, lblDie4, lblDie5 };
 
@@ -56,7 +57,7 @@ public class Player extends JFrame implements ActionListener {
 	public Player(int x) { // note consider changing x to something more
 							// descriptive?
 
-		super("Player Portal");
+		super("Player" + x);
 
 		PlayerID = x;
 
@@ -79,21 +80,22 @@ public class Player extends JFrame implements ActionListener {
 		pnlRow1.setLocation(10, 10);
 		pnlRow1.setSize(480, 40);
 		pnlPortal.add(pnlRow1);
-
-		lblCurrentBid = new JLabel("Current Bid = 0"); // TODO - get real
+		int[] arr = Game.getCurrentValidBid();
+		String s = "Current Bid = Die Number: " + arr[0] +  " Face Value: " + arr[1]; // don't use s
+		lblCurrentBid = new JLabel(s); // TODO - get real
 														// current bid
 		lblCurrentBid.setLocation(0, 0);
-		lblCurrentBid.setSize(100, 40);
+		lblCurrentBid.setSize(275, 40);
 		lblCurrentBid.setHorizontalAlignment(0);
 		lblCurrentBid.setForeground(Color.black);
 		pnlRow1.add(lblCurrentBid);
 
-		lblPlayerID = new JLabel("Player" + PlayerID);
-		lblPlayerID.setLocation(240, 0);
-		lblPlayerID.setSize(380, 40);
-		lblPlayerID.setHorizontalAlignment(0);
-		lblPlayerID.setForeground(Color.black);
-		pnlRow1.add(lblPlayerID);
+		//lblPlayerID = new JLabel("Player" + PlayerID);
+		//lblPlayerID.setLocation(240, 0);
+		//lblPlayerID.setSize(380, 40);
+		//lblPlayerID.setHorizontalAlignment(0);
+		//lblPlayerID.setForeground(Color.black);
+		//pnlRow1.add(lblPlayerID);
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -167,9 +169,10 @@ public class Player extends JFrame implements ActionListener {
 		btnHideDice.setSize(350, 40);
 		btnHideDice.addActionListener(this);
 		pnlCup.add(btnHideDice);
-
+Stack<Die> dice = playerCup.getDice();
 		for (int i = 0; i < lblDice.length; i++) {
-			lblDice[i] = new JLabel(" D ");
+			s = "" + dice.elementAt(i).getFaceValue();
+			lblDice[i] = new JLabel(s);
 			lblDice[i].setLocation(((i + 1) * 50), 50);
 			lblDice[i].setSize(40, 40);
 			lblDice[i].setFont(new Font("Lucida", Font.PLAIN, 30)); // 24 = size
