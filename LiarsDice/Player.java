@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,18 +52,17 @@ public class Player extends JFrame implements ActionListener {
 	
 	
 	/*
-	 * @name : Player(int x)
+	 * @name : Player(int id)
 	 * 
 	 * @decr : setup GUI and enable the first player to play
 	 * 
 	 * @param : void
 	 */
-	public Player(int x) { // note consider changing x to something more
-							// descriptive?
+	public Player(int id) { // changed this so I could use x for x and y coordinates
 
 		super("Player Portal");
 
-		PlayerID = x;
+		PlayerID = id;
 
 		//// Player Setup ////
 		playerCup = new Cup();
@@ -188,8 +192,37 @@ public class Player extends JFrame implements ActionListener {
 			this.btnBid.setEnabled(false);
 			this.btnChallenge.setEnabled(false);
 		}
-
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		int xAdjust = 0;
+		int yAdjust = 0;
+		
+		switch(id) {
+		case 0 :
+			xAdjust = -500;
+			yAdjust = -200;
+			break;
+		case 1 :  
+			xAdjust = 500;
+			yAdjust = -200;
+			break;
+		case 2 :
+			xAdjust = -500;
+			yAdjust = 200;
+			break;
+		case 3 :
+			xAdjust = 500;
+			yAdjust = 200;
+			break;	
+		}
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = xAdjust + ( (int) ((dimension.getWidth() - getWidth()) / 2) );
+	    int y = yAdjust + ( (int) ((dimension.getHeight() - getHeight()) / 2) );
+	    setLocation(x, y);
+		
+		
+		
+		
+        this.setVisible(true);
 
 		con = this.getContentPane();
 		this.setSize(500, 280);
@@ -197,7 +230,7 @@ public class Player extends JFrame implements ActionListener {
 		setVisible(true);
 
 		//// Setup first players GUI ////
-		if (x == 0) {
+		if (id == 0) {
 			play();
 		}
 
