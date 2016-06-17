@@ -13,14 +13,26 @@ import javax.swing.SwingUtilities;
 
 import org.omg.CORBA.Request;
 
+
+/*
+ * @author : John DePaco & Kaylie Anderson
+ * 
+ * @name : Player
+ * 
+ * @decr : One player represents one user in the game. It is the 
+ * player's private portal to access their game information and 
+ * interact with the game.
+ * 
+ * @param : void
+ */
 public class Player extends JFrame implements ActionListener {
-	
+
 	// class variables
 	int PlayerID;
 	private Cup playerCup;
 
-	// class GUI components 
-	
+	// class GUI components
+
 	Container con;
 
 	JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlAction, pnlBid, pnlCup;
@@ -32,18 +44,27 @@ public class Player extends JFrame implements ActionListener {
 	JButton btnBid, btnChallenge, btnHideDice;
 
 	JTextField txtBidDieValue, txtBidDieNum;
+	
+	
+	/*
+	 * @name : Player(int x)
+	 * 
+	 * @decr : setup GUI and enable the first player to play
+	 * 
+	 * @param : void
+	 */
+	public Player(int x) { // note consider changing x to something more
+							// descriptive?
 
-	public Player(int x) { // note consider changing x to something more descriptive?
-		
 		super("Player Portal");
-		
-		PlayerID = x; 
-		
-	    //// Player Setup ////
+
+		PlayerID = x;
+
+		//// Player Setup ////
 		playerCup = new Cup();
 		playerCup.shake();
 		playerCup.displayDiceValues();
-		
+
 		//// Create GUI ////
 
 		setBounds(100, 100, 300, 100);
@@ -59,7 +80,8 @@ public class Player extends JFrame implements ActionListener {
 		pnlRow1.setSize(480, 40);
 		pnlPortal.add(pnlRow1);
 
-		lblCurrentBid = new JLabel("Current Bid = 0"); //TODO - get real current bid
+		lblCurrentBid = new JLabel("Current Bid = 0"); // TODO - get real
+														// current bid
 		lblCurrentBid.setLocation(0, 0);
 		lblCurrentBid.setSize(100, 40);
 		lblCurrentBid.setHorizontalAlignment(0);
@@ -84,7 +106,7 @@ public class Player extends JFrame implements ActionListener {
 		lblErrorMsg.setSize(480, 20);
 		lblErrorMsg.setHorizontalAlignment(0);
 		lblErrorMsg.setForeground(Color.red);
-		lblErrorMsg.setVisible(false); 
+		lblErrorMsg.setVisible(false);
 		pnlRow2.add(lblErrorMsg);
 
 		pnlRow3 = new JPanel();
@@ -158,7 +180,6 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-		
 
 		if (PlayerID != 0) {
 			this.pnlAction.setVisible(false);
@@ -167,23 +188,20 @@ public class Player extends JFrame implements ActionListener {
 			this.btnBid.setEnabled(false);
 			this.btnChallenge.setEnabled(false);
 		}
-		
 
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		con = this.getContentPane(); 
+		con = this.getContentPane();
 		this.setSize(500, 280);
-		con.add(pnlPortal); 
-		setVisible(true); 
-		
-		
-	    //// Setup first players GUI ////
+		con.add(pnlPortal);
+		setVisible(true);
+
+		//// Setup first players GUI ////
 		if (x == 0) {
 			play();
 		}
 
 	} // end constructor
-
 
 	/*
 	 * @name : actionPerformed
@@ -247,23 +265,53 @@ public class Player extends JFrame implements ActionListener {
 
 		}
 	}
-	
-	
+
+	/*
+	 * @name : setPlayerID
+	 * 
+	 * @decr : TODO - do we really need this?
+	 * 
+	 * @param : int x
+	 */
 	public void setPlayerID(int x) {
 		PlayerID = x;
 
 	}
 
+	/*
+	 * @name : getPlayerID
+	 * 
+	 * @decr : return the player's ID
+	 * 
+	 * @param : void
+	 */
 	public int getPlayerID() {
 		return PlayerID;
 
 	}
-	
+
+	/*
+	 * @name : getPlayerCup
+	 * 
+	 * @decr : return the player's cup object
+	 * 
+	 * @param : void
+	 */
 	public Cup getPlayerCup() {
 		return playerCup;
-
 	}
 
+	/*
+	 * @name : bid
+	 * 
+	 * @decr : Check that data entered in txtBidDieValue and txtBidDieNum are
+	 * actually numbers. Also check that DieValue data is between 1 and 6
+	 * (exclusive). If data is valid set bid to Game so that is can be compared
+	 * to the Game's current bid. Else display error and have player renter the
+	 * play use case.
+	 * 
+	 * @param : void
+	 */
 	private void bid() { // diceNum faceValue
 		// send diceNum and faceValue to
 		String faceValue = this.txtBidDieValue.getText();
@@ -294,12 +342,18 @@ public class Player extends JFrame implements ActionListener {
 		}
 	}
 
+	/*
+	 * @name : play TODO - method can now be finished
+	 * 
+	 * @decr : set this player's GUI up so user can take their turn.
+	 * 
+	 * @param : void
+	 */
 	public void play() {
 		// enable this players buttons
 		btnBid.getText().equals("Bid");
 
 		// disable this players buttons
 	}
-
 
 } // end class Player
