@@ -153,7 +153,7 @@ public class Game extends JFrame implements ActionListener {
 	 * 
 	 * @param : int[] currentValidBid
 	 */
-	private static int[] getCurrentValidBid() {
+	public static int[] getCurrentValidBid() {
 		return currentValidBid;
 	}
 	
