@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 import java.util.Stack;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -39,17 +41,25 @@ public class Game {
 
 	/**
 	 * @name : Table
-	 * @author :
-	 * @decr :
+	 * @author : Abraham Assad
+	 * @decr : Window for game rules and game status
 	 */
 	public static class Table implements ActionListener {
 		// Global variable definitions for GUI items
-		// Here is where i will be working later
 
-		JPanel row1;
+		JPanel pnlOutcomePanel,pnlRow1,pnlRow2,pnlRules,pnlSetup;
 
-		JButton btnBid;
-
+		JButton btnCancel,btnRules,btnStart;
+		
+		JLabel lblBidder,lblChallenger,lblMsg,lblNumPlayers,
+		lblPlayerDice,lblPlayerID,lblRules; 
+		
+		JComboBox cmbNumPlayers;
+		
+		JScrollPane spRules;
+		
+		JTextField txtBidDiceNum,txtBidDieValue;
+		
 		public JPanel tablePanel() {
 
 			// We create a bottom JPanel to place everything on.
@@ -57,28 +67,28 @@ public class Game {
 			portalGUI.setLayout(null);
 
 			// Creation of a Panel to contain the title labels
-			row1 = new JPanel();
-			row1.setLayout(null);
-			row1.setLocation(10, 10);
-			row1.setSize(480, 40);
+			pnlRow1 = new JPanel();
+			pnlRow1.setLayout(null);
+			pnlRow1.setLocation(10, 10);
+			pnlRow1.setSize(480, 40);
 			// row1.setBackground(Color.blue);
-			portalGUI.add(row1);
+			portalGUI.add(pnlRow1);
 
 			// We create a button and manipulate it using the syntax we have
 			// used before. Now each button has an ActionListener which posts
 			// its action out when the button is pressed.
-			btnBid = new JButton("Hi");
-			btnBid.setLocation(10, 10);
-			btnBid.setSize(100, 40);
-			btnBid.addActionListener(this);
-			row1.add(btnBid);
+			btnCancel = new JButton("Hi");
+			btnCancel.setLocation(10, 10);
+			btnCancel.setSize(100, 40);
+			btnCancel.addActionListener(this);
+			pnlRow1.add(btnCancel);
 
 			portalGUI.setOpaque(true);
 			return portalGUI;
 		}
 
 		/*
-		 * @name : actionPerformed
+		 * @name : Cancel Button
 		 * 
 		 * @author :
 		 * 
@@ -87,12 +97,12 @@ public class Game {
 		 * @param : ActionEvent e
 		 */
 		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == btnBid) {
+			if (e.getSource() == btnCancel) {
 
-				if (btnBid.getText().equals("Hi")) {
-					btnBid.setText("Bye");
+				if (btnCancel.getText().equals("Hi")) {
+					btnCancel.setText("Bye");
 				} else {
-					btnBid.setText("Hi");
+					btnCancel.setText("Hi");
 				}
 
 			}
