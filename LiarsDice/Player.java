@@ -16,7 +16,7 @@ import org.omg.CORBA.Request;
 
 
 /*
- * @author : John DePaco & Kaylie Anderson
+ * @author : John DePaco, Kaylie Anderson, and Cameron Walworth
  * 
  * @name : Player
  * 
