@@ -61,7 +61,7 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public Player(int id) { // changed this so I could use x for x and y coordinates
 
-		super("Player" + x);
+		super("Player" + id);
 
 		PlayerID = id;
 
@@ -173,7 +173,8 @@ public class Player extends JFrame implements ActionListener {
 		btnHideDice.setSize(350, 40);
 		btnHideDice.addActionListener(this);
 		pnlCup.add(btnHideDice);
-Stack<Die> dice = playerCup.getDice();
+		
+        Stack<Die> dice = playerCup.getDice();
 		for (int i = 0; i < lblDice.length; i++) {
 			s = "" + dice.elementAt(i).getFaceValue();
 			lblDice[i] = new JLabel(s);
