@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -165,6 +167,14 @@ JTextField txtBidDiceNum, txtBidDieValue;
 		pnlSetup.add(cmbNumPlayers);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		int xAdjust = -100;
+		int yAdjust = -175;
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    	int x = xAdjust + ( (int) ((dimension.getWidth() - getWidth()) / 2) );
+	    	int y = yAdjust + ( (int) ((dimension.getHeight() - getHeight()) / 2) );
+	    	setLocation(x, y);
 
 		con = this.getContentPane(); 
 		this.setSize(500, 280);
