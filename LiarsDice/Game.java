@@ -330,24 +330,20 @@ JTextField txtBidDiceNum, txtBidDieValue;
 
 		// dieNum must be greater than 1
 		if (dieNum < 1) {
-			System.out.println("dieNum < 1");
 			// Buttons are not being reshown
 			return false;
 		}
 
 		// faceValue can only be values 1 - 5 exclusive
 		if (faceValue < 1 || faceValue > 6) {
-			System.out.println("aceValue < 1 || faceValue > 6");
 			// Buttons are not being reshown
 			return false;
 		}
 
 		// compare new bid against current bid,
 		// if new bid is valid assign it as the current bid
-		System.out.println("dieNum = " + dieNum + " currentValidBid[0] = " + currentValidBid[0]);
-		System.out.println("faceValue = " + faceValue + " currentValidBid[1] = " + currentValidBid[1]);
-		if (dieNum == currentValidBid[0] && faceValue == currentValidBid[1]) {
-			System.out.println("dieNum <= currentValidBid[0] && faceValue <= currentValidBid[1]");
+		if (dieNum <= currentValidBid[0] && faceValue <= currentValidBid[1]) {
+			//System.out.println("dieNum <= currentValidBid[0] && faceValue <= currentValidBid[1]");
 			return false;
 		}
 
@@ -355,10 +351,6 @@ JTextField txtBidDiceNum, txtBidDieValue;
 		// assign bid as new bid
 		currentValidBid[0] = dieNum;
 		currentValidBid[1] = faceValue;
-		System.out.println("true");
-		
-		System.out.println("**currentValidBid[0] = " +currentValidBid[0] 
-				+ " **currentValidBid[1] = " + currentValidBid[1]);
 		
 		// set current bid for all players
 		for (int i = 0; i < players.size(); i++) {
