@@ -7,6 +7,7 @@
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
@@ -47,14 +48,15 @@ public class Game extends JFrame implements ActionListener {
 
 	JButton btnCancel, btnRules, btnStart;
 
-	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers, lblPlayerDice, lblPlayerID, lblRules;
+	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers,
+	lblPlayerDice, lblPlayerID, lblRules, lblTitle;
 
-	JComboBox cmbNumPlayers;
+	JComboBox<String> cmbNumPlayers;
 
 	JScrollPane spRules;
 
-	JTextField txtBidDiceNum, txtBidDieValue;
-
+JTextField txtBidDiceNum, txtBidDieValue;
+	
 	public Game() {
 		
 		super("Game Table");
@@ -71,25 +73,104 @@ public class Game extends JFrame implements ActionListener {
 		pnlRow1 = new JPanel();
 		pnlRow1.setLayout(null);
 		pnlRow1.setLocation(10, 10);
-		pnlRow1.setSize(480, 40);
+		pnlRow1.setSize(420, 40);
 		pnlGameTable.add(pnlRow1);
+		
+		// Creation of a Panel to contain the rules text
+		pnlRules = new JPanel();
+		pnlRules.setLayout(null);
+		pnlRules.setLocation(10, 50);
+		pnlRules.setSize(480, 140);
+		pnlGameTable.add(pnlRules);
+		
+		// Creation of a Panel to contain the setup page
+		pnlSetup = new JPanel();
+		pnlSetup.setLayout(null);
+		pnlSetup.setLocation(10, 50);
+		pnlSetup.setSize(480, 140);
+		pnlGameTable.add(pnlSetup);
+		pnlSetup.setVisible(false);
+		
+		// Creation of a Panel to contain the game start buttons
+		pnlRow2 = new JPanel();
+		pnlRow2.setLayout(null);
+		pnlRow2.setLocation(10, 195);
+		pnlRow2.setSize(480, 40);
+		pnlGameTable.add(pnlRow2);
+		
+		// Creation of the Game title
+		lblTitle = new JLabel("Welcome to Liar's Dice");
+		lblTitle.setLocation(0, 5);
+		lblTitle.setSize(480, 25);
+		lblTitle.setHorizontalAlignment(0);
+		lblTitle.setFont(new Font("Lucida", Font.PLAIN, 32));
+		lblTitle.setForeground(Color.black);
+		lblTitle.setVisible(true);
+		pnlRow1.add(lblTitle);
+		
+		// Creation of the game rules text
+		lblRules = new JLabel("Here is where the rules will go");
+		lblRules.setLocation(0, 0);
+		lblRules.setSize(420, 140);
+		lblRules.setHorizontalAlignment(0);
+		lblRules.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblRules.setForeground(Color.black);
+		lblRules.setVisible(true);
+		pnlRules.add(lblRules);
+		
+		// Creation of the rules scroll pane
+		spRules = new JScrollPane();
+		spRules.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		lblRules.add(spRules);
 
+		// Button for user to advance past rules
+		btnRules = new JButton("Got it!");
+		btnRules.setLocation(0, 0);
+		btnRules.setSize(465, 40);
+		btnRules.addActionListener(this);
+		pnlRow2.add(btnRules);
+		
 		// We create a button and manipulate it using the syntax we have
 		// used before. Now each button has an ActionListener which posts
 		// its action out when the button is pressed.
-		btnCancel = new JButton("Hi");
-		btnCancel.setLocation(10, 10);
+		btnCancel = new JButton("Back Out");
+		btnCancel.setLocation(365, 75);
 		btnCancel.setSize(100, 40);
 		btnCancel.addActionListener(this);
-		pnlRow1.add(btnCancel);
+		pnlSetup.add(btnCancel);
+		
+		// Button for user to accept players and start game
+		btnStart = new JButton("Start Game");
+		btnStart.setLocation(0, 75);
+		btnStart.setSize(360, 40);
+		btnStart.addActionListener(this);
+		pnlSetup.add(btnStart);
+		
+		// Text instruction for number of players
+		lblNumPlayers = new JLabel("Choose the number of players...");
+		lblNumPlayers.setLocation(0, 30);
+		lblNumPlayers.setSize(360, 40);
+		lblNumPlayers.setHorizontalAlignment(10);
+		lblNumPlayers.setFont(new Font("Lucida", Font.PLAIN, 24));
+		lblNumPlayers.setForeground(Color.black);
+		lblNumPlayers.setVisible(true);
+		pnlSetup.add(lblNumPlayers);
+		
+		// Combo box for the number of players chosen
+		String[] strPlayers = new String[] {"2", "3", "4"};	// used to fill in the combo box
+		cmbNumPlayers = new JComboBox<String>(strPlayers);
+		cmbNumPlayers.setLocation(365, 30);
+		cmbNumPlayers.setSize(100, 40);
+		cmbNumPlayers.addActionListener(this);
+		pnlSetup.add(cmbNumPlayers);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setLocationRelativeTo(null);
 		con = this.getContentPane(); 
 		this.setSize(500, 280);
 		con.add(pnlGameTable); 
 		setVisible(true);
+		
 	}
 
 	/*
@@ -100,13 +181,27 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : ActionEvent e
 	 */
 	public void actionPerformed(ActionEvent e) {
+		// commands for "Got it" button press
+		if (e.getSource() == btnRules) {
+
+			pnlRules.setVisible(false);
+			pnlSetup.setVisible(true);
+
+		}
+		// commands for "Back out" button press
 		if (e.getSource() == btnCancel) {
 
-			if (btnCancel.getText().equals("Hi")) {
-				btnCancel.setText("Bye");
-			} else {
-				btnCancel.setText("Hi");
-			}
+			pnlRules.setVisible(true);
+			pnlSetup.setVisible(false);
+
+		}
+		// commands for "Start game" button press inc player creation
+		if (e.getSource() == btnStart) {
+
+			pnlSetup.setVisible(false);
+			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
+			
+			createPlayers(playerNum);
 
 		}
 	}
@@ -119,19 +214,7 @@ public class Game extends JFrame implements ActionListener {
 	 * 
 	 * @param : void
 	 */
-	private static void setPlayerNum(int n) {
-		playerNum = n;
-	}
-	
-	/*
-	 * @name : createPlayers
-	 * 
-	 * @decr : creates the number of player objects user selected from GUI item
-	 * cmbNumPlayers after btnStart event is triggered.
-	 * 
-	 * @param : void
-	 */
-	private static void createPlayers() {
+	private static void createPlayers(int playerNum) {
 
 		for (int i = 0; i < playerNum; i++) {
 
@@ -375,9 +458,11 @@ public class Game extends JFrame implements ActionListener {
         new Game();
 
         // Canned player value
-		setPlayerNum(4);
+		//int playerNum = 2;
 		
-		createPlayers();
+		//createPlayers();
+		
+		
 
 	} // end main
 
