@@ -363,6 +363,7 @@ public class Game extends JFrame implements ActionListener {
 	private static void setWin(Player p) {
 		p.lblErrorMsg.setText("Winner");
 		p.lblErrorMsg.setVisible(true);
+		
 	}
 	
 	/*
@@ -373,18 +374,31 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setLose(Player p) {
+		
+		// !!!! everything with 4 //// needs to be commented in  !!!!
+		
+		
 		p.lblErrorMsg.setText("Loser");
-		//p.lblErrorMsg.setText("You lost this round but you can still win the game. "
-		//		+ "Please enter a bid to start the next round.");
+		////p.lblErrorMsg.setText("You lost this round but you can still win the game. "
+		////		+ "Please enter a bid to start the next round.");
 		p.lblErrorMsg.setVisible(true);
 		
 		// player who looses losses a die
-		p.getPlayerCup().loseDie();
+		////p.getPlayerCup().loseDie();
 		
-		startingPlayer = p;
+		//startingPlayer = p;
 	
 		// check if player should be removed
-		removePlayer(p);
+		////removePlayer(p);
+		
+
+		// shake dice for next round
+		////for (int i = 0; i < players.size(); i++) {
+		////	players.elementAt(i).getPlayerCup().shake();
+		////}
+		
+		// start next round
+		////p.play();
 		
 	}
 	
