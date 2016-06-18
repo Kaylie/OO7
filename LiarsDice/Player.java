@@ -333,10 +333,16 @@ public class Player extends JFrame implements ActionListener {
 			int face = Integer.parseInt(faceValue);
 			int die = Integer.parseInt(dieNum);
 			if (Game.validateBid(die, face) == true) {
+				this.pnlAction.setVisible(false);
+				this.pnlAction.setBackground(Color.BLACK);
+				this.pnlBid.setEnabled(false);
+				this.btnBid.setEnabled(false);
+				this.btnChallenge.setEnabled(false);
 				Game.turnOver(this);
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
+			this.btnBid.setText("Bid");
 			// TODO: enter code to renable screen for player to enter new bid or
 			// challenge
 		}
@@ -351,8 +357,14 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public void play() {
 		// enable this players buttons
-		btnBid.getText().equals("Bid");
-
+		//this.btnBid.getText().equals("Bid");
+		this.btnBid.setText("Bid");
+		this.pnlAction.setVisible(true);
+		this.pnlAction.setBackground(Color.BLACK);
+		this.pnlBid.setEnabled(true);
+		this.btnBid.setEnabled(true);
+		this.btnChallenge.setEnabled(true);
+		
 		// disable this players buttons
 	}
 
