@@ -413,9 +413,6 @@ public class Game extends JFrame implements ActionListener {
 		// check if player should be removed
 		removePlayer(p);
 		
-
-
-		
 	}
 	
 	/*
@@ -553,7 +550,7 @@ public class Game extends JFrame implements ActionListener {
 			for (int j = 0; j < playersDice.size(); j++) {
 
 				switch ( playersDice.elementAt(j).getFaceValue()) {
-				//switch (2) {
+
 				case 1:
 					diceValues[0] += 1;
 					System.out.println("** 1 = "  + diceValues[0]);
@@ -664,13 +661,6 @@ public class Game extends JFrame implements ActionListener {
 		System.out.println("I am alive!!!!");
 
         new Game();
-
-        // Canned player value
-		//int playerNum = 2;
-		
-		//createPlayers();
-		
-		
 
 	} // end main
 
