@@ -383,8 +383,8 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setWin(Player p) {
-		p.lblErrorMsg.setText("Winner");
-		p.lblErrorMsg.setVisible(true);
+		p.lblMsg.setText("Winner");
+		p.lblMsg.setVisible(true);
 		
 	}
 	
@@ -397,11 +397,10 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void setLose(Player p) {
 		
-		p.lblErrorMsg.setText("Loser");
-		p.lblErrorMsg.setText("You lost this round but you can still win the game. "
+		p.lblMsg.setText("Loser");
+		p.lblMsg.setText("You lost this round but you can still win the game. "
 				+ "Please enter a bid to start the next round.");
-		p.lblErrorMsg.setVisible(true);
-		p.lblErrorMsg.setForeground(Color.BLACK);
+		p.lblMsg.setVisible(true);
 		
 		
 		// player who looses losses a die
@@ -457,18 +456,19 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void validateGame(Player p) {
 		if (players.size() < 2) {
-			System.out.println("472");
 			// set GUI to display Game winner
 		} else {
 			//start new round
 			// shake dice for next round
 			for (int i = 0; i < players.size(); i++) {
 				players.elementAt(i).shakeCup();
-				System.out.println("470");
 			}
 			
+			// reset game bid
+			currentValidBid[0] = 0;
+			currentValidBid[1] = 0;
+			
 			// start next round
-			System.out.println("472");
 			p.playTest();
 		}
 	} // end validateGame

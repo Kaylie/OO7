@@ -43,7 +43,7 @@ public class Player extends JFrame implements ActionListener {
 
 	JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlAction, pnlBid, pnlCup;
 
-	JLabel lblErrorMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
+	JLabel lblErrorMsg, lblMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
 
 	JButton btnBid, btnChallenge, btnHideDice;
 
@@ -107,6 +107,14 @@ public class Player extends JFrame implements ActionListener {
 		lblErrorMsg.setForeground(Color.red);
 		lblErrorMsg.setVisible(false);
 		pnlRow2.add(lblErrorMsg);
+		
+		lblMsg = new JLabel("general game info");
+		lblMsg.setLocation(0, 0);
+		lblMsg.setSize(480, 20);
+		lblMsg.setHorizontalAlignment(0);
+		lblMsg.setForeground(Color.black);
+		lblMsg.setVisible(false);
+		pnlRow2.add(lblMsg);
 
 		pnlRow3 = new JPanel();
 		pnlRow3.setLayout(null);
@@ -278,11 +286,6 @@ public class Player extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btnChallenge) {
 
-			btnChallenge.setForeground(Color.red);
-			//for (int i = 0; i < 4; i++){
-			//	Player[i] 
-			//}
-
 			Game.validateChallenge();
 
 		} else if (e.getSource() == btnHideDice) {
@@ -307,6 +310,11 @@ public class Player extends JFrame implements ActionListener {
 
 			// cover txtbox with bid btn
 
+		}
+		
+		// if any action happen reset general msg label
+		if (lblMsg.isVisible()) {
+			lblMsg.setVisible(false);
 		}
 	}
 
@@ -364,7 +372,8 @@ public class Player extends JFrame implements ActionListener {
 	/*
 	 * @name : shakeCup
 	 * 
-	 * @decr : 
+	 * @decr : get new dice values and refreshes lbls
+	 *         to show updated dice values
 	 * 
 	 * @param : void
 	 */
@@ -434,10 +443,12 @@ public class Player extends JFrame implements ActionListener {
 				//txtBidDieValue = new JTextField("Enter Die Value");
 			}else {
 				this.lblErrorMsg.setVisible(true);
+				this.lblErrorMsg.setForeground(Color.GREEN);
 				this.btnBid.setText("Bid");
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
+			this.lblErrorMsg.setForeground(Color.BLUE);
 			this.btnBid.setText("Bid");
 			// TODO: enter code to renable screen for player to enter new bid or
 			// challenge
