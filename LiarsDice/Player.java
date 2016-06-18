@@ -266,6 +266,9 @@ public class Player extends JFrame implements ActionListener {
 		} else if (e.getSource() == btnChallenge) {
 
 			btnChallenge.setForeground(Color.red);
+			//for (int i = 0; i < 4; i++){
+			//	Player[i] 
+			//}
 
 			Game.validateChallenge();
 
@@ -339,7 +342,7 @@ public class Player extends JFrame implements ActionListener {
 	 * play use case.
 	 * 
 	 * @param : void
-	 */
+	 */	
 	private void bid() { // diceNum faceValue
 		//TODO reenable bid buttons when appears
 		
