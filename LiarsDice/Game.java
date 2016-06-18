@@ -10,6 +10,10 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Stack;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -20,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
@@ -51,13 +56,15 @@ public class Game extends JFrame implements ActionListener {
 	JButton btnCancel, btnRules, btnStart;
 
 	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers,
-	lblPlayerDice, lblPlayerID, lblRules, lblTitle;
+	lblPlayerDice, lblPlayerID, lblTitle;
 
 	JComboBox<String> cmbNumPlayers;
+	
+	JTextArea txtRules;
 
 	JScrollPane spRules;
 
-JTextField txtBidDiceNum, txtBidDieValue;
+	JTextField txtBidDiceNum, txtBidDieValue;
 	
 	public Game() {
 		
@@ -110,21 +117,51 @@ JTextField txtBidDiceNum, txtBidDieValue;
 		lblTitle.setVisible(true);
 		pnlRow1.add(lblTitle);
 		
-		// Creation of the game rules text
-		lblRules = new JLabel("Here is where the rules will go");
-		lblRules.setLocation(0, 0);
-		lblRules.setSize(420, 140);
-		lblRules.setHorizontalAlignment(0);
-		lblRules.setFont(new Font("Lucida", Font.PLAIN, 12));
-		lblRules.setForeground(Color.black);
-		lblRules.setVisible(true);
-		pnlRules.add(lblRules);
-		
-		// Creation of the rules scroll pane
-		spRules = new JScrollPane();
-		spRules.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		lblRules.add(spRules);
 
+		
+		// work on game rules text import
+	    BufferedReader log=null;
+
+        try {
+
+
+
+        
+
+    		// Creation of the game rules text
+    		txtRules = new JTextArea();
+    		txtRules.setSize(465, 140);
+    		txtRules.setEditable ( false ); // set textArea non-editable
+    		txtRules.setLocation(0, 0);
+    		txtRules.setFont(new Font("Lucida", Font.PLAIN, 12));
+    		txtRules.setForeground(Color.black);
+    		txtRules.setVisible(true);
+    		
+    		// Creation of the rules scroll pane
+    		spRules = new JScrollPane(txtRules);
+    		spRules.setSize(465, 140);
+    		spRules.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    		pnlRules.add(spRules);
+    		
+    		BufferedReader reader = new BufferedReader(new FileReader("RulesText.txt")); 
+    		String line;
+    		while((line = reader.readLine()) != null) {
+    			txtRules.append(line + "\n");
+
+             }
+    		reader.close();
+        } catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			
+		}
+
+		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
 		btnRules.setLocation(0, 0);
