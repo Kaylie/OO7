@@ -498,6 +498,8 @@ public class Game extends JFrame implements ActionListener {
 		for (int i = 0; i < players.size(); i++){
 			players.elementAt(i).btnChallenge.setVisible(false);
 			players.elementAt(i).btnBid.setVisible(false);
+			//players.elementAt(i).pnlBid.setVisible(false);
+			players.elementAt(i).pnlAction.setVisible(false);
 			
 			
 		}
