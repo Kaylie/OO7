@@ -297,7 +297,8 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setWin(Player p) {
-		
+		p.lblErrorMsg.setText("Winner");
+		p.lblErrorMsg.setVisible(true);
 	}
 	
 	/*
@@ -308,6 +309,15 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setLose(Player p) {
+		p.lblErrorMsg.setText("Loser");
+		//p.lblErrorMsg.setText("You lost this round but you can still win the game. "
+		//		+ "Please enter a bid to start the next round.");
+		p.lblErrorMsg.setVisible(true);
+		
+		// player who looses losses a die
+		p.getPlayerCup().loseDie();
+		
+		startingPlayer = p;
 	
 		// check if player should be removed
 		removePlayer(p);
@@ -323,12 +333,24 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void removePlayer(Player p) {
+		
 		// check if losing player should be removed
 		 if ( p.getPlayerCup().getNumberOfDice() == 0) {
+			 
 			 // remove player
 			 int index = players.indexOf(p);
+			 
+			 // set starting player to the next player in line
+			 startingPlayer = getNextPlayer(p);
+			 
+			 // remove player
 			 players.removeElementAt(index);
+
 		 }
+		 
+		// reset player tracking variables
+		currentPlayer = startingPlayer;
+		lastPlayer = startingPlayer;
 
 		// check if game should continue
 		validateGame(p);
@@ -413,31 +435,37 @@ public class Game extends JFrame implements ActionListener {
 
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
-			Stack<String> playersDice = new Stack<String>();
-			// Stack<Die> playersDice = players.elementAt(i).getDieValues();
+
+			Stack<Die> playersDice = players.elementAt(i).getPlayerCup().getDice();
 
 			// add all die values
 			for (int j = 0; j < playersDice.size(); j++) {
 
-				// TODO //switch ( playersDice.elementAt(j).faceValue(); ) {
-				switch (2) {
+				switch ( playersDice.elementAt(j).getFaceValue()) {
+				//switch (2) {
 				case 1:
 					diceValues[i] += 1;
+					System.out.println("** 1 " );
 					break;
 				case 2:
 					diceValues[i] += 2;
+					System.out.println("** 2 " );
 					break;
 				case 3:
 					diceValues[i] += 3;
+					System.out.println("** 3 " );
 					break;
 				case 4:
 					diceValues[i] += 4;
+					System.out.println("** 4 " );
 					break;
 				case 5:
 					diceValues[i] += 5;
+					System.out.println("** 5 " );
 					break;
 				case 6:
 					diceValues[i] += 6;
+					System.out.println("** 6 " );
 					break;
 				default:
 					System.out.println("Error: in default switch case of validateChallenge");
@@ -478,24 +506,36 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	public static void turnOver(Player p) {
-		// get next player
+
+		lastPlayer = p;
+	    currentPlayer = getNextPlayer(p);
+
+		currentPlayer.play();
+	}
+	
+	
+	/**
+	 * @name   : Main
+	 * @decr   : return the next player in the stack. If 
+	 *           at stack's max index return the player
+	 *           at index 0.
+	 * @param  : String[] args
+	 */
+	private static Player getNextPlayer(Player p) {
+		
 		int index = players.indexOf(p);
-
-		lastPlayer = players.elementAt(index);
-
+		
 		// Increment index to next position
 		index++;
-
+		
 		// if index is greater then stack size
-		// the next player is at Stack index 0
+	    // the next player is at Stack index 0
 		if (index < players.size()) {
-			currentPlayer = players.elementAt(index);
-		} else {
-			currentPlayer = players.elementAt(0);
+			return players.elementAt(index);
 		}
+		
+		return players.firstElement();
 
-		// TODO - comment in
-		currentPlayer.play();
 	}
 
 	/**
