@@ -204,7 +204,25 @@ public class Game extends JFrame implements ActionListener {
 		lblPlayerID4.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayerID4.setForeground(Color.black);
 		lblPlayerID4.setVisible(true);
-		pnlOutcomePanel.add(lblPlayerID4);  // outcome panel text currently ends here
+		pnlOutcomePanel.add(lblPlayerID4);
+
+		lblBidder = new JLabel("Bidder");
+		lblBidder.setLocation(150, 25);
+		lblBidder.setSize(150, 140);
+		lblBidder.setHorizontalAlignment(0);
+		lblBidder.setFont(new Font("Lucida", Font.PLAIN, 18));
+		lblBidder.setForeground(Color.black);
+		lblBidder.setVisible(true);
+		pnlOutcomePanel.add(lblBidder);
+		
+		lblChallenger = new JLabel("Challenger");
+		lblChallenger.setLocation(150, -65);
+		lblChallenger.setSize(150, 140);
+		lblChallenger.setHorizontalAlignment(0);
+		lblChallenger.setFont(new Font("Lucida", Font.PLAIN, 18));
+		lblChallenger.setForeground(Color.black);
+		lblChallenger.setVisible(true);
+		pnlOutcomePanel.add(lblChallenger);  
 		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
