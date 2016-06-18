@@ -464,11 +464,12 @@ public class Game extends JFrame implements ActionListener {
 			// shake dice for next round
 			for (int i = 0; i < players.size(); i++) {
 				players.elementAt(i).getPlayerCup().shake();
+				System.out.println("470");
 			}
 			
 			// start next round
-			//System.out.println("472");
-			p.play();
+			System.out.println("472");
+			p.playTest();
 		}
 	} // end validateGame
 
