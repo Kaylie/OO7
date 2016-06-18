@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.util.Stack;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -73,6 +76,8 @@ public class Game extends JFrame implements ActionListener {
 	    //// Create GUI ////
 
 		setBounds(100, 100, 300, 100);
+		
+		Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
 
 		// We create a bottom JPanel to place everything on.
 		pnlGameTable = new JPanel();
@@ -106,12 +111,14 @@ public class Game extends JFrame implements ActionListener {
 		pnlRow2.setLocation(10, 195);
 		pnlRow2.setSize(480, 40);
 		pnlGameTable.add(pnlRow2);
-
+		
 		//Creation of a Panel to contain the outcome labels
 		pnlOutcomePanel = new JPanel();
 		pnlOutcomePanel.setLayout(null);
 		pnlOutcomePanel.setLocation(10, 50);
-		pnlOutcomePanel.setSize(480, 280);
+		pnlOutcomePanel.setSize(460, 160);
+		pnlOutcomePanel.setBorder(border);
+		pnlOutcomePanel.setVisible(false);
 		pnlGameTable.add(pnlOutcomePanel);
 		
 		// Creation of the Game title
@@ -168,61 +175,72 @@ public class Game extends JFrame implements ActionListener {
 			
 		}
 
-		
 		//Creation of outcome panel text
+		
+		
 		lblPlayerID1 = new JLabel("Player 1");
-		lblPlayerID1.setLocation(-170, -65);
-		lblPlayerID1.setSize(420, 140);
+		lblPlayerID1.setLocation(0, 0);
+		lblPlayerID1.setSize(100, 40);
 		lblPlayerID1.setHorizontalAlignment(0);
-		lblPlayerID1.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID1.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblPlayerID1.setForeground(Color.black);
 		lblPlayerID1.setVisible(true);
+		lblPlayerID1.setBorder(border);
 		pnlOutcomePanel.add(lblPlayerID1);
 		
+	
 		lblPlayerID2 = new JLabel("Player 2");
-		lblPlayerID2.setLocation(-170, -35);
-		lblPlayerID2.setSize(420, 140);
+		lblPlayerID2.setLocation(0, 40);
+		lblPlayerID2.setSize(100, 40);
 		lblPlayerID2.setHorizontalAlignment(0);
-		lblPlayerID2.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID2.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblPlayerID2.setForeground(Color.black);
 		lblPlayerID2.setVisible(true);
+		lblPlayerID2.setBorder(border);
 		pnlOutcomePanel.add(lblPlayerID2);
 		
 		lblPlayerID3 = new JLabel("Player 3");
-		lblPlayerID3.setLocation(-170, -5);
-		lblPlayerID3.setSize(420, 140);
+		lblPlayerID3.setLocation(0, 80);
+		lblPlayerID3.setSize(100, 40);
 		lblPlayerID3.setHorizontalAlignment(0);
-		lblPlayerID3.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID3.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblPlayerID3.setForeground(Color.black);
 		lblPlayerID3.setVisible(true);
+		lblPlayerID3.setBorder(border);
 		pnlOutcomePanel.add(lblPlayerID3);
 		
 		lblPlayerID4 = new JLabel("Player 4");
-		lblPlayerID4.setLocation(-170, 25);
-		lblPlayerID4.setSize(420, 140);
+		lblPlayerID4.setLocation(0, 120);
+		lblPlayerID4.setSize(100, 40);
 		lblPlayerID4.setHorizontalAlignment(0);
-		lblPlayerID4.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID4.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblPlayerID4.setForeground(Color.black);
 		lblPlayerID4.setVisible(true);
-		pnlOutcomePanel.add(lblPlayerID4);
-
+		lblPlayerID4.setBorder(border);
+		pnlOutcomePanel.add(lblPlayerID4);  
+		
 		lblBidder = new JLabel("Bidder");
-		lblBidder.setLocation(150, 25);
-		lblBidder.setSize(150, 140);
+		lblBidder.setLocation(100, 0);
+		lblBidder.setSize(100, 40);
 		lblBidder.setHorizontalAlignment(0);
 		lblBidder.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblBidder.setForeground(Color.black);
 		lblBidder.setVisible(true);
+		lblBidder.setBorder(border);
 		pnlOutcomePanel.add(lblBidder);
 		
 		lblChallenger = new JLabel("Challenger");
-		lblChallenger.setLocation(150, -65);
-		lblChallenger.setSize(150, 140);
+		lblChallenger.setLocation(100, 40);
+		lblChallenger.setSize(100, 40);
 		lblChallenger.setHorizontalAlignment(0);
 		lblChallenger.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblChallenger.setForeground(Color.black);
 		lblChallenger.setVisible(true);
-		pnlOutcomePanel.add(lblChallenger);  
+		lblChallenger.setBorder(border);
+		pnlOutcomePanel.add(lblChallenger);
+		
+		
+		
 		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
@@ -315,6 +333,10 @@ public class Game extends JFrame implements ActionListener {
 			btnRules.setVisible(false);
 			
 			lblTitle.setText("");
+			
+			pnlRow2.setVisible(false);
+			
+			pnlOutcomePanel.setVisible(true);
 
 		}
 	}
@@ -363,6 +385,7 @@ public class Game extends JFrame implements ActionListener {
 	private static void setWin(Player p) {
 		p.lblErrorMsg.setText("Winner");
 		p.lblErrorMsg.setVisible(true);
+		
 	}
 	
 	/*
@@ -373,18 +396,31 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setLose(Player p) {
+		
+		// !!!! everything with 4 //// needs to be commented in  !!!!
+		
+		
 		p.lblErrorMsg.setText("Loser");
-		//p.lblErrorMsg.setText("You lost this round but you can still win the game. "
-		//		+ "Please enter a bid to start the next round.");
+		////p.lblErrorMsg.setText("You lost this round but you can still win the game. "
+		////		+ "Please enter a bid to start the next round.");
 		p.lblErrorMsg.setVisible(true);
 		
 		// player who looses losses a die
-		p.getPlayerCup().loseDie();
+		////p.getPlayerCup().loseDie();
 		
-		startingPlayer = p;
+		//startingPlayer = p;
 	
 		// check if player should be removed
-		removePlayer(p);
+		////removePlayer(p);
+		
+
+		// shake dice for next round
+		////for (int i = 0; i < players.size(); i++) {
+		////	players.elementAt(i).getPlayerCup().shake();
+		////}
+		
+		// start next round
+		////p.play();
 		
 	}
 	
