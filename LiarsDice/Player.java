@@ -152,7 +152,7 @@ public class Player extends JFrame implements ActionListener {
 		btnChallenge.setLocation(0, 0);
 		btnChallenge.setSize(100, 40);
 		btnChallenge.addActionListener(this);
-		pnlAction.add(btnChallenge);
+		pnlAction.add(btnChallenge);		
 
 		pnlCup = new JPanel();
 		pnlCup.setLayout(null);
@@ -181,7 +181,9 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-
+		if (PlayerID == 0){
+			this.btnChallenge.setEnabled(false);
+		}
 		if (PlayerID != 0) {
 			this.pnlAction.setVisible(false);
 			this.pnlAction.setBackground(Color.BLACK);
@@ -263,11 +265,7 @@ public class Player extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btnChallenge) {
 
-			if (btnChallenge.getText().equals("C1")) {
-				btnChallenge.setText("C0");
-			} else {
-				btnChallenge.setText("C1");
-			}
+			btnChallenge.setForeground(Color.red);
 
 			Game.validateChallenge();
 
