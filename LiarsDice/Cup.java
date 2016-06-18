@@ -3,8 +3,8 @@ public class Cup {
 	private Stack<Die> dice = new Stack<Die>();
     
 	   
-    public Cup(){                             //Hi Kaylie and John this is a comment to let you know this is a constructor please enjoy have fun!:)
-        for (int i=0; i < 5; i++){            //But no for real.  Thanks guys!
+    public Cup(){                             //Is the constructor.
+        for (int i=0; i < 5; i++){           
             Die d = new Die();
             dice.push(d);
        }
