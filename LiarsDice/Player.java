@@ -265,11 +265,7 @@ public class Player extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btnChallenge) {
 
-			if (btnChallenge.getText().equals("C1")) {
-				btnChallenge.setText("C0");
-			} else {
-				btnChallenge.setText("C1");
-			}
+			btnChallenge.setForeground(Color.red);
 
 			Game.validateChallenge();
 
