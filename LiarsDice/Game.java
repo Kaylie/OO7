@@ -56,7 +56,7 @@ public class Game extends JFrame implements ActionListener {
 	JButton btnCancel, btnRules, btnStart;
 
 	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers,
-	lblPlayerDice, lblPlayerID, lblTitle;
+	lblPlayerDice, lblPlayerID, lblTitle, lblPlayerID1, lblPlayerID2, lblPlayerID3, lblPlayerID4;
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -106,6 +106,13 @@ public class Game extends JFrame implements ActionListener {
 		pnlRow2.setLocation(10, 195);
 		pnlRow2.setSize(480, 40);
 		pnlGameTable.add(pnlRow2);
+
+		//Creation of a Panel to contain the outcome labels
+		pnlOutcomePanel = new JPanel();
+		pnlOutcomePanel.setLayout(null);
+		pnlOutcomePanel.setLocation(10, 50);
+		pnlOutcomePanel.setSize(480, 280);
+		pnlGameTable.add(pnlOutcomePanel);
 		
 		// Creation of the Game title
 		lblTitle = new JLabel("Welcome to Liar's Dice");
@@ -161,6 +168,61 @@ public class Game extends JFrame implements ActionListener {
 			
 		}
 
+		
+		//Creation of outcome panel text
+		lblPlayerID1 = new JLabel("Player 1");
+		lblPlayerID1.setLocation(-170, -65);
+		lblPlayerID1.setSize(420, 140);
+		lblPlayerID1.setHorizontalAlignment(0);
+		lblPlayerID1.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID1.setForeground(Color.black);
+		lblPlayerID1.setVisible(true);
+		pnlOutcomePanel.add(lblPlayerID1);
+		
+		lblPlayerID2 = new JLabel("Player 2");
+		lblPlayerID2.setLocation(-170, -35);
+		lblPlayerID2.setSize(420, 140);
+		lblPlayerID2.setHorizontalAlignment(0);
+		lblPlayerID2.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID2.setForeground(Color.black);
+		lblPlayerID2.setVisible(true);
+		pnlOutcomePanel.add(lblPlayerID2);
+		
+		lblPlayerID3 = new JLabel("Player 3");
+		lblPlayerID3.setLocation(-170, -5);
+		lblPlayerID3.setSize(420, 140);
+		lblPlayerID3.setHorizontalAlignment(0);
+		lblPlayerID3.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID3.setForeground(Color.black);
+		lblPlayerID3.setVisible(true);
+		pnlOutcomePanel.add(lblPlayerID3);
+		
+		lblPlayerID4 = new JLabel("Player 4");
+		lblPlayerID4.setLocation(-170, 25);
+		lblPlayerID4.setSize(420, 140);
+		lblPlayerID4.setHorizontalAlignment(0);
+		lblPlayerID4.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayerID4.setForeground(Color.black);
+		lblPlayerID4.setVisible(true);
+		pnlOutcomePanel.add(lblPlayerID4);
+
+		lblBidder = new JLabel("Bidder");
+		lblBidder.setLocation(150, 25);
+		lblBidder.setSize(150, 140);
+		lblBidder.setHorizontalAlignment(0);
+		lblBidder.setFont(new Font("Lucida", Font.PLAIN, 18));
+		lblBidder.setForeground(Color.black);
+		lblBidder.setVisible(true);
+		pnlOutcomePanel.add(lblBidder);
+		
+		lblChallenger = new JLabel("Challenger");
+		lblChallenger.setLocation(150, -65);
+		lblChallenger.setSize(150, 140);
+		lblChallenger.setHorizontalAlignment(0);
+		lblChallenger.setFont(new Font("Lucida", Font.PLAIN, 18));
+		lblChallenger.setForeground(Color.black);
+		lblChallenger.setVisible(true);
+		pnlOutcomePanel.add(lblChallenger);  
 		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
@@ -251,6 +313,8 @@ public class Game extends JFrame implements ActionListener {
 			createPlayers(playerNum);
 			
 			btnRules.setVisible(false);
+			
+			lblTitle.setText("");
 
 		}
 	}
@@ -428,11 +492,18 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public static void validateChallenge() {
-
+		//disable all players screens
 		// add all Player die vales to array
 		// each index represents a face value
+		for (int i = 0; i < players.size(); i++){
+			players.elementAt(i).btnChallenge.setVisible(false);
+			players.elementAt(i).btnBid.setVisible(false);
+			
+			
+		}
+		
 		int[] diceValues = { 0, 1, 2, 3, 4, 5, 6 };
-
+		
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
 

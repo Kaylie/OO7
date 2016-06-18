@@ -152,7 +152,7 @@ public class Player extends JFrame implements ActionListener {
 		btnChallenge.setLocation(0, 0);
 		btnChallenge.setSize(100, 40);
 		btnChallenge.addActionListener(this);
-		pnlAction.add(btnChallenge);
+		pnlAction.add(btnChallenge);		
 
 		pnlCup = new JPanel();
 		pnlCup.setLayout(null);
@@ -181,7 +181,9 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-
+		if (PlayerID == 0){
+			this.btnChallenge.setEnabled(false);
+		}
 		if (PlayerID != 0) {
 			this.pnlAction.setVisible(false);
 			this.pnlAction.setBackground(Color.BLACK);
@@ -264,6 +266,9 @@ public class Player extends JFrame implements ActionListener {
 		} else if (e.getSource() == btnChallenge) {
 
 			btnChallenge.setForeground(Color.red);
+			//for (int i = 0; i < 4; i++){
+			//	Player[i] 
+			//}
 
 			Game.validateChallenge();
 
@@ -337,7 +342,7 @@ public class Player extends JFrame implements ActionListener {
 	 * play use case.
 	 * 
 	 * @param : void
-	 */
+	 */	
 	private void bid() { // diceNum faceValue
 		//TODO reenable bid buttons when appears
 		
