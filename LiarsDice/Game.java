@@ -362,9 +362,6 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	public static boolean validateBid(int dieNum, int faceValue) {
 
-		// only need to check one var for zero
-		// if true this is the first bid in a round
-
 		// dieNum must be greater than 1
 		if (dieNum < 1) {
 			// Buttons are not being reshown
