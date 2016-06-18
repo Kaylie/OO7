@@ -522,7 +522,7 @@ public class Game extends JFrame implements ActionListener {
 	 * @name : validateChallenge
 	 * 
 	 * @decr : Decide if the bidder or challenger is the winner of a round. This
-	 * method kicks off the LoseDie Use Case. Loseing Player is assigned as
+	 * method kicks off the LoseDie Use Case. Losing Player is assigned as
 	 * currentPlayer.
 	 * 
 	 * @param : void
@@ -538,7 +538,7 @@ public class Game extends JFrame implements ActionListener {
 			
 		}
 		
-		int[] diceValues = { 0, 1, 2, 3, 4, 5, 6 };
+		int[] diceValues = { 0, 0, 0, 0, 0, 0};
 		
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
@@ -551,28 +551,28 @@ public class Game extends JFrame implements ActionListener {
 				switch ( playersDice.elementAt(j).getFaceValue()) {
 				//switch (2) {
 				case 1:
-					diceValues[i] += 1;
-					System.out.println("** 1 " );
+					diceValues[0] += 1;
+					System.out.println("** 1 = "  + diceValues[0]);
 					break;
 				case 2:
-					diceValues[i] += 2;
-					System.out.println("** 2 " );
+					diceValues[1] += 2;
+					System.out.println("** 2 = " + diceValues[1]);
 					break;
 				case 3:
-					diceValues[i] += 3;
-					System.out.println("** 3 " );
+					diceValues[2] += 3;
+					System.out.println("** 3 = "  + diceValues[2]);
 					break;
 				case 4:
-					diceValues[i] += 4;
-					System.out.println("** 4 " );
+					diceValues[3] += 4;
+					System.out.println("** 4 = "  + diceValues[3]);
 					break;
 				case 5:
-					diceValues[i] += 5;
-					System.out.println("** 5 " );
+					diceValues[4] += 5;
+					System.out.println("** 5 = "  + diceValues[4]);
 					break;
 				case 6:
-					diceValues[i] += 6;
-					System.out.println("** 6 " );
+					diceValues[5] += 6;
+					System.out.println("** 6 = "  + diceValues[5]);
 					break;
 				default:
 					System.out.println("Error: in default switch case of validateChallenge");
@@ -581,17 +581,13 @@ public class Game extends JFrame implements ActionListener {
 			} // end for
 
 		} // end for
-
-		int dieNum = currentValidBid[0];
-		int faceValue = currentValidBid[1];
+		
+		int faceValue = currentValidBid[1]-1; // need to take away 1 so dice values match array index
 		int totalBidValue = currentValidBid[0] * currentValidBid[1];
 
-		// total num of dice equaling facValue = num of dice of that value
-		// for the whole game table.
-		int totalDieOfFaceValue = diceValues[faceValue] / faceValue;
 
 		// decide winner
-		if (totalDieOfFaceValue >= dieNum) {
+		if (diceValues[faceValue] >= totalBidValue) {
 			// bidder wins
 			setWin(lastPlayer);  
 			setLose(currentPlayer);  
@@ -600,6 +596,14 @@ public class Game extends JFrame implements ActionListener {
 			setWin(currentPlayer);  
 			setLose(lastPlayer); 
 		}
+		
+		
+		// DEBUG : print algorithm steps
+		System.out.println("currentValidBid[0] = " + currentValidBid[0] );
+		System.out.println("currentValidBid[1] = " + currentValidBid[1] );
+		System.out.println("faceValue = " + faceValue );
+		System.out.println("totalBidValue = " + totalBidValue );
+		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
 
 	} // end validateChallenge
 	
