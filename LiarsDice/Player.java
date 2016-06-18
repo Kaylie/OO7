@@ -351,8 +351,10 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	private void bid() { // diceNum faceValue
 		// send diceNum and faceValue to
+		
 		String faceValue = this.txtBidDieValue.getText();
 		String dieNum = this.txtBidDieNum.getText();
+		this.lblErrorMsg.setVisible(false);
 		boolean valid = true;
 		for (int i = 0; i < faceValue.length(); i++) {
 			char c = faceValue.charAt(i);
@@ -375,7 +377,10 @@ public class Player extends JFrame implements ActionListener {
 				this.pnlBid.setEnabled(false);
 				this.btnBid.setEnabled(false);
 				this.btnChallenge.setEnabled(false);
+				this.txtBidDieNum.setText("Enter Die Value");
+				this.txtBidDieValue.setText("Enter Die Num");
 				Game.turnOver(this);
+				//txtBidDieValue = new JTextField("Enter Die Value");
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
@@ -393,8 +398,8 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public void play() {
-		// enable this players buttons
-		//this.btnBid.getText().equals("Bid");
+		// enable this players buttons		
+		this.lblErrorMsg.setVisible(false);
 		this.btnBid.setText("Bid");
 		this.pnlAction.setVisible(true);
 		this.pnlAction.setBackground(Color.BLACK);
