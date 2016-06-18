@@ -61,7 +61,7 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public Player(int id) { // changed this so I could use x for x and y coordinates
 
-		super("Player" + id);
+		super("Player" + (id+1));
 
 		PlayerID = id;
 
@@ -93,13 +93,6 @@ public class Player extends JFrame implements ActionListener {
 		lblCurrentBid.setHorizontalAlignment(0);
 		lblCurrentBid.setForeground(Color.black);
 		pnlRow1.add(lblCurrentBid);
-
-		//lblPlayerID = new JLabel("Player" + PlayerID);
-		//lblPlayerID.setLocation(240, 0);
-		//lblPlayerID.setSize(380, 40);
-		//lblPlayerID.setHorizontalAlignment(0);
-		//lblPlayerID.setForeground(Color.black);
-		//pnlRow1.add(lblPlayerID);
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -350,6 +343,8 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	private void bid() { // diceNum faceValue
+		//TODO reenable bid buttons when appears
+		
 		// send diceNum and faceValue to
 		String faceValue = this.txtBidDieValue.getText();
 		String dieNum = this.txtBidDieNum.getText();
@@ -369,6 +364,10 @@ public class Player extends JFrame implements ActionListener {
 		if (valid == true) {
 			int face = Integer.parseInt(faceValue);
 			int die = Integer.parseInt(dieNum);
+			
+			System.out.println("face = " + face);
+			System.out.println("die = " + die );
+			
 			if (Game.validateBid(die, face) == true) {
 				this.pnlAction.setVisible(false);
 				this.pnlAction.setBackground(Color.BLACK);
