@@ -24,8 +24,15 @@ public class Cup {
         return dice;
     }
     
-    public void loseDie(){      //This removes a die from the stack.
-    
+    /*
+	 * @name : loseDie
+	 * 
+	 * @decr : cup loses last die on stack
+	 * 
+	 * @param : void
+	 */
+    public void loseDie() {
+     
      dice.pop();
     
     }

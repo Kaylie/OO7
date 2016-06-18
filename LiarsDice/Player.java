@@ -45,11 +45,11 @@ public class Player extends JFrame implements ActionListener {
 
 	JLabel lblErrorMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
 
-	JLabel[] lblDice = { lblDie1, lblDie2, lblDie3, lblDie4, lblDie5 };
-
 	JButton btnBid, btnChallenge, btnHideDice;
 
 	JTextField txtBidDieValue, txtBidDieNum;
+	
+	Stack<JLabel> lblDice = new Stack<JLabel>();
 	
 	
 	/*
@@ -167,17 +167,30 @@ public class Player extends JFrame implements ActionListener {
 		btnHideDice.addActionListener(this);
 		pnlCup.add(btnHideDice);
 		
+		lblDie5 = new JLabel();
+		lblDie4 = new JLabel();
+		lblDie3 = new JLabel();
+		lblDie2 = new JLabel();
+		lblDie1 = new JLabel();
+		
+		lblDice.push(lblDie5);
+		lblDice.push(lblDie4);
+		lblDice.push(lblDie3);
+		lblDice.push(lblDie2);
+		lblDice.push(lblDie1);
+		
         Stack<Die> dice = playerCup.getDice();
-		for (int i = 0; i < lblDice.length; i++) {
+        
+		for (int i = 0; i < lblDice.size(); i++) {
 			s = "" + dice.elementAt(i).getFaceValue();
-			lblDice[i] = new JLabel(s);
-			lblDice[i].setLocation(((i + 1) * 50), 50);
-			lblDice[i].setSize(40, 40);
-			lblDice[i].setFont(new Font("Lucida", Font.PLAIN, 30)); // 24 = size
-			lblDice[i].setHorizontalAlignment(0);
-			lblDice[i].setForeground(Color.black);
-			lblDice[i].setVisible(false);
-			pnlCup.add(lblDice[i]);
+			lblDice.elementAt(i).setText(s);
+			lblDice.elementAt(i).setLocation(((i + 1) * 50), 50);
+			lblDice.elementAt(i).setSize(40, 40);
+			lblDice.elementAt(i).setFont(new Font("Lucida", Font.PLAIN, 30)); // 24 = size
+			lblDice.elementAt(i).setHorizontalAlignment(0);
+			lblDice.elementAt(i).setForeground(Color.black);
+			lblDice.elementAt(i).setVisible(false);
+			pnlCup.add(lblDice.elementAt(i));
 		}
 
 		pnlPortal.setOpaque(true);
@@ -276,13 +289,13 @@ public class Player extends JFrame implements ActionListener {
 
 			if (btnHideDice.getText().equals("Show Dice")) {
 				btnHideDice.setText("Hide Dice");
-				for (int i = 0; i < lblDice.length; i++) {
-					lblDice[i].setVisible(true);
+				for (int i = 0; i < lblDice.size(); i++) {
+					lblDice.elementAt(i).setVisible(true);
 				}
 			} else {
 				btnHideDice.setText("Show Dice");
-				for (int i = 0; i < lblDice.length; i++) {
-					lblDice[i].setVisible(false);
+				for (int i = 0; i < lblDice.size(); i++) {
+					lblDice.elementAt(i).setVisible(false);
 				}
 			}
 
@@ -330,6 +343,22 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public Cup getPlayerCup() {
 		return playerCup;
+	}
+	
+	/*
+	 * @name : getPlayerCup
+	 * 
+	 * @decr : return the player's cup object
+	 * 
+	 * @param : void
+	 */
+	public void removeDieFromCup() {
+		
+		playerCup.loseDie();
+		lblDice.lastElement().setVisible(false);
+		System.out.println("359 = " + lblDice.lastElement().getText());
+		
+		lblDice.pop();
 	}
 
 	/*

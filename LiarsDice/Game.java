@@ -406,7 +406,7 @@ public class Game extends JFrame implements ActionListener {
 		p.lblErrorMsg.setVisible(true);
 		
 		// player who looses losses a die
-		p.getPlayerCup().loseDie();
+		p.removeDieFromCup();
 		
 		//startingPlayer = p;
 	
