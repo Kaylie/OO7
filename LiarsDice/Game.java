@@ -212,6 +212,8 @@ JTextField txtBidDiceNum, txtBidDieValue;
 			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
 			
 			createPlayers(playerNum);
+			
+			btnRules.setVisible(false);
 
 		}
 	}
