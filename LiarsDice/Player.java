@@ -61,7 +61,7 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public Player(int id) { // changed this so I could use x for x and y coordinates
 
-		super("Player" + id);
+		super("Player" + (id+1));
 
 		PlayerID = id;
 
@@ -93,13 +93,6 @@ public class Player extends JFrame implements ActionListener {
 		lblCurrentBid.setHorizontalAlignment(0);
 		lblCurrentBid.setForeground(Color.black);
 		pnlRow1.add(lblCurrentBid);
-
-		//lblPlayerID = new JLabel("Player" + PlayerID);
-		//lblPlayerID.setLocation(240, 0);
-		//lblPlayerID.setSize(380, 40);
-		//lblPlayerID.setHorizontalAlignment(0);
-		//lblPlayerID.setForeground(Color.black);
-		//pnlRow1.add(lblPlayerID);
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -350,9 +343,13 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	private void bid() { // diceNum faceValue
+		//TODO reenable bid buttons when appears
+		
 		// send diceNum and faceValue to
+		
 		String faceValue = this.txtBidDieValue.getText();
 		String dieNum = this.txtBidDieNum.getText();
+		this.lblErrorMsg.setVisible(false);
 		boolean valid = true;
 		for (int i = 0; i < faceValue.length(); i++) {
 			char c = faceValue.charAt(i);
@@ -369,13 +366,20 @@ public class Player extends JFrame implements ActionListener {
 		if (valid == true) {
 			int face = Integer.parseInt(faceValue);
 			int die = Integer.parseInt(dieNum);
+			
+			System.out.println("face = " + face);
+			System.out.println("die = " + die );
+			
 			if (Game.validateBid(die, face) == true) {
 				this.pnlAction.setVisible(false);
 				this.pnlAction.setBackground(Color.BLACK);
 				this.pnlBid.setEnabled(false);
 				this.btnBid.setEnabled(false);
 				this.btnChallenge.setEnabled(false);
+				this.txtBidDieNum.setText("Enter Die Value");
+				this.txtBidDieValue.setText("Enter Die Num");
 				Game.turnOver(this);
+				//txtBidDieValue = new JTextField("Enter Die Value");
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
@@ -393,8 +397,8 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public void play() {
-		// enable this players buttons
-		//this.btnBid.getText().equals("Bid");
+		// enable this players buttons		
+		this.lblErrorMsg.setVisible(false);
 		this.btnBid.setText("Bid");
 		this.pnlAction.setVisible(true);
 		this.pnlAction.setBackground(Color.BLACK);
