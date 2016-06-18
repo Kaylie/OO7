@@ -380,6 +380,9 @@ public class Player extends JFrame implements ActionListener {
 				this.txtBidDieValue.setText("Enter Die Num");
 				Game.turnOver(this);
 				//txtBidDieValue = new JTextField("Enter Die Value");
+			}else {
+				this.lblErrorMsg.setVisible(true);
+				this.btnBid.setText("Bid");
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
