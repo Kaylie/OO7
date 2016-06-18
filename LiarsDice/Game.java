@@ -401,26 +401,20 @@ public class Game extends JFrame implements ActionListener {
 		
 		
 		p.lblErrorMsg.setText("Loser");
-		////p.lblErrorMsg.setText("You lost this round but you can still win the game. "
-		////		+ "Please enter a bid to start the next round.");
+		p.lblErrorMsg.setText("You lost this round but you can still win the game. "
+				+ "Please enter a bid to start the next round.");
 		p.lblErrorMsg.setVisible(true);
 		
 		// player who looses losses a die
-		////p.getPlayerCup().loseDie();
+		p.getPlayerCup().loseDie();
 		
 		//startingPlayer = p;
 	
 		// check if player should be removed
-		////removePlayer(p);
+		removePlayer(p);
 		
 
-		// shake dice for next round
-		////for (int i = 0; i < players.size(); i++) {
-		////	players.elementAt(i).getPlayerCup().shake();
-		////}
-		
-		// start next round
-		////p.play();
+
 		
 	}
 	
@@ -451,7 +445,7 @@ public class Game extends JFrame implements ActionListener {
 		// reset player tracking variables
 		currentPlayer = startingPlayer;
 		lastPlayer = startingPlayer;
-
+		//System.out.println("472");
 		// check if game should continue
 		validateGame(p);
 	}
@@ -466,9 +460,17 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void validateGame(Player p) {
 		if (players.size() < 2) {
+			System.out.println("472");
 			// set GUI to display Game winner
 		} else {
 			//start new round
+			// shake dice for next round
+			for (int i = 0; i < players.size(); i++) {
+				players.elementAt(i).getPlayerCup().shake();
+			}
+			
+			// start next round
+			//System.out.println("472");
 			p.play();
 		}
 	} // end validateGame
@@ -534,6 +536,8 @@ public class Game extends JFrame implements ActionListener {
 		for (int i = 0; i < players.size(); i++){
 			players.elementAt(i).btnChallenge.setVisible(false);
 			players.elementAt(i).btnBid.setVisible(false);
+			//players.elementAt(i).pnlBid.setVisible(false);
+			players.elementAt(i).pnlAction.setVisible(false);
 			
 			
 		}
