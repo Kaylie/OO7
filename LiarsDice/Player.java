@@ -1,6 +1,12 @@
+import java.util.Stack;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +21,7 @@ import org.omg.CORBA.Request;
 
 
 /*
- * @author : John DePaco & Kaylie Anderson
+ * @author : John DePaco, Kaylie Anderson, and Cameron Walworth
  * 
  * @name : Player
  * 
@@ -37,7 +43,7 @@ public class Player extends JFrame implements ActionListener {
 
 	JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlAction, pnlBid, pnlCup;
 
-	JLabel lblErrorMsg, lblCurrentBid, lblPlayerID, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
+	JLabel lblErrorMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
 
 	JLabel[] lblDice = { lblDie1, lblDie2, lblDie3, lblDie4, lblDie5 };
 
@@ -47,18 +53,17 @@ public class Player extends JFrame implements ActionListener {
 	
 	
 	/*
-	 * @name : Player(int x)
+	 * @name : Player(int id)
 	 * 
 	 * @decr : setup GUI and enable the first player to play
 	 * 
 	 * @param : void
 	 */
-	public Player(int x) { // note consider changing x to something more
-							// descriptive?
+	public Player(int id) { // changed this so I could use x for x and y coordinates
 
-		super("Player Portal");
+		super("Player" + id);
 
-		PlayerID = x;
+		PlayerID = id;
 
 		//// Player Setup ////
 		playerCup = new Cup();
@@ -79,21 +84,22 @@ public class Player extends JFrame implements ActionListener {
 		pnlRow1.setLocation(10, 10);
 		pnlRow1.setSize(480, 40);
 		pnlPortal.add(pnlRow1);
-
-		lblCurrentBid = new JLabel("Current Bid = 0"); // TODO - get real
+		int[] arr = Game.getCurrentValidBid();
+		String s = "Current Bid = Die Number: " + arr[0] +  " Face Value: " + arr[1]; // don't use s
+		lblCurrentBid = new JLabel(s); // TODO - get real
 														// current bid
 		lblCurrentBid.setLocation(0, 0);
-		lblCurrentBid.setSize(100, 40);
+		lblCurrentBid.setSize(275, 40);
 		lblCurrentBid.setHorizontalAlignment(0);
 		lblCurrentBid.setForeground(Color.black);
 		pnlRow1.add(lblCurrentBid);
 
-		lblPlayerID = new JLabel("Player" + PlayerID);
-		lblPlayerID.setLocation(240, 0);
-		lblPlayerID.setSize(380, 40);
-		lblPlayerID.setHorizontalAlignment(0);
-		lblPlayerID.setForeground(Color.black);
-		pnlRow1.add(lblPlayerID);
+		//lblPlayerID = new JLabel("Player" + PlayerID);
+		//lblPlayerID.setLocation(240, 0);
+		//lblPlayerID.setSize(380, 40);
+		//lblPlayerID.setHorizontalAlignment(0);
+		//lblPlayerID.setForeground(Color.black);
+		//pnlRow1.add(lblPlayerID);
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -167,9 +173,11 @@ public class Player extends JFrame implements ActionListener {
 		btnHideDice.setSize(350, 40);
 		btnHideDice.addActionListener(this);
 		pnlCup.add(btnHideDice);
-
+		
+        Stack<Die> dice = playerCup.getDice();
 		for (int i = 0; i < lblDice.length; i++) {
-			lblDice[i] = new JLabel(" D ");
+			s = "" + dice.elementAt(i).getFaceValue();
+			lblDice[i] = new JLabel(s);
 			lblDice[i].setLocation(((i + 1) * 50), 50);
 			lblDice[i].setSize(40, 40);
 			lblDice[i].setFont(new Font("Lucida", Font.PLAIN, 30)); // 24 = size
@@ -188,8 +196,37 @@ public class Player extends JFrame implements ActionListener {
 			this.btnBid.setEnabled(false);
 			this.btnChallenge.setEnabled(false);
 		}
-
-		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		int xAdjust = 0;
+		int yAdjust = 0;
+		
+		switch(id) {
+		case 0 :
+			xAdjust = -500;
+			yAdjust = -200;
+			break;
+		case 1 :  
+			xAdjust = 500;
+			yAdjust = -200;
+			break;
+		case 2 :
+			xAdjust = -500;
+			yAdjust = 200;
+			break;
+		case 3 :
+			xAdjust = 500;
+			yAdjust = 200;
+			break;	
+		}
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = xAdjust + ( (int) ((dimension.getWidth() - getWidth()) / 2) );
+	    int y = yAdjust + ( (int) ((dimension.getHeight() - getHeight()) / 2) );
+	    setLocation(x, y);
+		
+		
+		
+		
+        this.setVisible(true);
 
 		con = this.getContentPane();
 		this.setSize(500, 280);
@@ -197,7 +234,7 @@ public class Player extends JFrame implements ActionListener {
 		setVisible(true);
 
 		//// Setup first players GUI ////
-		if (x == 0) {
+		if (id == 0) {
 			play();
 		}
 

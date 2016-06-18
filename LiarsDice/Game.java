@@ -33,7 +33,7 @@ public class Game extends JFrame implements ActionListener {
 
 	static int[] currentValidBid = { 0, 0 };
 
-	static int playerNum = 2; // TODO this value gets set by gameTable GUI
+	static int playerNum = 0; // TODO this value gets set by gameTable GUI
 
 	static Player currentPlayer;
 	static Player startingPlayer;
@@ -85,6 +85,7 @@ public class Game extends JFrame implements ActionListener {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		setLocationRelativeTo(null);
 		con = this.getContentPane(); 
 		this.setSize(500, 280);
 		con.add(pnlGameTable); 
@@ -118,6 +119,18 @@ public class Game extends JFrame implements ActionListener {
 	 * 
 	 * @param : void
 	 */
+	private static void setPlayerNum(int n) {
+		playerNum = n;
+	}
+	
+	/*
+	 * @name : createPlayers
+	 * 
+	 * @decr : creates the number of player objects user selected from GUI item
+	 * cmbNumPlayers after btnStart event is triggered.
+	 * 
+	 * @param : void
+	 */
 	private static void createPlayers() {
 
 		for (int i = 0; i < playerNum; i++) {
@@ -140,7 +153,7 @@ public class Game extends JFrame implements ActionListener {
 	 * 
 	 * @param : int[] currentValidBid
 	 */
-	private static int[] getCurrentValidBid() {
+	public static int[] getCurrentValidBid() {
 		return currentValidBid;
 	}
 	
@@ -362,7 +375,7 @@ public class Game extends JFrame implements ActionListener {
         new Game();
 
         // Canned player value
-		int playerNum = 2;
+		setPlayerNum(4);
 		
 		createPlayers();
 
