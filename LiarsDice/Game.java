@@ -406,11 +406,18 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public static void validateChallenge() {
-
+		//disable all players screens
 		// add all Player die vales to array
 		// each index represents a face value
+		for (int i = 0; i < players.size(); i++){
+			players.elementAt(i).btnChallenge.setVisible(false);
+			players.elementAt(i).btnBid.setVisible(false);
+			
+			
+		}
+		
 		int[] diceValues = { 0, 1, 2, 3, 4, 5, 6 };
-
+		
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
 			Stack<String> playersDice = new Stack<String>();
