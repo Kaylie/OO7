@@ -360,6 +360,28 @@ public class Player extends JFrame implements ActionListener {
 		
 		lblDice.pop();
 	}
+	
+	/*
+	 * @name : shakeCup
+	 * 
+	 * @decr : 
+	 * 
+	 * @param : void
+	 */
+	public void shakeCup() {
+		
+		// shake dice
+		playerCup.shake();
+		
+		Stack<Die> d = playerCup.getDice();
+		
+		// reset lbl text
+		for(int i = 0; i < lblDice.size(); i++) {
+			
+			lblDice.elementAt(i).setText("" + d.elementAt(i).getFaceValue());
+			System.out.println(i + " = " + d.elementAt(i).getFaceValue() );
+		}
+	}
 
 	/*
 	 * @name : bid

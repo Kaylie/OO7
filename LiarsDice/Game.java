@@ -397,18 +397,17 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void setLose(Player p) {
 		
-		// !!!! everything with 4 //// needs to be commented in  !!!!
-		
-		
 		p.lblErrorMsg.setText("Loser");
 		p.lblErrorMsg.setText("You lost this round but you can still win the game. "
 				+ "Please enter a bid to start the next round.");
 		p.lblErrorMsg.setVisible(true);
+		p.lblErrorMsg.setForeground(Color.BLACK);
+		
 		
 		// player who looses losses a die
 		p.removeDieFromCup();
 		
-		//startingPlayer = p;
+		startingPlayer = p;
 	
 		// check if player should be removed
 		removePlayer(p);
@@ -443,6 +442,7 @@ public class Game extends JFrame implements ActionListener {
 		currentPlayer = startingPlayer;
 		lastPlayer = startingPlayer;
 		//System.out.println("472");
+		
 		// check if game should continue
 		validateGame(p);
 	}
@@ -463,7 +463,7 @@ public class Game extends JFrame implements ActionListener {
 			//start new round
 			// shake dice for next round
 			for (int i = 0; i < players.size(); i++) {
-				players.elementAt(i).getPlayerCup().shake();
+				players.elementAt(i).shakeCup();
 				System.out.println("470");
 			}
 			
