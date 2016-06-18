@@ -464,31 +464,19 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public void play() {
 		// enable this players buttons		
-		
-		this.lblErrorMsg.setVisible(false);
-		this.btnBid.setText("Bid");
-		this.pnlAction.setVisible(true);
-		this.pnlAction.setBackground(Color.BLACK);
-		this.pnlBid.setEnabled(true);
-		this.btnBid.setEnabled(true);
-		this.btnChallenge.setEnabled(true);
-		System.out.println("412");
-		
-		// disable this players buttons
-	}
-	public void playTest() {
-		// enable this players buttons		
-		
-		//this.lblErrorMsg.setVisible(false);
 		this.btnBid.setText("Bid");
 		this.btnBid.setVisible(true);
+		
 		this.pnlAction.setVisible(true);
 		this.pnlAction.setBackground(Color.BLACK);
+		
 		this.pnlBid.setEnabled(true);
 		this.btnBid.setEnabled(true);
+		
 		this.btnChallenge.setEnabled(true);
 		this.btnChallenge.setVisible(true);
-		System.out.println("427");
+		
+		this.lblErrorMsg.setVisible(false);
 		
 		// disable this players buttons
 	}

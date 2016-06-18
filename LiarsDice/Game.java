@@ -469,7 +469,7 @@ public class Game extends JFrame implements ActionListener {
 			currentValidBid[1] = 0;
 			
 			// start next round
-			p.playTest();
+			p.play();
 		}
 	} // end validateGame
 
