@@ -58,10 +58,11 @@ public class Game extends JFrame implements ActionListener {
 
 	JButton btnCancel, btnRules, btnStart;
 
-	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers,
-	lblPlayerDice, lblTitle;
-	
-	//JLabel[] lblPlayerID = new JLabel[4];
+	static JLabel lblBidder;
+
+	static JLabel lblChallenger;
+
+	JLabel lblMsg, lblNumPlayers, lblPlayerDice, lblTitle;
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -135,14 +136,9 @@ public class Game extends JFrame implements ActionListener {
 		
 
 		
-		// work on game rules text import
-	    BufferedReader log=null;
+		// import the game rules text below
 
         try {
-
-
-
-        
 
     		// Creation of the game rules text
     		txtRules = new JTextArea();
@@ -173,20 +169,17 @@ public class Game extends JFrame implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{
-			
+		finally{	
 		}
 
 		//Creation of outcome panel text
-		
-		
 		lblBidder = new JLabel("Bidder");
 		lblBidder.setLocation(100, 0);
 		lblBidder.setSize(100, 40);
 		lblBidder.setHorizontalAlignment(0);
 		lblBidder.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblBidder.setForeground(Color.black);
-		lblBidder.setVisible(true);
+		lblBidder.setVisible(false);
 		lblBidder.setBorder(border);
 		pnlOutcomePanel.add(lblBidder);
 		
@@ -196,7 +189,7 @@ public class Game extends JFrame implements ActionListener {
 		lblChallenger.setHorizontalAlignment(0);
 		lblChallenger.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblChallenger.setForeground(Color.black);
-		lblChallenger.setVisible(true);
+		lblChallenger.setVisible(false);
 		lblChallenger.setBorder(border);
 		pnlOutcomePanel.add(lblChallenger);
 		
@@ -293,6 +286,7 @@ public class Game extends JFrame implements ActionListener {
 			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
 			createPlayers(playerNum);
 			
+			// create player flags for specific number of players
 			Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
 			JLabel[] lblPlayerID = new JLabel[3];
 			for(int i=0;i<playerNum;i++){
@@ -442,6 +436,10 @@ public class Game extends JFrame implements ActionListener {
 				players.elementAt(i).shakeCup();
 			}
 			
+			// clean up flags
+			lblBidder.setVisible(false);
+			lblChallenger.setVisible(false);
+			
 			// reset game bid
 			currentValidBid[0] = 0;
 			currentValidBid[1] = 0;
@@ -486,6 +484,10 @@ public class Game extends JFrame implements ActionListener {
 		currentValidBid[0] = dieNum;
 		currentValidBid[1] = faceValue;
 		
+		// moves bidder flag
+		lblBidder.setVisible(true);
+		lblBidder.setLocation(100, (40*currentPlayer.getPlayerID()));
+		
 		// set current bid for all players
 		for (int i = 0; i < players.size(); i++) {
 			String s = "Current Bid = Die Number: " + dieNum 
@@ -519,6 +521,10 @@ public class Game extends JFrame implements ActionListener {
 		}
 		
 		int[] diceValues = { 0, 0, 0, 0, 0, 0};
+		
+		// moves challenge flag
+		lblChallenger.setVisible(true);
+		lblChallenger.setLocation(100, (40*currentPlayer.getPlayerID()));
 		
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
