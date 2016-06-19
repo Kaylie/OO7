@@ -60,7 +60,9 @@ public class Game extends JFrame implements ActionListener {
 
 	static JLabel lblBidder, lblChallenger, lblWinner;
 
-	JLabel lblMsg, lblNumPlayers, lblPlayerDice, lblTitle;
+	JLabel lblMsg, lblNumPlayers, lblPlayerDice;
+
+	static JLabel lblTitle;
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -617,6 +619,7 @@ public class Game extends JFrame implements ActionListener {
 
 		lastPlayer = p;
 	    currentPlayer = getNextPlayer(p);
+	    lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + "'s turn...");
 
 		currentPlayer.play();
 	}
