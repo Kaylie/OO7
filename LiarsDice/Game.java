@@ -276,6 +276,8 @@ public class Game extends JFrame implements ActionListener {
 
 			pnlRules.setVisible(false);
 			pnlSetup.setVisible(true);
+			
+			btnRules.setVisible(false);
 
 		}
 		// commands for "Back out" button press
@@ -283,6 +285,8 @@ public class Game extends JFrame implements ActionListener {
 
 			pnlRules.setVisible(true);
 			pnlSetup.setVisible(false);
+			
+			btnRules.setVisible(true);
 
 		}
 		// commands for "Start game" button press inc player creation

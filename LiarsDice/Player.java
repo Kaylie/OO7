@@ -289,6 +289,10 @@ public class Player extends JFrame implements ActionListener {
 			}
 
 		} else if (e.getSource() == btnChallenge) {
+			
+			// if plater wrote in txts and then decided to bid
+			txtBidDieValue.setVisible(false);
+			txtBidDieNum.setVisible(false);
 
 			Game.validateChallenge();
 
@@ -315,6 +319,11 @@ public class Player extends JFrame implements ActionListener {
 			// cover txtbox with bid btn
 
 		}
+		
+		// Actions that happen no matter what GUI component was triggered
+		
+		txtBidDieValue.setText("Enter Die Value");
+		txtBidDieNum.setText("Enter Die Num");
 		
 		// if any action happen reset general msg label
 		if (lblMsg.isVisible()) {
