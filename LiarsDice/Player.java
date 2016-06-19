@@ -136,6 +136,7 @@ public class Player extends JFrame implements ActionListener {
 		btnBid = new JButton("Bid");
 		btnBid.setLocation(0, 40);
 		btnBid.setSize(100, 40);
+		btnBid.setEnabled(false);
 		btnBid.addActionListener(this);
 		pnlAction.add(btnBid);
 
@@ -165,6 +166,7 @@ public class Player extends JFrame implements ActionListener {
 		btnChallenge = new JButton("Challenge");
 		btnChallenge.setLocation(0, 0);
 		btnChallenge.setSize(100, 40);
+		btnChallenge.setEnabled(false);
 		btnChallenge.addActionListener(this);
 		pnlAction.add(btnChallenge);		
 

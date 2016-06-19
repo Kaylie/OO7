@@ -54,15 +54,16 @@ public class Game extends JFrame implements ActionListener {
 	
 	Container con;
 
-	JPanel pnlGameTable, pnlOutcomePanel, pnlRow1, pnlRow2, pnlRules, pnlSetup;
+	JPanel pnlGameTable, pnlOutcome, pnlRow1, pnlRow2, pnlRules, pnlSetup;
 
 	JButton btnCancel, btnRules, btnStart;
 
 	static JLabel lblBidder, lblChallenger, lblWinner;
 
-	JLabel lblMsg, lblNumPlayers, lblPlayerDice;
+	JLabel lblMsg, lblNumPlayers;
 
-	static JLabel lblTitle;
+	static JLabel lblTitle, lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, 
+    				lblPlayer4Dice, lblPlayer5Dice;;
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -116,13 +117,14 @@ public class Game extends JFrame implements ActionListener {
 		pnlGameTable.add(pnlRow2);
 		
 		//Creation of a Panel to contain the outcome labels
-		pnlOutcomePanel = new JPanel();
-		pnlOutcomePanel.setLayout(null);
-		pnlOutcomePanel.setLocation(10, 50);
-		pnlOutcomePanel.setSize(460, 160);
-		pnlOutcomePanel.setBorder(border);
-		pnlOutcomePanel.setVisible(false);
-		pnlGameTable.add(pnlOutcomePanel);
+		pnlOutcome = new JPanel();
+		pnlOutcome.setLayout(null);
+		pnlOutcome.setLocation(10, 50);
+		pnlOutcome.setSize(460, 160);
+		pnlOutcome.setBorder(border);
+		pnlOutcome.setVisible(false);         ///////////////////////////////////////
+		pnlOutcome.setBackground(Color.CYAN);
+		pnlGameTable.add(pnlOutcome);
 		
 		// Creation of the Game title
 		lblTitle = new JLabel("Welcome to Liar's Dice");
@@ -131,7 +133,7 @@ public class Game extends JFrame implements ActionListener {
 		lblTitle.setHorizontalAlignment(0);
 		lblTitle.setFont(new Font("Lucida", Font.PLAIN, 32));
 		lblTitle.setForeground(Color.black);
-		lblTitle.setVisible(true);
+		lblTitle.setVisible(true);           
 		pnlRow1.add(lblTitle);
 		
 
@@ -181,7 +183,7 @@ public class Game extends JFrame implements ActionListener {
 		lblBidder.setForeground(Color.black);
 		lblBidder.setVisible(false);
 		lblBidder.setBorder(border);
-		pnlOutcomePanel.add(lblBidder);
+		pnlOutcome.add(lblBidder);
 		
 		lblChallenger = new JLabel("Challenger");
 		lblChallenger.setLocation(100, 40);
@@ -191,7 +193,7 @@ public class Game extends JFrame implements ActionListener {
 		lblChallenger.setForeground(Color.black);
 		lblChallenger.setVisible(false);
 		lblChallenger.setBorder(border);
-		pnlOutcomePanel.add(lblChallenger);
+		pnlOutcome.add(lblChallenger);
 		
 		lblWinner = new JLabel("Winner!");
 		lblWinner.setLocation(100, 40);
@@ -201,7 +203,21 @@ public class Game extends JFrame implements ActionListener {
 		lblWinner.setBackground(Color.CYAN);
 		lblWinner.setForeground(Color.white);
 		lblWinner.setVisible(false);
-		pnlOutcomePanel.add(lblWinner);
+		pnlOutcome.add(lblWinner);
+		
+		// player dice labels for pnlOutcome
+		JLabel[] playerDicelbls = {lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, lblPlayer4Dice, lblPlayer5Dice};
+		for (int i = 0; i < playerDicelbls.length; i++) {
+			playerDicelbls[i] = new JLabel("i");
+			playerDicelbls[i].setLocation(200, ( 40 * i ));
+			playerDicelbls[i].setSize(100, 40);
+			playerDicelbls[i].setHorizontalAlignment(0);
+			playerDicelbls[i].setFont(new Font("Lucida", Font.PLAIN, 18));
+			playerDicelbls[i].setForeground(Color.black);
+			playerDicelbls[i].setVisible(true);
+			playerDicelbls[i].setBorder(border);
+			pnlOutcome.add(playerDicelbls[i]);
+		}
 		
 		// We create a button and manipulate it using the syntax we have
 		// used before. Now each button has an ActionListener which posts
@@ -311,7 +327,7 @@ public class Game extends JFrame implements ActionListener {
 				lblPlayerID[i].setForeground(Color.black);
 				lblPlayerID[i].setVisible(true);
 				lblPlayerID[i].setBorder(border);
-				pnlOutcomePanel.add(lblPlayerID[i]);
+				pnlOutcome.add(lblPlayerID[i]);
 			}
 			
 			// change the title into current player
@@ -321,9 +337,70 @@ public class Game extends JFrame implements ActionListener {
 			btnRules.setVisible(false);
 			pnlRow2.setVisible(false);
 			
-			pnlOutcomePanel.setVisible(true);
+			pnlOutcome.setVisible(true);
 
 		}
+	}
+	
+	/*
+	 * @name : populatePlayerDiceLabels
+	 * 
+	 * @decr : creates and populates the Dice label for a player
+	 * 
+	 * @param : void
+	 */
+	private static void populatePlayerDiceLabels() {
+		
+		//Creation of outcome panel's labels for player's dice
+		// get dice values
+		for (int i = 0; i < players.size(); i++) {
+			
+			String s = "";
+			
+			Stack<Die> playersDice = players.elementAt(i).getPlayerCup().getDice();
+			
+			// build String text
+			for (int j = 0; j < playersDice.size(); j++) {
+				
+				if ( ( playersDice.size() - 1 ) == j ) {
+					s = s.concat(playersDice.elementAt(j).getFaceValue() + "");
+				} else {
+					s = s.concat(playersDice.elementAt(j).getFaceValue() + ", ");
+				} // end if else
+			} // end for j
+			
+			System.out.println("populatePlayerDiceLabels i = " + i);
+			System.out.println("populatePlayerDiceLabels s = " + s);
+			
+			/*
+			// set text for player lbls
+			switch(i) {
+			case 0: 
+				
+				System.out.println("Player1 = " + s);
+				if (lblPlayer1Dice != null) {  // why is this object null!!!!!!!!!
+					lblPlayer1Dice.setText(s); 
+				} 
+				break;
+				
+			case 1: 
+				//lblPlayer2Dice.setText(s);
+				System.out.println("Player2 = " + s);
+				break;
+			case 2: 
+				//lblPlayer3Dice.setText(s);
+				System.out.println("Player3 = " + s);
+				break;
+			case 3: 
+				//lblPlayer4Dice.setText(s);
+				System.out.println("Player4 = " + s);
+				break;
+				
+			} // end switch
+			*/
+			
+		} // end for i
+				
 	}
 	
 	/*
@@ -452,6 +529,7 @@ public class Game extends JFrame implements ActionListener {
 			// shake dice for next round
 			for (int i = 0; i < players.size(); i++) {
 				players.elementAt(i).shakeCup();
+				populatePlayerDiceLabels();
 			}
 			
 			// clean up flags
@@ -527,6 +605,10 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public static void validateChallenge(){
+		
+		// show all players dice
+		populatePlayerDiceLabels();
+		
 		//disable all players screens
 		// add all Player die vales to array
 		// each index represents a face value
