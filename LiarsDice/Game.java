@@ -59,7 +59,9 @@ public class Game extends JFrame implements ActionListener {
 	JButton btnCancel, btnRules, btnStart;
 
 	JLabel lblBidder, lblChallenger, lblMsg, lblNumPlayers,
-	lblPlayerDice, lblPlayerID, lblTitle, lblPlayerID1, lblPlayerID2, lblPlayerID3, lblPlayerID4;
+	lblPlayerDice, lblTitle;
+	
+	//JLabel[] lblPlayerID = new JLabel[4];
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -178,47 +180,6 @@ public class Game extends JFrame implements ActionListener {
 		//Creation of outcome panel text
 		
 		
-		lblPlayerID1 = new JLabel("Player 1");
-		lblPlayerID1.setLocation(0, 0);
-		lblPlayerID1.setSize(100, 40);
-		lblPlayerID1.setHorizontalAlignment(0);
-		lblPlayerID1.setFont(new Font("Lucida", Font.PLAIN, 18));
-		lblPlayerID1.setForeground(Color.black);
-		lblPlayerID1.setVisible(true);
-		lblPlayerID1.setBorder(border);
-		pnlOutcomePanel.add(lblPlayerID1);
-		
-	
-		lblPlayerID2 = new JLabel("Player 2");
-		lblPlayerID2.setLocation(0, 40);
-		lblPlayerID2.setSize(100, 40);
-		lblPlayerID2.setHorizontalAlignment(0);
-		lblPlayerID2.setFont(new Font("Lucida", Font.PLAIN, 18));
-		lblPlayerID2.setForeground(Color.black);
-		lblPlayerID2.setVisible(true);
-		lblPlayerID2.setBorder(border);
-		pnlOutcomePanel.add(lblPlayerID2);
-		
-		lblPlayerID3 = new JLabel("Player 3");
-		lblPlayerID3.setLocation(0, 80);
-		lblPlayerID3.setSize(100, 40);
-		lblPlayerID3.setHorizontalAlignment(0);
-		lblPlayerID3.setFont(new Font("Lucida", Font.PLAIN, 18));
-		lblPlayerID3.setForeground(Color.black);
-		lblPlayerID3.setVisible(true);
-		lblPlayerID3.setBorder(border);
-		pnlOutcomePanel.add(lblPlayerID3);
-		
-		lblPlayerID4 = new JLabel("Player 4");
-		lblPlayerID4.setLocation(0, 120);
-		lblPlayerID4.setSize(100, 40);
-		lblPlayerID4.setHorizontalAlignment(0);
-		lblPlayerID4.setFont(new Font("Lucida", Font.PLAIN, 18));
-		lblPlayerID4.setForeground(Color.black);
-		lblPlayerID4.setVisible(true);
-		lblPlayerID4.setBorder(border);
-		pnlOutcomePanel.add(lblPlayerID4);  
-		
 		lblBidder = new JLabel("Bidder");
 		lblBidder.setLocation(100, 0);
 		lblBidder.setSize(100, 40);
@@ -326,14 +287,31 @@ public class Game extends JFrame implements ActionListener {
 		if (e.getSource() == btnStart) {
 
 			pnlSetup.setVisible(false);
-			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
 			
+			// generate player windows depending on combo
+			// box selection
+			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
 			createPlayers(playerNum);
 			
+			Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
+			JLabel[] lblPlayerID = new JLabel[3];
+			for(int i=0;i<playerNum;i++){
+				lblPlayerID[i] = new JLabel("Player " + (i+1));
+				lblPlayerID[i].setLocation(0, i*40);
+				lblPlayerID[i].setSize(100, 40);
+				lblPlayerID[i].setHorizontalAlignment(0);
+				lblPlayerID[i].setFont(new Font("Lucida", Font.PLAIN, 18));
+				lblPlayerID[i].setForeground(Color.black);
+				lblPlayerID[i].setVisible(true);
+				lblPlayerID[i].setBorder(border);
+				pnlOutcomePanel.add(lblPlayerID[i]);
+			}
+			
+			// change the title into current player
+			lblTitle.setFont(new Font("Lucida", Font.PLAIN, 18));
+			// hide unused gui elements
+			lblTitle.setText("Player 1's turn...");
 			btnRules.setVisible(false);
-			
-			lblTitle.setText("");
-			
 			pnlRow2.setVisible(false);
 			
 			pnlOutcomePanel.setVisible(true);
