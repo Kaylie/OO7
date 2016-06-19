@@ -364,9 +364,6 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : Player p
 	 */
 	private static void setWin(Player p) {
-		p.lblMsg.setText("Winner");
-		p.lblMsg.setVisible(true);
-		
 		// moves winner flag
 		lblWinner.setVisible(true);
 		lblWinner.setLocation(100, (40*p.getPlayerID()));
@@ -381,11 +378,9 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void setLose(Player p) {
 		
-		p.lblMsg.setText("Loser");
-		p.lblMsg.setText("You lost this round but you can still win the game. "
-				+ "Please enter a bid to start the next round.");
+		p.lblMsg.setText("<html>You lost this round but you can still win the game. "
+				+ "Please enter a bid to start the next round.</html>");
 		p.lblMsg.setVisible(true);
-		
 		
 		// player who looses losses a die
 		p.removeDieFromCup();
@@ -416,6 +411,13 @@ public class Game extends JFrame implements ActionListener {
 			 // set starting player to the next player in line
 			 startingPlayer = getNextPlayer(p);
 			 
+			 //disable player's window
+			 p.btnBid.setVisible(false);
+			 p.btnChallenge.setVisible(false);
+			 p.btnHideDice.setVisible(false);
+			 
+			 p.lblMsg.setText("<html>You are out of the game.</html>");
+			 
 			 // remove player
 			 players.removeElementAt(index);
 
@@ -428,7 +430,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// check if game should continue
 		validateGame(p);
-	}
+	} 
 	
 	/*
 	 * @name : validateGame
@@ -457,7 +459,7 @@ public class Game extends JFrame implements ActionListener {
 			currentValidBid[1] = 0;
 			
 			// start next round
-			p.play();
+			p.play(true);
 		}
 	} // end validateGame
 
@@ -525,12 +527,8 @@ public class Game extends JFrame implements ActionListener {
 		// add all Player die vales to array
 		// each index represents a face value
 		for (int i = 0; i < players.size(); i++){
-			players.elementAt(i).btnChallenge.setVisible(false);
-			players.elementAt(i).btnBid.setVisible(false);
-			//players.elementAt(i).pnlBid.setVisible(false);
-			players.elementAt(i).pnlAction.setVisible(false);
-			
-			
+			players.elementAt(i).btnChallenge.setEnabled(false);
+			players.elementAt(i).btnBid.setEnabled(false);
 		}
 		
 		int[] diceValues = { 0, 0, 0, 0, 0, 0};
@@ -621,7 +619,7 @@ public class Game extends JFrame implements ActionListener {
 	    currentPlayer = getNextPlayer(p);
 	    lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + "'s turn...");
 
-		currentPlayer.play();
+		currentPlayer.play(false);
 	}
 	
 	

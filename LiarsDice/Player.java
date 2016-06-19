@@ -82,35 +82,39 @@ public class Player extends JFrame implements ActionListener {
 		pnlRow1 = new JPanel();
 		pnlRow1.setLayout(null);
 		pnlRow1.setLocation(10, 10);
-		pnlRow1.setSize(480, 40);
+		pnlRow1.setSize(480, 20);
+		pnlRow1.setBackground(Color.white);
 		pnlPortal.add(pnlRow1);
+		
 		int[] arr = Game.getCurrentValidBid();
 		String s = "Current Bid = Die Number: " + arr[0] +  " Face Value: " + arr[1]; // don't use s
 		lblCurrentBid = new JLabel(s); // TODO - get real
-														// current bid
-		lblCurrentBid.setLocation(0, 0);
-		lblCurrentBid.setSize(275, 40);
+		lblCurrentBid.setLocation(90, 0);
+		lblCurrentBid.setSize(300, 20);
 		lblCurrentBid.setHorizontalAlignment(0);
 		lblCurrentBid.setForeground(Color.black);
+		Font font = lblCurrentBid.getFont();
+		Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+		lblCurrentBid.setFont(boldFont);
 		pnlRow1.add(lblCurrentBid);
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
-		pnlRow2.setLocation(10, 50);
-		pnlRow2.setSize(480, 20);
+		pnlRow2.setLocation(10, 30);
+		pnlRow2.setSize(480, 40);
 		pnlPortal.add(pnlRow2);
 
 		lblErrorMsg = new JLabel("Invalid bid. Please enter a new bid or challenge.");
 		lblErrorMsg.setLocation(0, 0);
-		lblErrorMsg.setSize(480, 20);
+		lblErrorMsg.setSize(480, 40);
 		lblErrorMsg.setHorizontalAlignment(0);
 		lblErrorMsg.setForeground(Color.red);
 		lblErrorMsg.setVisible(false);
 		pnlRow2.add(lblErrorMsg);
 		
-		lblMsg = new JLabel("general game info");
+		lblMsg = new JLabel("");
 		lblMsg.setLocation(0, 0);
-		lblMsg.setSize(480, 20);
+		lblMsg.setSize(480, 40);
 		lblMsg.setHorizontalAlignment(0);
 		lblMsg.setForeground(Color.black);
 		lblMsg.setVisible(false);
@@ -126,6 +130,7 @@ public class Player extends JFrame implements ActionListener {
 		pnlAction.setLayout(null);
 		pnlAction.setLocation(10, 10);
 		pnlAction.setSize(100, 160);
+		pnlAction.setBackground(Color.lightGray);
 		pnlRow3.add(pnlAction);
 
 		btnBid = new JButton("Bid");
@@ -138,6 +143,7 @@ public class Player extends JFrame implements ActionListener {
 		pnlBid.setLayout(null);
 		pnlBid.setLocation(0, 80);
 		pnlBid.setSize(100, 80);
+		pnlBid.setBackground(Color.lightGray);
 		pnlAction.add(pnlBid);
 
 		txtBidDieValue = new JTextField("Enter Die Value");
@@ -202,16 +208,14 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-		if (PlayerID == 0){
-			this.btnChallenge.setEnabled(false);
-		}
-		if (PlayerID != 0) {
-			this.pnlAction.setVisible(false);
-			this.pnlAction.setBackground(Color.BLACK);
-			this.pnlBid.setEnabled(false);
-			this.btnBid.setEnabled(false);
-			this.btnChallenge.setEnabled(false);
-		}
+		//if (PlayerID == 0){
+		//	this.btnChallenge.setEnabled(false);
+		//}
+		//if (PlayerID != 0) {
+		///	this.pnlBid.setEnabled(false);
+		//	this.btnBid.setEnabled(false);
+		//	this.btnChallenge.setEnabled(false);
+		//}
 		
 		int xAdjust = 0;
 		int yAdjust = 0;
@@ -251,7 +255,7 @@ public class Player extends JFrame implements ActionListener {
 
 		//// Setup first players GUI ////
 		if (id == 0) {
-			play();
+			play(true);
 		}
 
 	} // end constructor
@@ -432,8 +436,6 @@ public class Player extends JFrame implements ActionListener {
 			System.out.println("die = " + die );
 			
 			if (Game.validateBid(die, face) == true) {
-				this.pnlAction.setVisible(false);
-				this.pnlAction.setBackground(Color.BLACK);
 				this.pnlBid.setEnabled(false);
 				this.btnBid.setEnabled(false);
 				this.btnChallenge.setEnabled(false);
@@ -443,12 +445,10 @@ public class Player extends JFrame implements ActionListener {
 				//txtBidDieValue = new JTextField("Enter Die Value");
 			}else {
 				this.lblErrorMsg.setVisible(true);
-				this.lblErrorMsg.setForeground(Color.GREEN);
 				this.btnBid.setText("Bid");
 			}
 		} else {
 			this.lblErrorMsg.setVisible(true);
-			this.lblErrorMsg.setForeground(Color.BLUE);
 			this.btnBid.setText("Bid");
 			// TODO: enter code to renable screen for player to enter new bid or
 			// challenge
@@ -462,19 +462,22 @@ public class Player extends JFrame implements ActionListener {
 	 * 
 	 * @param : void
 	 */
-	public void play() {
+	public void play(boolean isFistTurn) {
+		
+		// first turn of a round the player has no one 
+		// to challenge so deisablbe challenge btn
+		if (isFistTurn) {
+			this.btnChallenge.setEnabled(false);
+		} else {
+			this.btnChallenge.setEnabled(true);
+		}
+		
 		// enable this players buttons		
 		this.btnBid.setText("Bid");
 		this.btnBid.setVisible(true);
 		
-		this.pnlAction.setVisible(true);
-		this.pnlAction.setBackground(Color.BLACK);
-		
 		this.pnlBid.setEnabled(true);
 		this.btnBid.setEnabled(true);
-		
-		this.btnChallenge.setEnabled(true);
-		this.btnChallenge.setVisible(true);
 		
 		this.lblErrorMsg.setVisible(false);
 		
