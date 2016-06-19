@@ -58,9 +58,7 @@ public class Game extends JFrame implements ActionListener {
 
 	JButton btnCancel, btnRules, btnStart;
 
-	static JLabel lblBidder;
-
-	static JLabel lblChallenger;
+	static JLabel lblBidder, lblChallenger, lblWinner;
 
 	JLabel lblMsg, lblNumPlayers, lblPlayerDice, lblTitle;
 
@@ -193,8 +191,19 @@ public class Game extends JFrame implements ActionListener {
 		lblChallenger.setBorder(border);
 		pnlOutcomePanel.add(lblChallenger);
 		
+		lblWinner = new JLabel("Winner!");
+		lblWinner.setLocation(100, 40);
+		lblWinner.setSize(100, 40);
+		lblWinner.setHorizontalAlignment(0);
+		lblWinner.setFont(new Font("Lucida", Font.BOLD, 18));
+		lblWinner.setBackground(Color.CYAN);
+		lblWinner.setForeground(Color.white);
+		lblWinner.setVisible(false);
+		pnlOutcomePanel.add(lblWinner);
 		
-		
+		// We create a button and manipulate it using the syntax we have
+		// used before. Now each button has an ActionListener which posts
+		// its action out when the button is pressed.
 		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
@@ -203,9 +212,7 @@ public class Game extends JFrame implements ActionListener {
 		btnRules.addActionListener(this);
 		pnlRow2.add(btnRules);
 		
-		// We create a button and manipulate it using the syntax we have
-		// used before. Now each button has an ActionListener which posts
-		// its action out when the button is pressed.
+		// back out button
 		btnCancel = new JButton("Back Out");
 		btnCancel.setLocation(365, 75);
 		btnCancel.setSize(100, 40);
@@ -289,7 +296,7 @@ public class Game extends JFrame implements ActionListener {
 			// create player flags for specific number of players
 			Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
 			JLabel[] lblPlayerID = new JLabel[3];
-			for(int i=0;i<playerNum;i++){
+			for(int i=0;i<(playerNum-1);i++){
 				lblPlayerID[i] = new JLabel("Player " + (i+1));
 				lblPlayerID[i].setLocation(0, i*40);
 				lblPlayerID[i].setSize(100, 40);
@@ -358,6 +365,9 @@ public class Game extends JFrame implements ActionListener {
 		p.lblMsg.setText("Winner");
 		p.lblMsg.setVisible(true);
 		
+		// moves winner flag
+		lblWinner.setVisible(true);
+		lblWinner.setLocation(100, (40*p.getPlayerID()));
 	}
 	
 	/*
@@ -484,7 +494,8 @@ public class Game extends JFrame implements ActionListener {
 		currentValidBid[0] = dieNum;
 		currentValidBid[1] = faceValue;
 		
-		// moves bidder flag
+		// moves bidder flag and hides winner flag
+		lblWinner.setVisible(false);
 		lblBidder.setVisible(true);
 		lblBidder.setLocation(100, (40*currentPlayer.getPlayerID()));
 		
@@ -507,7 +518,7 @@ public class Game extends JFrame implements ActionListener {
 	 * 
 	 * @param : void
 	 */
-	public static void validateChallenge() {
+	public static void validateChallenge(){
 		//disable all players screens
 		// add all Player die vales to array
 		// each index represents a face value

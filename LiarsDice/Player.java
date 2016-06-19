@@ -218,20 +218,20 @@ public class Player extends JFrame implements ActionListener {
 		
 		switch(id) {
 		case 0 :
-			xAdjust = -500;
-			yAdjust = -200;
+			xAdjust = -600;
+			yAdjust = -375;
 			break;
 		case 1 :  
-			xAdjust = 500;
-			yAdjust = -200;
+			xAdjust = 400;
+			yAdjust = -375;
 			break;
 		case 2 :
-			xAdjust = -500;
-			yAdjust = 200;
+			xAdjust = -600;
+			yAdjust = 25;
 			break;
 		case 3 :
-			xAdjust = 500;
-			yAdjust = 200;
+			xAdjust = 400;
+			yAdjust = 25;
 			break;	
 		}
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
