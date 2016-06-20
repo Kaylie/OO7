@@ -434,7 +434,9 @@ public class Player extends JFrame implements ActionListener {
 			}
 		}
 		for (int a = 0; a < dieNum.length(); a++) {
-			char b = faceValue.charAt(a);
+			System.out.println("a" + a);
+			System.out.println("Die Num Length" + dieNum.length());
+			char b = dieNum.charAt(a);
 			if (!Character.isDigit(b)) {
 				valid = false;
 			}
