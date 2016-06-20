@@ -63,7 +63,7 @@ public class Game extends JFrame implements ActionListener {
 	JLabel lblMsg, lblNumPlayers;
 
 	static JLabel lblTitle, lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, 
-    				lblPlayer4Dice, lblPlayer5Dice;;
+    				lblPlayer4Dice, lblPlayer5Dice;
 
 	JComboBox<String> cmbNumPlayers;
 	
