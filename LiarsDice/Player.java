@@ -147,7 +147,7 @@ public class Player extends JFrame implements ActionListener {
 		pnlBid.setBackground(Color.lightGray);
 		pnlAction.add(pnlBid);
 
-		txtBidDieValue = new JTextField("Enter Die Value");
+		txtBidDieValue = new JTextField("Dice Number");
 		txtBidDieValue.setLocation(0, 0);
 		txtBidDieValue.setSize(100, 40);
 		txtBidDieValue.setFont(new Font("Lucida", Font.PLAIN, 10));
@@ -155,7 +155,7 @@ public class Player extends JFrame implements ActionListener {
 		txtBidDieValue.addActionListener(this);
 		pnlBid.add(txtBidDieValue);
 
-		txtBidDieNum = new JTextField("Enter Die Num");
+		txtBidDieNum = new JTextField("Number of Dice");
 		txtBidDieNum.setLocation(0, 40);
 		txtBidDieNum.setSize(100, 40);
 		txtBidDieNum.setFont(new Font("Lucida", Font.PLAIN, 10));
@@ -324,8 +324,8 @@ public class Player extends JFrame implements ActionListener {
 		
 		// Actions that happen no matter what GUI component was triggered
 		
-		txtBidDieValue.setText("Enter Die Value");
-		txtBidDieNum.setText("Enter Die Num");
+		txtBidDieValue.setText("Dice Number");
+		txtBidDieNum.setText("Number of Dice");
 		
 		// if any action happen reset general msg label
 		if (lblMsg.isVisible()) {
@@ -452,10 +452,10 @@ public class Player extends JFrame implements ActionListener {
 				this.pnlBid.setEnabled(false);
 				this.btnBid.setEnabled(false);
 				this.btnChallenge.setEnabled(false);
-				this.txtBidDieNum.setText("Enter Die Value");
-				this.txtBidDieValue.setText("Enter Die Num");
+				this.txtBidDieNum.setText("Dice Number");
+				this.txtBidDieValue.setText("Number of Dice");
 				Game.turnOver(this);
-				//txtBidDieValue = new JTextField("Enter Die Value");
+				//txtBidDieValue = new JTextField("Enter Dice Number");
 			}else {
 				this.lblErrorMsg.setVisible(true);
 				this.btnBid.setText("Bid");

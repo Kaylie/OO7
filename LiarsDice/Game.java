@@ -588,8 +588,8 @@ public class Game extends JFrame implements ActionListener {
 		
 		// set current bid for all players
 		for (int i = 0; i < players.size(); i++) {
-			String s = "Current Bid = Die Number: " + dieNum 
-					+  " Face Value: " + faceValue; // don't use s
+			String s = "Current Bid = Dice Number: " + faceValue 
+					+  " : " + dieNum + " times"; // don't use s
 			players.elementAt(i).lblCurrentBid.setText(s);
 		}
 
