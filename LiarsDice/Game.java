@@ -527,9 +527,10 @@ public class Game extends JFrame implements ActionListener {
 			 startingPlayer = getNextPlayer(p);
 			 
 			 //disable player's window
+			 p.pnlAction.setVisible(false);
 			 p.btnBid.setVisible(false);
 			 p.btnChallenge.setVisible(false);
-			 p.btnHideDice.setVisible(false);
+			 p.btnHideDice.setVisible(false);			 
 			 
 			 p.lblMsg.setText("<html>You are out of the game.</html>");
 			 
