@@ -1,6 +1,6 @@
 
 /**
- * @author : Kaylie Anderson
+ * @author : Kaylie Anderson & Abraham Assad
  * @date   : 6/12/2016
  * @version: version1
  */
@@ -578,7 +578,7 @@ public class Game extends JFrame implements ActionListener {
 				populatePlayerDiceLabels();
 			}
 			// increment the "next player to play" text
-			lblTitle.setText("Player " + (p.getPlayerID()+1) + "'s turn...");
+			lblTitle.setText("New Round! Player " + (p.getPlayerID()+1) + "'s turn...");
 			// clean up flags
 			lblBidder.setVisible(false);
 			lblChallenger.setVisible(false);
