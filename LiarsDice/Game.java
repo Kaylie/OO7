@@ -44,7 +44,7 @@ public class Game extends JFrame implements ActionListener {
 
 	static int[] currentValidBid = { 0, 0 };
 
-	static int playerNum = 0; // TODO this value gets set by gameTable GUI
+	static int playerNum = 0; 
 
 	static Player currentPlayer;
 	static Player startingPlayer;
@@ -402,30 +402,30 @@ public class Game extends JFrame implements ActionListener {
 				} // end if else
 			} // end for j
 			
-			System.out.println("populatePlayerDiceLabels i = " + i);
-			System.out.println("populatePlayerDiceLabels s = " + s);
+			//System.out.println("populatePlayerDiceLabels i = " + i);
+			//System.out.println("populatePlayerDiceLabels s = " + s);
 			
 			
 			// set text for player lbls
 			switch(i) {
 			case 0: 
-				System.out.println("Player1 = " + s);
+				//System.out.println("Player1 = " + s);
 				lblPlayer1Dice.setText(s); 
 				lblPlayer1Dice.setVisible(true);
 				break;
 				
 			case 1: 
-				System.out.println("Player2 = " + s);
+				//System.out.println("Player2 = " + s);
 				lblPlayer2Dice.setText(s);
 				lblPlayer2Dice.setVisible(true);
 				break;
 			case 2: 
-				System.out.println("Player3 = " + s);
+				//System.out.println("Player3 = " + s);
 				lblPlayer3Dice.setText(s); 
 				lblPlayer3Dice.setVisible(true);
 				break;
 			case 3: 
-				System.out.println("Player4 = " + s);
+				//System.out.println("Player4 = " + s);
 				lblPlayer4Dice.setText(s); 
 				lblPlayer4Dice.setVisible(true);
 				break;
@@ -685,9 +685,9 @@ public class Game extends JFrame implements ActionListener {
 				case 6:
 					diceValues[5] += 6;
 					break;
-				default:
-					System.out.println("Error: in default switch case of validateChallenge");
-					break;
+				//default:
+				//	System.out.println("Error: in default switch case of validateChallenge");
+				//	break;
 				} // end switch
 			} // end for
 

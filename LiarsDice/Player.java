@@ -320,18 +320,6 @@ public class Player extends JFrame implements ActionListener {
 	}
 
 	/*
-	 * @name : setPlayerID
-	 * 
-	 * @decr : TODO - do we really need this?
-	 * 
-	 * @param : int x
-	 */
-	public void setPlayerID(int x) {
-		PlayerID = x;
-
-	}
-
-	/*
 	 * @name : getPlayerID
 	 * 
 	 * @decr : return the player's ID
@@ -404,7 +392,6 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */	
 	private void bid() { // diceNum faceValue
-		//TODO reenable bid buttons when appears
 		
 		// send diceNum and faceValue to
 		
@@ -448,13 +435,12 @@ public class Player extends JFrame implements ActionListener {
 		} else {
 			this.lblErrorMsg.setVisible(true);
 			this.btnBid.setText("Bid");
-			// TODO: enter code to renable screen for player to enter new bid or
-			// challenge
+
 		}
 	}
 
 	/*
-	 * @name : play TODO - method can now be finished
+	 * @name : play
 	 * 
 	 * @decr : set this player's GUI up so user can take their turn.
 	 * 
