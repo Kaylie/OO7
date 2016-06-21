@@ -179,8 +179,6 @@ public class Game extends JFrame implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{	
-		}
 
 		//Creation of outcome panel text
 		lblBidder = new JLabel("Bidder");
@@ -284,6 +282,7 @@ public class Game extends JFrame implements ActionListener {
 		btnStart.setLocation(0, 75);
 		btnStart.setSize(360, 40);
 		btnStart.addActionListener(this);
+		btnStart.setBackground(Color.white);
 		pnlSetup.add(btnStart);
 		
 		// Text instruction for number of players
@@ -534,9 +533,10 @@ public class Game extends JFrame implements ActionListener {
 			 
 			 // remove player
 			 int index = players.indexOf(p);
-			 
+			 //System.out.println("startingplayer post id = " + startingPlayer.getPlayerID());
 			 // set starting player to the next player in line
 			 startingPlayer = getNextPlayer(p);
+			 //System.out.println("startingplayer id = " + startingPlayer.getPlayerID());
 			 
 			 //disable player's window
 			 p.pnlAction.setVisible(false);
@@ -557,7 +557,7 @@ public class Game extends JFrame implements ActionListener {
 		//System.out.println("472");
 		
 		// check if game should continue
-		validateGame(p);
+		validateGame(startingPlayer);
 	} 
 	
 	/*
@@ -724,11 +724,11 @@ public class Game extends JFrame implements ActionListener {
 		
 		
 		// DEBUG : print algorithm steps
-		System.out.println("currentValidBid[0] = " + currentValidBid[0] );
-		System.out.println("currentValidBid[1] = " + currentValidBid[1] );
-		System.out.println("faceValue = " + faceValue );
-		System.out.println("totalBidValue = " + totalBidValue );
-		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
+		//System.out.println("currentValidBid[0] = " + currentValidBid[0] );
+		//System.out.println("currentValidBid[1] = " + currentValidBid[1] );
+		//System.out.println("faceValue = " + faceValue );
+		//System.out.println("totalBidValue = " + totalBidValue );
+		//System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
 		
 
 	} // end validateChallenge
