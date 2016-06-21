@@ -220,7 +220,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = -375;
 			break;
 		case 1 :  
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = -375;
 			break;
 		case 2 :
@@ -228,7 +228,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = 25;
 			break;
 		case 3 :
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = 25;
 			break;	
 		}
