@@ -75,6 +75,8 @@ public class Game extends JFrame implements ActionListener {
 
 	JTextField txtBidDiceNum, txtBidDieValue;
 	
+	
+	
 	public Game() {
 		
 		super("Game Table");
@@ -82,6 +84,8 @@ public class Game extends JFrame implements ActionListener {
 	    //// Create GUI ////
 
 		setBounds(100, 100, 300, 100);
+		
+		
 		
 		Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
 
@@ -309,8 +313,11 @@ public class Game extends JFrame implements ActionListener {
 		this.setSize(500, 280);
 		con.add(pnlGameTable); 
 		setVisible(true);
+		pnlGameTable.setMaximumSize(new Dimension(500,280));
+		this.setResizable(false);
 		
 	}
+	
 
 	/*
 	 * @name  : actionPerformed
@@ -561,6 +568,8 @@ public class Game extends JFrame implements ActionListener {
 			// set GUI to display Game winner
 			currentPlayer = players.peek();
 			lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + " has won the game!");
+			lblChallenger.setVisible(false);
+			lblBidder.setVisible(false);
 		} else {
 			//start new round
 			// shake dice for next round
