@@ -179,8 +179,6 @@ public class Game extends JFrame implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{	
-		}
 
 		//Creation of outcome panel text
 		lblBidder = new JLabel("Bidder");
@@ -724,11 +722,11 @@ public class Game extends JFrame implements ActionListener {
 		
 		
 		// DEBUG : print algorithm steps
-		System.out.println("currentValidBid[0] = " + currentValidBid[0] );
-		System.out.println("currentValidBid[1] = " + currentValidBid[1] );
-		System.out.println("faceValue = " + faceValue );
-		System.out.println("totalBidValue = " + totalBidValue );
-		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
+		//System.out.println("currentValidBid[0] = " + currentValidBid[0] );
+		//System.out.println("currentValidBid[1] = " + currentValidBid[1] );
+		//System.out.println("faceValue = " + faceValue );
+		//System.out.println("totalBidValue = " + totalBidValue );
+		//System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
 		
 
 	} // end validateChallenge
