@@ -534,9 +534,10 @@ public class Game extends JFrame implements ActionListener {
 			 startingPlayer = getNextPlayer(p);
 			 
 			 //disable player's window
+			 p.pnlAction.setVisible(false);
 			 p.btnBid.setVisible(false);
 			 p.btnChallenge.setVisible(false);
-			 p.btnHideDice.setVisible(false);
+			 p.btnHideDice.setVisible(false);			 
 			 
 			 p.lblMsg.setText("<html>You are out of the game.</html>");
 			 
@@ -565,6 +566,8 @@ public class Game extends JFrame implements ActionListener {
 	private static void validateGame(Player p) {
 		if (players.size() < 2) {
 			// set GUI to display Game winner
+			currentPlayer = players.peek();
+			lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + " has won the game!");
 		} else {
 			//start new round
 			// shake dice for next round
@@ -572,7 +575,8 @@ public class Game extends JFrame implements ActionListener {
 				players.elementAt(i).shakeCup();
 				populatePlayerDiceLabels();
 			}
-			
+			// increment the "next player to play" text
+			lblTitle.setText("Player " + (p.getPlayerID()+1) + "'s turn...");
 			// clean up flags
 			lblBidder.setVisible(false);
 			lblChallenger.setVisible(false);
