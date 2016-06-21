@@ -128,7 +128,7 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome = new JPanel();
 		pnlOutcome.setLayout(null);
 		pnlOutcome.setLocation(10, 50);
-		pnlOutcome.setSize(460, 160);
+		pnlOutcome.setSize(462, 160);
 		pnlOutcome.setBorder(border);
 		pnlOutcome.setVisible(false);        
 		pnlGameTable.add(pnlOutcome);
@@ -183,8 +183,8 @@ public class Game extends JFrame implements ActionListener {
 
 		//Creation of outcome panel text
 		lblBidder = new JLabel("Bidder");
-		lblBidder.setLocation(100, 0);
-		lblBidder.setSize(100, 40);
+		lblBidder.setLocation(155, 0);
+		lblBidder.setSize(154, 40);
 		lblBidder.setHorizontalAlignment(0);
 		lblBidder.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblBidder.setForeground(Color.black);
@@ -193,8 +193,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblBidder);
 		
 		lblChallenger = new JLabel("Challenger");
-		lblChallenger.setLocation(100, 40);
-		lblChallenger.setSize(100, 40);
+		lblChallenger.setLocation(155, 40);
+		lblChallenger.setSize(154, 40);
 		lblChallenger.setHorizontalAlignment(0);
 		lblChallenger.setFont(new Font("Lucida", Font.PLAIN, 18));
 		lblChallenger.setForeground(Color.black);
@@ -203,8 +203,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblChallenger);
 		
 		txtWinner = new JTextArea("Winner!");
-		txtWinner.setLocation(100, 40);
-		txtWinner.setSize(100, 40);
+		txtWinner.setLocation(155, 40);
+		txtWinner.setSize(154, 40);
 		txtWinner.setFont(new Font("Lucida", Font.BOLD, 18));
 		txtWinner.setBackground(Color.BLUE);
 		txtWinner.setForeground(Color.WHITE);
@@ -213,8 +213,8 @@ public class Game extends JFrame implements ActionListener {
 		
 		// Dice labels
 		lblPlayer1Dice = new JLabel("");
-		lblPlayer1Dice.setLocation(200, 0);
-		lblPlayer1Dice.setSize(100, 40);
+		lblPlayer1Dice.setLocation(308, 0);
+		lblPlayer1Dice.setSize(154, 40);
 		lblPlayer1Dice.setHorizontalAlignment(0);
 		lblPlayer1Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayer1Dice.setForeground(Color.black);
@@ -223,8 +223,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblPlayer1Dice);
 		
 		lblPlayer2Dice = new JLabel("");
-		lblPlayer2Dice.setLocation(200, 40);
-		lblPlayer2Dice.setSize(100, 40);
+		lblPlayer2Dice.setLocation(308, 40);
+		lblPlayer2Dice.setSize(154, 40);
 		lblPlayer2Dice.setHorizontalAlignment(0);
 		lblPlayer2Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayer2Dice.setForeground(Color.black);
@@ -233,8 +233,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblPlayer2Dice);
 		
 		lblPlayer3Dice = new JLabel("");
-		lblPlayer3Dice.setLocation(200, 80);
-		lblPlayer3Dice.setSize(100, 40);
+		lblPlayer3Dice.setLocation(308, 80);
+		lblPlayer3Dice.setSize(154, 40);
 		lblPlayer3Dice.setHorizontalAlignment(0);
 		lblPlayer3Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayer3Dice.setForeground(Color.black);
@@ -243,8 +243,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblPlayer3Dice);
 		
 		lblPlayer4Dice = new JLabel("");
-		lblPlayer4Dice.setLocation(200, 120);
-		lblPlayer4Dice.setSize(100, 40);
+		lblPlayer4Dice.setLocation(308, 120);
+		lblPlayer4Dice.setSize(154, 40);
 		lblPlayer4Dice.setHorizontalAlignment(0);
 		lblPlayer4Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayer4Dice.setForeground(Color.black);
@@ -253,8 +253,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.add(lblPlayer4Dice);
 		
 		lblPlayer5Dice = new JLabel("");
-		lblPlayer5Dice.setLocation(200, 160);
-		lblPlayer5Dice.setSize(100, 40);
+		lblPlayer5Dice.setLocation(308, 160);
+		lblPlayer5Dice.setSize(154, 40);
 		lblPlayer5Dice.setHorizontalAlignment(0);
 		lblPlayer5Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
 		lblPlayer5Dice.setForeground(Color.black);
@@ -363,7 +363,7 @@ public class Game extends JFrame implements ActionListener {
 			for(int i=0;i<playerNum;i++){
 				lblPlayerID[i] = new JLabel("Player " + (i+1));
 				lblPlayerID[i].setLocation(0, i*40);
-				lblPlayerID[i].setSize(100, 40);
+				lblPlayerID[i].setSize(154, 40);
 				lblPlayerID[i].setHorizontalAlignment(0);
 				lblPlayerID[i].setFont(new Font("Lucida", Font.PLAIN, 18));
 				lblPlayerID[i].setForeground(Color.black);
@@ -490,7 +490,7 @@ public class Game extends JFrame implements ActionListener {
 	private static void setWin(Player p) {
 		// moves winner flag
 		txtWinner.setVisible(true);
-		txtWinner.setLocation(100, (40*p.getPlayerID()));
+		txtWinner.setLocation(155, (40*p.getPlayerID()));
 	}
 	
 	/*
@@ -626,7 +626,7 @@ public class Game extends JFrame implements ActionListener {
 		// moves bidder flag and hides winner flag
 		txtWinner.setVisible(false);
 		lblBidder.setVisible(true);
-		lblBidder.setLocation(100, (40*currentPlayer.getPlayerID()));
+		lblBidder.setLocation(155, (40*currentPlayer.getPlayerID()));
 		
 		// set current bid for all players
 		for (int i = 0; i < players.size(); i++) {
@@ -666,7 +666,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// moves challenge flag
 		lblChallenger.setVisible(true);
-		lblChallenger.setLocation(100, (40*currentPlayer.getPlayerID()));
+		lblChallenger.setLocation(155, (40*currentPlayer.getPlayerID()));
 		
 		// get dice values
 		for (int i = 0; i < players.size(); i++) {
