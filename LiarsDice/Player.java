@@ -220,7 +220,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = -375;
 			break;
 		case 1 :  
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = -375;
 			break;
 		case 2 :
@@ -228,7 +228,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = 25;
 			break;
 		case 3 :
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = 25;
 			break;	
 		}
@@ -426,6 +426,12 @@ public class Player extends JFrame implements ActionListener {
 				this.btnChallenge.setEnabled(false);
 				this.txtBidDieNum.setText("Dice Number");
 				this.txtBidDieValue.setText("Number of Dice");
+				this.btnHideDice.setText("Show Dice");
+				this.lblDie1.setVisible(false);
+				this.lblDie2.setVisible(false);
+				this.lblDie3.setVisible(false);
+				this.lblDie4.setVisible(false);
+				this.lblDie5.setVisible(false);
 				Game.turnOver(this);
 				//txtBidDieValue = new JTextField("Enter Dice Number");
 			}else {
