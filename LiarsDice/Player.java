@@ -210,14 +210,6 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-		//if (PlayerID == 0){
-		//	this.btnChallenge.setEnabled(false);
-		//}
-		//if (PlayerID != 0) {
-		///	this.pnlBid.setEnabled(false);
-		//	this.btnBid.setEnabled(false);
-		//	this.btnChallenge.setEnabled(false);
-		//}
 		
 		int xAdjust = 0;
 		int yAdjust = 0;
@@ -245,9 +237,6 @@ public class Player extends JFrame implements ActionListener {
 	    int y = yAdjust + ( (int) ((dimension.getHeight() - getHeight()) / 2) );
 	    setLocation(x, y);
 		
-		
-		
-		
         this.setVisible(true);
 
 		con = this.getContentPane();
@@ -273,6 +262,8 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnBid) {
+			
+			Game.playerIsPlaying(this);
 
 			if (btnBid.getText().equals("Bid")) {
 				btnBid.setText("Enter Bid");
@@ -291,6 +282,8 @@ public class Player extends JFrame implements ActionListener {
 			}
 
 		} else if (e.getSource() == btnChallenge) {
+			
+			Game.playerIsPlaying(this);
 			
 			// if plater wrote in txts and then decided to bid
 			txtBidDieValue.setVisible(false);
@@ -312,14 +305,6 @@ public class Player extends JFrame implements ActionListener {
 				}
 			}
 
-		} else if (e.getSource() == txtBidDieValue) {
-
-			// cover txtbox with bid btn
-
-		} else if (e.getSource() == txtBidDieNum) {
-
-			// cover txtbox with bid btn
-
 		}
 		
 		// Actions that happen no matter what GUI component was triggered
@@ -331,6 +316,7 @@ public class Player extends JFrame implements ActionListener {
 		if (lblMsg.isVisible()) {
 			lblMsg.setVisible(false);
 		}
+		
 	}
 
 	/*
@@ -401,7 +387,6 @@ public class Player extends JFrame implements ActionListener {
 		
 		// reset lbl text
 		for(int i = 0; i < lblDice.size(); i++) {
-			
 			lblDice.elementAt(i).setText("" + d.elementAt(i).getFaceValue());
 			System.out.println(i + " = " + d.elementAt(i).getFaceValue() );
 		}
