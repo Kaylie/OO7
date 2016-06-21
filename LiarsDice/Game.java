@@ -282,6 +282,7 @@ public class Game extends JFrame implements ActionListener {
 		btnStart.setLocation(0, 75);
 		btnStart.setSize(360, 40);
 		btnStart.addActionListener(this);
+		btnStart.setBackground(Color.white);
 		pnlSetup.add(btnStart);
 		
 		// Text instruction for number of players
