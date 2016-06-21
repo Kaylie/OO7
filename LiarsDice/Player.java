@@ -243,6 +243,7 @@ public class Player extends JFrame implements ActionListener {
 		this.setSize(500, 280);
 		con.add(pnlPortal);
 		setVisible(true);
+		this.setResizable(false);
 
 		//// Setup first players GUI ////
 		if (id == 0) {
