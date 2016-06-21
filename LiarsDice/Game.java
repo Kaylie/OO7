@@ -75,6 +75,8 @@ public class Game extends JFrame implements ActionListener {
 
 	JTextField txtBidDiceNum, txtBidDieValue;
 	
+	
+	
 	public Game() {
 		
 		super("Game Table");
@@ -82,6 +84,8 @@ public class Game extends JFrame implements ActionListener {
 	    //// Create GUI ////
 
 		setBounds(100, 100, 300, 100);
+		
+		
 		
 		Border border = BorderFactory.createLineBorder(Color.black);  //Default border is set here.
 
@@ -309,8 +313,11 @@ public class Game extends JFrame implements ActionListener {
 		this.setSize(500, 280);
 		con.add(pnlGameTable); 
 		setVisible(true);
+		pnlGameTable.setMaximumSize(new Dimension(500,280));
+		this.setResizable(false);
 		
 	}
+	
 
 	/*
 	 * @name  : actionPerformed
@@ -527,9 +534,10 @@ public class Game extends JFrame implements ActionListener {
 			 startingPlayer = getNextPlayer(p);
 			 
 			 //disable player's window
+			 p.pnlAction.setVisible(false);
 			 p.btnBid.setVisible(false);
 			 p.btnChallenge.setVisible(false);
-			 p.btnHideDice.setVisible(false);
+			 p.btnHideDice.setVisible(false);			 
 			 
 			 p.lblMsg.setText("<html>You are out of the game.</html>");
 			 
