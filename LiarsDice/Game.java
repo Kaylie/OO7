@@ -267,6 +267,7 @@ public class Game extends JFrame implements ActionListener {
 		btnRules.setLocation(0, 0);
 		btnRules.setSize(465, 40);
 		btnRules.addActionListener(this);
+		btnRules.setBackground(Color.white);
 		pnlRow2.add(btnRules);
 		
 		// back out button
