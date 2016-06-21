@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -289,6 +290,12 @@ public class Player extends JFrame implements ActionListener {
 			// if plater wrote in txts and then decided to bid
 			txtBidDieValue.setVisible(false);
 			txtBidDieNum.setVisible(false);
+			this.btnHideDice.setText("Show Dice");
+			this.lblDie1.setVisible(false);
+			this.lblDie2.setVisible(false);
+			this.lblDie3.setVisible(false);
+			this.lblDie4.setVisible(false);
+			this.lblDie5.setVisible(false);
 
 			Game.validateChallenge();
 
@@ -313,23 +320,12 @@ public class Player extends JFrame implements ActionListener {
 		txtBidDieValue.setText("Dice Number");
 		txtBidDieNum.setText("Number of Dice");
 		
+		
 		// if any action happen reset general msg label
 		if (lblMsg.isVisible()) {
 			lblMsg.setVisible(false);
 		}
 		
-	}
-
-	/*
-	 * @name : setPlayerID
-	 * 
-	 * @decr : TODO - do we really need this?
-	 * 
-	 * @param : int x
-	 */
-	public void setPlayerID(int x) {
-		PlayerID = x;
-
 	}
 
 	/*
@@ -405,7 +401,6 @@ public class Player extends JFrame implements ActionListener {
 	 * @param : void
 	 */	
 	private void bid() { // diceNum faceValue
-		//TODO reenable bid buttons when appears
 		
 		// send diceNum and faceValue to
 		
@@ -455,13 +450,12 @@ public class Player extends JFrame implements ActionListener {
 		} else {
 			this.lblErrorMsg.setVisible(true);
 			this.btnBid.setText("Bid");
-			// TODO: enter code to renable screen for player to enter new bid or
-			// challenge
+
 		}
 	}
 
 	/*
-	 * @name : play TODO - method can now be finished
+	 * @name : play
 	 * 
 	 * @decr : set this player's GUI up so user can take their turn.
 	 * 

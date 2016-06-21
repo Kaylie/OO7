@@ -44,7 +44,9 @@ public class Game extends JFrame implements ActionListener {
 
 	static int[] currentValidBid = { 0, 0 };
 
-	static int playerNum = 0; // TODO this value gets set by gameTable GUI
+	static int playerNum = 0; 
+	
+	static boolean isCupShaken = true; 
 
 	static Player currentPlayer;
 	static Player startingPlayer;
@@ -409,30 +411,30 @@ public class Game extends JFrame implements ActionListener {
 				} // end if else
 			} // end for j
 			
-			System.out.println("populatePlayerDiceLabels i = " + i);
-			System.out.println("populatePlayerDiceLabels s = " + s);
+			//System.out.println("populatePlayerDiceLabels i = " + i);
+			//System.out.println("populatePlayerDiceLabels s = " + s);
 			
 			
 			// set text for player lbls
 			switch(i) {
 			case 0: 
-				System.out.println("Player1 = " + s);
+				//System.out.println("Player1 = " + s);
 				lblPlayer1Dice.setText(s); 
 				lblPlayer1Dice.setVisible(true);
 				break;
 				
 			case 1: 
-				System.out.println("Player2 = " + s);
+				//System.out.println("Player2 = " + s);
 				lblPlayer2Dice.setText(s);
 				lblPlayer2Dice.setVisible(true);
 				break;
 			case 2: 
-				System.out.println("Player3 = " + s);
+				//System.out.println("Player3 = " + s);
 				lblPlayer3Dice.setText(s); 
 				lblPlayer3Dice.setVisible(true);
 				break;
 			case 3: 
-				System.out.println("Player4 = " + s);
+				//System.out.println("Player4 = " + s);
 				lblPlayer4Dice.setText(s); 
 				lblPlayer4Dice.setVisible(true);
 				break;
@@ -571,12 +573,6 @@ public class Game extends JFrame implements ActionListener {
 			lblChallenger.setVisible(false);
 			lblBidder.setVisible(false);
 		} else {
-			//start new round
-			// shake dice for next round
-			for (int i = 0; i < players.size(); i++) {
-				players.elementAt(i).shakeCup();
-				populatePlayerDiceLabels();
-			}
 			// increment the "next player to play" text
 			lblTitle.setText("New Round! Player " + (p.getPlayerID()+1) + "'s turn...");
 			// clean up flags
@@ -653,6 +649,8 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	public static void validateChallenge(){
 		
+		isCupShaken = false; 
+		
 		// show all players dice
 		populatePlayerDiceLabels();
 		
@@ -698,9 +696,9 @@ public class Game extends JFrame implements ActionListener {
 				case 6:
 					diceValues[5] += 6;
 					break;
-				default:
-					System.out.println("Error: in default switch case of validateChallenge");
-					break;
+				//default:
+				//	System.out.println("Error: in default switch case of validateChallenge");
+				//	break;
 				} // end switch
 			} // end for
 
@@ -728,6 +726,7 @@ public class Game extends JFrame implements ActionListener {
 		System.out.println("faceValue = " + faceValue );
 		System.out.println("totalBidValue = " + totalBidValue );
 		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
+		
 
 	} // end validateChallenge
 	
@@ -750,6 +749,15 @@ public class Game extends JFrame implements ActionListener {
 			lblPlayer3Dice.setVisible(false);
 			lblPlayer4Dice.setVisible(false);
 			lblPlayer5Dice.setVisible(false);
+			
+			//start new round
+			// shake dice for next round
+			if(!isCupShaken) {
+			for (int i = 0; i < players.size(); i++) {
+				players.elementAt(i).shakeCup();
+			}
+			   isCupShaken = true; 
+			}
 		}
 	}
 	
