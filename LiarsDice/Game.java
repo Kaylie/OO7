@@ -130,7 +130,8 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.setLocation(15, 50);
 		pnlOutcome.setSize(462, 160);
 		pnlOutcome.setBorder(border);
-		pnlOutcome.setVisible(false);        
+		pnlOutcome.setVisible(false);   
+		pnlOutcome.setBackground(Color.lightGray);
 		pnlGameTable.add(pnlOutcome);
 		
 		// Creation of the Game title
@@ -206,8 +207,8 @@ public class Game extends JFrame implements ActionListener {
 		txtWinner.setLocation(155, 40);
 		txtWinner.setSize(154, 40);
 		txtWinner.setFont(new Font("Lucida", Font.BOLD, 18));
-		txtWinner.setBackground(Color.BLUE);
-		txtWinner.setForeground(Color.WHITE);
+		txtWinner.setBackground(Color.darkGray);
+		txtWinner.setForeground(Color.lightGray);
 		txtWinner.setVisible(false);
 		pnlOutcome.add(txtWinner);
 		
@@ -267,6 +268,7 @@ public class Game extends JFrame implements ActionListener {
 		btnRules.setLocation(0, 0);
 		btnRules.setSize(465, 40);
 		btnRules.addActionListener(this);
+		btnRules.setBackground(Color.white);
 		pnlRow2.add(btnRules);
 		
 		// back out button
@@ -274,6 +276,7 @@ public class Game extends JFrame implements ActionListener {
 		btnCancel.setLocation(365, 75);
 		btnCancel.setSize(100, 40);
 		btnCancel.addActionListener(this);
+		btnCancel.setBackground(Color.white);
 		pnlSetup.add(btnCancel);
 		
 		// Button for user to accept players and start game
@@ -284,11 +287,11 @@ public class Game extends JFrame implements ActionListener {
 		pnlSetup.add(btnStart);
 		
 		// Text instruction for number of players
-		lblNumPlayers = new JLabel("Choose the number of players...");
+		lblNumPlayers = new JLabel(" Choose the number of players :");
 		lblNumPlayers.setLocation(0, 30);
 		lblNumPlayers.setSize(360, 40);
 		lblNumPlayers.setHorizontalAlignment(10);
-		lblNumPlayers.setFont(new Font("Lucida", Font.PLAIN, 24));
+		lblNumPlayers.setFont(new Font("Lucida", Font.PLAIN, 20));
 		lblNumPlayers.setForeground(Color.black);
 		lblNumPlayers.setVisible(true);
 		pnlSetup.add(lblNumPlayers);

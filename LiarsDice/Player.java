@@ -139,6 +139,7 @@ public class Player extends JFrame implements ActionListener {
 		btnBid.setSize(100, 40);
 		btnBid.setEnabled(false);
 		btnBid.addActionListener(this);
+		btnBid.setBackground(Color.white);
 		pnlAction.add(btnBid);
 
 		pnlBid = new JPanel();
@@ -169,6 +170,7 @@ public class Player extends JFrame implements ActionListener {
 		btnChallenge.setSize(100, 40);
 		btnChallenge.setEnabled(false);
 		btnChallenge.addActionListener(this);
+		btnChallenge.setBackground(Color.white);
 		pnlAction.add(btnChallenge);		
 
 		pnlCup = new JPanel();
@@ -182,6 +184,7 @@ public class Player extends JFrame implements ActionListener {
 		btnHideDice.setLocation(0, 0);
 		btnHideDice.setSize(350, 40);
 		btnHideDice.addActionListener(this);
+		btnHideDice.setBackground(Color.white);
 		pnlCup.add(btnHideDice);
 		
 		lblDie5 = new JLabel();
