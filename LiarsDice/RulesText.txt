@@ -1,34 +1,61 @@
-1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ Welcome to Liar's Dice, by Team 007
 
-2. Aenean vel malesuada ipsum, in vulputate felis.
+	1. You are reading the rules for Liars Dice, by team 007.
+	Once you feel comfortable with the rules you can
+	press "Got it" to continue to the game start screen.
 
-3. Vestibulum sodales nibh id pulvinar dignissim.
+	2. On the start screen you must choose the number of
+	players that will be playing on the drop down menu.
 
-4. Proin vel libero convallis, rutrum dui sit amet,
+	3. Once the number of players has been selected, press
+	"Start Game" to begin. Pressing "Back out" will return
+	you to this rules pane.
 
-5. ornare velit. Nam non vulputate erat.
+	4. At the initiation of the game each player is created
+	with their own panel, representing a cup containing 5 dice,
+	and the various actions that each player can make.
 
-6. Phasellus gravida ultricies neque et tincidunt.
+	5. At this point a round of play begins.
 
-7. Nullam dolor justo, vehicula nec sodales in, lobortis ac augue.
+	6. Player 1 acts first on the first round, the player who loses
+	each round will act first on the remaining rounds.
 
-8. Quisque sollicitudin sapien nec est varius, vitae porttitor ante condimentum.
+	7. Each player will start by looking at their own dice within
+	their own cup by pressing the "Show Dice" button on their panel.
 
-9. Sed ornare augue eu nisi malesuada euismod.
+	8. At this point the player who is designated next to act will
+	have the choice to either "Bid" or "Challenge", unless it is
+	the first player to act in which case only bidding is an option.
 
-10. Sed magna arcu, condimentum quis magna vitae, sagittis dictum dui.
+	9. A bid is a guess by the player of the number of dice in all of
+	the players cups that have the same face value showing. A
+	challenge represents a player challenging the validity of the
+	last bid.
 
-11. Praesent tempus risus ac elementum faucibus. Aenean blandit iaculis faucibus.
+	10. If a player would like to place a bid, that player presses
+	the "Bid" button. Two fields appear where the player can enter
+	a die face value ("Enter Die Value") and a total number of dice
+	showing that face value ("Enter Die Num").
 
-12. Vestibulum euismod maximus mattis. Vestibulum vitae odio risus.
+	11. A valid bid must contain either a greater number of dice or a
+	higher face value than the last valid bid.
 
-13. Duis nec vestibulum metus. Phasellus et sapien ultricies, faucibus enim vitae, ornare felis.
+	12. Once a valid bid has been placed, the "Bid" button must be
+	pressed and play will advance to the next player.
 
-14. Sed et eleifend urna, in tempus ante. Duis et tempus massa.
+	13. If a player chooses to challenge by pressing the "Challenge"
+	button, all dice in the cups are immediately revealed. If the
+	bidding player's bid is equal or less than the actual number of
+	dice in all cups showing the bid face value, the challenger loses
+	the round, and forfeits one die from their cup for the remainder
+	of the game. Otherwise the bidding player loses the round and
+	they forfeit one die for the remainder of the game.
 
-15. Pellentesque massa mi, fermentum eget efficitur sed, varius ut nulla.
+	14. If a player loses a challenge or bid and the die that they
+	lose is their last, that player is removed from the game.
 
-16. Pellentesque auctor erat sit amet neque mollis imperdiet.
+	15. Play continues until only one player remains. That player is
+	the winner of Liar's Dice.
 
-17. Sed hendrerit massa sit amet tortor suscipit semper. Nunc et nulla diam. 
+	16. Good luck, and enjoy Liar's Dice...
 
