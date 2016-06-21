@@ -533,9 +533,10 @@ public class Game extends JFrame implements ActionListener {
 			 
 			 // remove player
 			 int index = players.indexOf(p);
-			 
+			 //System.out.println("startingplayer post id = " + startingPlayer.getPlayerID());
 			 // set starting player to the next player in line
 			 startingPlayer = getNextPlayer(p);
+			 //System.out.println("startingplayer id = " + startingPlayer.getPlayerID());
 			 
 			 //disable player's window
 			 p.pnlAction.setVisible(false);
@@ -556,7 +557,7 @@ public class Game extends JFrame implements ActionListener {
 		//System.out.println("472");
 		
 		// check if game should continue
-		validateGame(p);
+		validateGame(startingPlayer);
 	} 
 	
 	/*
