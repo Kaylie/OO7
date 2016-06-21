@@ -45,6 +45,8 @@ public class Game extends JFrame implements ActionListener {
 	static int[] currentValidBid = { 0, 0 };
 
 	static int playerNum = 0; 
+	
+	static boolean isCupShaken = true; 
 
 	static Player currentPlayer;
 	static Player startingPlayer;
@@ -561,12 +563,6 @@ public class Game extends JFrame implements ActionListener {
 			currentPlayer = players.peek();
 			lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + " has won the game!");
 		} else {
-			//start new round
-			// shake dice for next round
-			for (int i = 0; i < players.size(); i++) {
-				players.elementAt(i).shakeCup();
-				populatePlayerDiceLabels();
-			}
 			// increment the "next player to play" text
 			lblTitle.setText("Player " + (p.getPlayerID()+1) + "'s turn...");
 			// clean up flags
@@ -642,6 +638,8 @@ public class Game extends JFrame implements ActionListener {
 	 * @param : void
 	 */
 	public static void validateChallenge(){
+		
+		isCupShaken = false; 
 		
 		// show all players dice
 		populatePlayerDiceLabels();
@@ -740,6 +738,15 @@ public class Game extends JFrame implements ActionListener {
 			lblPlayer3Dice.setVisible(false);
 			lblPlayer4Dice.setVisible(false);
 			lblPlayer5Dice.setVisible(false);
+			
+			//start new round
+			// shake dice for next round
+			if(!isCupShaken) {
+			for (int i = 0; i < players.size(); i++) {
+				players.elementAt(i).shakeCup();
+			}
+			   isCupShaken = true; 
+			}
 		}
 	}
 	
