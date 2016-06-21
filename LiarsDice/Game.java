@@ -560,6 +560,8 @@ public class Game extends JFrame implements ActionListener {
 			// set GUI to display Game winner
 			currentPlayer = players.peek();
 			lblTitle.setText("Player " + (currentPlayer.getPlayerID()+1) + " has won the game!");
+			lblChallenger.setVisible(false);
+			lblBidder.setVisible(false);
 		} else {
 			//start new round
 			// shake dice for next round
