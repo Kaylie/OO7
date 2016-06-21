@@ -1,6 +1,6 @@
- Welcome to Liar's Dice, by Team 007
+ Welcome to Liar's Dice presented by Team 007
 
-	1. You are reading the rules for Liars Dice, by team 007.
+	1. You are reading the rules for Liar's Dice.
 	Once you feel comfortable with the rules you can
 	press "Got it" to continue to the game start screen.
 
@@ -11,21 +11,21 @@
 	"Start Game" to begin. Pressing "Back out" will return
 	you to this rules pane.
 
-	4. At the initiation of the game each player is created
-	with their own panel, representing a cup containing 5 dice,
+	4. At the initiation of the game each player is give
+	their own panel, representing a cup containing 5 dice,
 	and the various actions that each player can make.
 
-	5. At this point a round of play begins.
+	5. At this point, a round of play begins.
 
-	6. Player 1 acts first on the first round, the player who loses
-	each round will act first on the remaining rounds.
+	6. Player 1 acts first on the first round. The player who loses
+	each round will act first for each round after the first.
 
 	7. Each player will start by looking at their own dice within
 	their own cup by pressing the "Show Dice" button on their panel.
 
-	8. At this point the player who is designated next to act will
-	have the choice to either "Bid" or "Challenge", unless it is
-	the first player to act in which case only bidding is an option.
+	8. At this point, the player who is designated next to play will
+	have the choice to either "Bid" or "Challenge". However, if it is
+	the first player to act, only bidding is an option.
 
 	9. A bid is a guess by the player of the number of dice in all of
 	the players cups that have the same face value showing. A
@@ -48,7 +48,7 @@
 	bidding player's bid is equal or less than the actual number of
 	dice in all cups showing the bid face value, the challenger loses
 	the round, and forfeits one die from their cup for the remainder
-	of the game. Otherwise the bidding player loses the round and
+	of the game. Otherwise, the bidding player loses the round and
 	they forfeit one die for the remainder of the game.
 
 	14. If a player loses a challenge or bid and the die that they
