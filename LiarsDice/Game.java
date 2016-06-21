@@ -719,6 +719,7 @@ public class Game extends JFrame implements ActionListener {
 		System.out.println("faceValue = " + faceValue );
 		System.out.println("totalBidValue = " + totalBidValue );
 		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
+		
 
 	} // end validateChallenge
 	

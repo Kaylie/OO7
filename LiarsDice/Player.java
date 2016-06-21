@@ -288,6 +288,12 @@ public class Player extends JFrame implements ActionListener {
 			// if plater wrote in txts and then decided to bid
 			txtBidDieValue.setVisible(false);
 			txtBidDieNum.setVisible(false);
+			this.btnHideDice.setText("Show Dice");
+			this.lblDie1.setVisible(false);
+			this.lblDie2.setVisible(false);
+			this.lblDie3.setVisible(false);
+			this.lblDie4.setVisible(false);
+			this.lblDie5.setVisible(false);
 
 			Game.validateChallenge();
 
