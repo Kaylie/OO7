@@ -49,7 +49,7 @@ public class Player extends JFrame implements ActionListener {
 
 	JTextField txtBidDieValue, txtBidDieNum;
 	
-	Stack<JLabel> lblDice = new Stack<JLabel>();
+	Stack<JLabel> lblDice = new Stack<JLabel>();  
 	
 	
 	/*
@@ -96,7 +96,7 @@ public class Player extends JFrame implements ActionListener {
 		Font font = lblCurrentBid.getFont();
 		Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
 		lblCurrentBid.setFont(boldFont);
-		pnlRow1.add(lblCurrentBid);
+		pnlRow1.add(lblCurrentBid);  
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -131,7 +131,7 @@ public class Player extends JFrame implements ActionListener {
 		pnlAction.setLocation(10, 10);
 		pnlAction.setSize(100, 160);
 		pnlAction.setBackground(Color.lightGray);
-		pnlRow3.add(pnlAction);
+		pnlRow3.add(pnlAction); // 30
 
 		btnBid = new JButton("Bid");
 		btnBid.setLocation(0, 40);
@@ -193,7 +193,7 @@ public class Player extends JFrame implements ActionListener {
 		lblDice.push(lblDie4);
 		lblDice.push(lblDie3);
 		lblDice.push(lblDie2);
-		lblDice.push(lblDie1);
+		lblDice.push(lblDie1);  
 		
         Stack<Die> dice = playerCup.getDice();
         

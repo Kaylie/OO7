@@ -63,7 +63,9 @@ public class Game extends JFrame implements ActionListener {
 	JLabel lblMsg, lblNumPlayers;
 
 	static JLabel lblTitle, lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, 
-    				lblPlayer4Dice, lblPlayer5Dice;;
+    				lblPlayer4Dice, lblPlayer5Dice;
+	
+	static JLabel[] playerDicelbls = {lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, lblPlayer4Dice, lblPlayer5Dice};
 
 	JComboBox<String> cmbNumPlayers;
 	
@@ -205,8 +207,15 @@ public class Game extends JFrame implements ActionListener {
 		lblWinner.setVisible(false);
 		pnlOutcome.add(lblWinner);
 		
+		
+		//playerDicelbls[i] = new JLabel("i");
+		lblPlayer1Dice = new JLabel("i");
+		lblPlayer2Dice = new JLabel("i");
+		lblPlayer3Dice = new JLabel("i");
+		lblPlayer4Dice = new JLabel("i");
+		lblPlayer5Dice = new JLabel("i");
+		
 		// player dice labels for pnlOutcome
-		JLabel[] playerDicelbls = {lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, lblPlayer4Dice, lblPlayer5Dice};
 		for (int i = 0; i < playerDicelbls.length; i++) {
 			playerDicelbls[i] = new JLabel("i");
 			playerDicelbls[i].setLocation(200, ( 40 * i ));
@@ -218,10 +227,6 @@ public class Game extends JFrame implements ActionListener {
 			playerDicelbls[i].setBorder(border);
 			pnlOutcome.add(playerDicelbls[i]);
 		}
-		
-		// We create a button and manipulate it using the syntax we have
-		// used before. Now each button has an ActionListener which posts
-		// its action out when the button is pressed.
 		
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
@@ -372,19 +377,19 @@ public class Game extends JFrame implements ActionListener {
 			System.out.println("populatePlayerDiceLabels i = " + i);
 			System.out.println("populatePlayerDiceLabels s = " + s);
 			
-			/*
+			
 			// set text for player lbls
 			switch(i) {
 			case 0: 
 				
 				System.out.println("Player1 = " + s);
-				if (lblPlayer1Dice != null) {  // why is this object null!!!!!!!!!
+				//if (lblPlayer1Dice != null) {  // why is this object null!!!!!!!!!
 					lblPlayer1Dice.setText(s); 
-				} 
+				//} 
 				break;
 				
 			case 1: 
-				//lblPlayer2Dice.setText(s);
+				lblPlayer2Dice.setText(s);
 				System.out.println("Player2 = " + s);
 				break;
 			case 2: 
@@ -397,7 +402,7 @@ public class Game extends JFrame implements ActionListener {
 				break;
 				
 			} // end switch
-			*/
+			
 			
 		} // end for i
 				
@@ -557,7 +562,7 @@ public class Game extends JFrame implements ActionListener {
 	public static boolean validateBid(int dieNum, int faceValue) {
 
 		// dieNum must be greater than 1
-		if (dieNum < 1) {
+		if (dieNum < 1 || dieNum > 99) {
 			// Buttons are not being reshown
 			return false;
 		}
