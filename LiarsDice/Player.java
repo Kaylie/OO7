@@ -49,7 +49,7 @@ public class Player extends JFrame implements ActionListener {
 
 	JTextField txtBidDieValue, txtBidDieNum;
 	
-	Stack<JLabel> lblDice = new Stack<JLabel>();
+	Stack<JLabel> lblDice = new Stack<JLabel>();  
 	
 	
 	/*
@@ -96,7 +96,7 @@ public class Player extends JFrame implements ActionListener {
 		Font font = lblCurrentBid.getFont();
 		Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
 		lblCurrentBid.setFont(boldFont);
-		pnlRow1.add(lblCurrentBid);
+		pnlRow1.add(lblCurrentBid);  
 
 		pnlRow2 = new JPanel();
 		pnlRow2.setLayout(null);
@@ -131,7 +131,7 @@ public class Player extends JFrame implements ActionListener {
 		pnlAction.setLocation(10, 10);
 		pnlAction.setSize(100, 160);
 		pnlAction.setBackground(Color.lightGray);
-		pnlRow3.add(pnlAction);
+		pnlRow3.add(pnlAction); // 30
 
 		btnBid = new JButton("Bid");
 		btnBid.setLocation(0, 40);
@@ -193,7 +193,7 @@ public class Player extends JFrame implements ActionListener {
 		lblDice.push(lblDie4);
 		lblDice.push(lblDie3);
 		lblDice.push(lblDie2);
-		lblDice.push(lblDie1);
+		lblDice.push(lblDie1);  
 		
         Stack<Die> dice = playerCup.getDice();
         
@@ -210,14 +210,6 @@ public class Player extends JFrame implements ActionListener {
 		}
 
 		pnlPortal.setOpaque(true);
-		//if (PlayerID == 0){
-		//	this.btnChallenge.setEnabled(false);
-		//}
-		//if (PlayerID != 0) {
-		///	this.pnlBid.setEnabled(false);
-		//	this.btnBid.setEnabled(false);
-		//	this.btnChallenge.setEnabled(false);
-		//}
 		
 		int xAdjust = 0;
 		int yAdjust = 0;
@@ -228,7 +220,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = -375;
 			break;
 		case 1 :  
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = -375;
 			break;
 		case 2 :
@@ -236,7 +228,7 @@ public class Player extends JFrame implements ActionListener {
 			yAdjust = 25;
 			break;
 		case 3 :
-			xAdjust = 400;
+			xAdjust = 365;
 			yAdjust = 25;
 			break;	
 		}
@@ -244,9 +236,6 @@ public class Player extends JFrame implements ActionListener {
 	    int x = xAdjust + ( (int) ((dimension.getWidth() - getWidth()) / 2) );
 	    int y = yAdjust + ( (int) ((dimension.getHeight() - getHeight()) / 2) );
 	    setLocation(x, y);
-		
-		
-		
 		
         this.setVisible(true);
 
@@ -273,6 +262,8 @@ public class Player extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnBid) {
+			
+			Game.playerIsPlaying(this);
 
 			if (btnBid.getText().equals("Bid")) {
 				btnBid.setText("Enter Bid");
@@ -291,6 +282,8 @@ public class Player extends JFrame implements ActionListener {
 			}
 
 		} else if (e.getSource() == btnChallenge) {
+			
+			Game.playerIsPlaying(this);
 			
 			// if plater wrote in txts and then decided to bid
 			txtBidDieValue.setVisible(false);
@@ -312,14 +305,6 @@ public class Player extends JFrame implements ActionListener {
 				}
 			}
 
-		} else if (e.getSource() == txtBidDieValue) {
-
-			// cover txtbox with bid btn
-
-		} else if (e.getSource() == txtBidDieNum) {
-
-			// cover txtbox with bid btn
-
 		}
 		
 		// Actions that happen no matter what GUI component was triggered
@@ -331,6 +316,7 @@ public class Player extends JFrame implements ActionListener {
 		if (lblMsg.isVisible()) {
 			lblMsg.setVisible(false);
 		}
+		
 	}
 
 	/*
@@ -401,7 +387,6 @@ public class Player extends JFrame implements ActionListener {
 		
 		// reset lbl text
 		for(int i = 0; i < lblDice.size(); i++) {
-			
 			lblDice.elementAt(i).setText("" + d.elementAt(i).getFaceValue());
 			System.out.println(i + " = " + d.elementAt(i).getFaceValue() );
 		}

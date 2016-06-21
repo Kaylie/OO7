@@ -124,8 +124,7 @@ public class Game extends JFrame implements ActionListener {
 		pnlOutcome.setLocation(10, 50);
 		pnlOutcome.setSize(460, 160);
 		pnlOutcome.setBorder(border);
-		pnlOutcome.setVisible(false);         ///////////////////////////////////////
-		//pnlOutcome.setBackground(Color.CYAN);
+		pnlOutcome.setVisible(false);        
 		pnlGameTable.add(pnlOutcome);
 		
 		// Creation of the Game title
@@ -206,24 +205,57 @@ public class Game extends JFrame implements ActionListener {
 		txtWinner.setVisible(false);
 		pnlOutcome.add(txtWinner);
 		
-		// player dice labels for pnlOutcome
-		JLabel[] playerDicelbls = {lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, lblPlayer4Dice, lblPlayer5Dice};
-		for (int i = 0; i < playerDicelbls.length; i++) {
-			playerDicelbls[i] = new JLabel("i");
-			playerDicelbls[i].setLocation(200, ( 40 * i ));
-			playerDicelbls[i].setSize(100, 40);
-			playerDicelbls[i].setHorizontalAlignment(0);
-			playerDicelbls[i].setFont(new Font("Lucida", Font.PLAIN, 18));
-			playerDicelbls[i].setForeground(Color.black);
-			playerDicelbls[i].setVisible(true);
-			playerDicelbls[i].setBorder(border);
-			pnlOutcome.add(playerDicelbls[i]);
-		}
+		// Dice labels
+		lblPlayer1Dice = new JLabel("");
+		lblPlayer1Dice.setLocation(200, 0);
+		lblPlayer1Dice.setSize(100, 40);
+		lblPlayer1Dice.setHorizontalAlignment(0);
+		lblPlayer1Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayer1Dice.setForeground(Color.black);
+		lblPlayer1Dice.setVisible(false);
+		lblPlayer1Dice.setBorder(border);
+		pnlOutcome.add(lblPlayer1Dice);
 		
-		// We create a button and manipulate it using the syntax we have
-		// used before. Now each button has an ActionListener which posts
-		// its action out when the button is pressed.
+		lblPlayer2Dice = new JLabel("");
+		lblPlayer2Dice.setLocation(200, 40);
+		lblPlayer2Dice.setSize(100, 40);
+		lblPlayer2Dice.setHorizontalAlignment(0);
+		lblPlayer2Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayer2Dice.setForeground(Color.black);
+		lblPlayer2Dice.setVisible(false);
+		lblPlayer2Dice.setBorder(border);
+		pnlOutcome.add(lblPlayer2Dice);
 		
+		lblPlayer3Dice = new JLabel("");
+		lblPlayer3Dice.setLocation(200, 80);
+		lblPlayer3Dice.setSize(100, 40);
+		lblPlayer3Dice.setHorizontalAlignment(0);
+		lblPlayer3Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayer3Dice.setForeground(Color.black);
+		lblPlayer3Dice.setVisible(false);
+		lblPlayer3Dice.setBorder(border);
+		pnlOutcome.add(lblPlayer3Dice);
+		
+		lblPlayer4Dice = new JLabel("");
+		lblPlayer4Dice.setLocation(200, 120);
+		lblPlayer4Dice.setSize(100, 40);
+		lblPlayer4Dice.setHorizontalAlignment(0);
+		lblPlayer4Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayer4Dice.setForeground(Color.black);
+		lblPlayer4Dice.setVisible(false);
+		lblPlayer4Dice.setBorder(border);
+		pnlOutcome.add(lblPlayer4Dice);
+		
+		lblPlayer5Dice = new JLabel("");
+		lblPlayer5Dice.setLocation(200, 160);
+		lblPlayer5Dice.setSize(100, 40);
+		lblPlayer5Dice.setHorizontalAlignment(0);
+		lblPlayer5Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
+		lblPlayer5Dice.setForeground(Color.black);
+		lblPlayer5Dice.setVisible(false);
+		lblPlayer5Dice.setBorder(border);
+		pnlOutcome.add(lblPlayer5Dice);
+
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
 		btnRules.setLocation(0, 0);
@@ -373,32 +405,33 @@ public class Game extends JFrame implements ActionListener {
 			System.out.println("populatePlayerDiceLabels i = " + i);
 			System.out.println("populatePlayerDiceLabels s = " + s);
 			
-			/*
+			
 			// set text for player lbls
 			switch(i) {
 			case 0: 
-				
 				System.out.println("Player1 = " + s);
-				if (lblPlayer1Dice != null) {  // why is this object null!!!!!!!!!
-					lblPlayer1Dice.setText(s); 
-				} 
+				lblPlayer1Dice.setText(s); 
+				lblPlayer1Dice.setVisible(true);
 				break;
 				
 			case 1: 
-				//lblPlayer2Dice.setText(s);
 				System.out.println("Player2 = " + s);
+				lblPlayer2Dice.setText(s);
+				lblPlayer2Dice.setVisible(true);
 				break;
 			case 2: 
-				//lblPlayer3Dice.setText(s);
 				System.out.println("Player3 = " + s);
+				lblPlayer3Dice.setText(s); 
+				lblPlayer3Dice.setVisible(true);
 				break;
 			case 3: 
-				//lblPlayer4Dice.setText(s);
 				System.out.println("Player4 = " + s);
+				lblPlayer4Dice.setText(s); 
+				lblPlayer4Dice.setVisible(true);
 				break;
 				
 			} // end switch
-			*/
+			
 			
 		} // end for i
 				
@@ -558,7 +591,7 @@ public class Game extends JFrame implements ActionListener {
 	public static boolean validateBid(int dieNum, int faceValue) {
 
 		// dieNum must be greater than 1
-		if (dieNum < 1) {
+		if (dieNum < 1 || dieNum > 99) {
 			// Buttons are not being reshown
 			return false;
 		}
@@ -636,27 +669,21 @@ public class Game extends JFrame implements ActionListener {
 
 				case 1:
 					diceValues[0] += 1;
-					System.out.println("** 1 = "  + diceValues[0]);
 					break;
 				case 2:
 					diceValues[1] += 2;
-					System.out.println("** 2 = " + diceValues[1]);
 					break;
 				case 3:
 					diceValues[2] += 3;
-					System.out.println("** 3 = "  + diceValues[2]);
 					break;
 				case 4:
 					diceValues[3] += 4;
-					System.out.println("** 4 = "  + diceValues[3]);
 					break;
 				case 5:
 					diceValues[4] += 5;
-					System.out.println("** 5 = "  + diceValues[4]);
 					break;
 				case 6:
 					diceValues[5] += 6;
-					System.out.println("** 6 = "  + diceValues[5]);
 					break;
 				default:
 					System.out.println("Error: in default switch case of validateChallenge");
@@ -690,6 +717,28 @@ public class Game extends JFrame implements ActionListener {
 		System.out.println("diceValues[faceValue] = " + diceValues[faceValue]);
 
 	} // end validateChallenge
+	
+	
+	/*
+	 * @name : playerIsPlaying
+	 * 
+	 * @decr : If the player is the first player in a round hide
+     * dice labels and reset GUI.
+	 * 
+	 * @param : Player p
+	 */
+	public static void playerIsPlaying(Player p) {
+		
+		// if it is the first play of the game
+		if (p == startingPlayer && currentValidBid[0] == 0 
+				&& currentValidBid[1] == 0) {
+			lblPlayer1Dice.setVisible(false);
+			lblPlayer2Dice.setVisible(false);
+			lblPlayer3Dice.setVisible(false);
+			lblPlayer4Dice.setVisible(false);
+			lblPlayer5Dice.setVisible(false);
+		}
+	}
 	
 
 	/*
@@ -736,16 +785,11 @@ public class Game extends JFrame implements ActionListener {
 
 	/**
 	 * @name   : Main
-	 * @decr   :
+	 * @decr   : Create game obj and start the program 
 	 * @param  : String[] args
 	 */
 	public static void main(String[] args) {
-
-		// DEBUG
-		System.out.println("I am alive!!!!");
-
         new Game();
-
 	} // end main
 
 } // end class
