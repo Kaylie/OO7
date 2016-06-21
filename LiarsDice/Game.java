@@ -127,7 +127,7 @@ public class Game extends JFrame implements ActionListener {
 		//Creation of a Panel to contain the outcome labels
 		pnlOutcome = new JPanel();
 		pnlOutcome.setLayout(null);
-		pnlOutcome.setLocation(10, 50);
+		pnlOutcome.setLocation(15, 50);
 		pnlOutcome.setSize(462, 160);
 		pnlOutcome.setBorder(border);
 		pnlOutcome.setVisible(false);        
