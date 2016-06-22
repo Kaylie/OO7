@@ -32,6 +32,7 @@ import org.omg.CORBA.Request;
  * 
  * @param : void
  */
+@SuppressWarnings("serial")
 public class Player extends JFrame implements ActionListener {
 
 	// class variables
@@ -42,19 +43,15 @@ public class Player extends JFrame implements ActionListener {
 
 	private Container con;
 
-	private JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlBid, pnlCup;
+	private JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlBid, pnlCup, pnlAction;
 	
-	public JPanel pnlAction;
-
-	private JLabel lblErrorMsg, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
+	private JLabel lblErrorMsg, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5, lblMsg, lblCurrentBid;
 	
-	public JLabel lblMsg, lblCurrentBid;
-
-	public JButton btnBid, btnChallenge, btnHideDice;
+	private JButton btnBid, btnChallenge, btnHideDice;
 
 	private JTextField txtBidDieValue, txtBidDieNum;
 	
-	public Stack<JLabel> lblDice = new Stack<JLabel>();  
+	private Stack<JLabel> lblDice = new Stack<JLabel>();  
 	
 	
 	/*
@@ -490,4 +487,54 @@ public class Player extends JFrame implements ActionListener {
 		// disable this players buttons
 	}
 
+	/*
+	 * @name : disableWindow
+	 * 
+	 * @decr : disable player's GUI when they have lost the game.
+	 * 
+	 * @param : void
+	 */
+	public void disableWindow() {
+		 this.pnlAction.setVisible(false);
+		 this.btnBid.setVisible(false);
+		 this.btnChallenge.setVisible(false);
+		 this.btnHideDice.setVisible(false);	
+	}
+	
+	/*
+	 * @name : setMessage
+	 * 
+	 * @decr : add messages to player window
+	 * 
+	 * @param : String
+	 */
+	public void setMessage(String s) {
+		this.lblMsg.setText(s);
+		this.lblMsg.setVisible(true);
+	}
+	
+	/*
+	 * @name : setButtons
+	 * 
+	 * @decr : disables bid and challenge buttons for player
+	 * 
+	 * @param : Boolean
+	 */
+	public void setButtons(boolean b) {
+		this.btnChallenge.setEnabled(b);
+		this.btnBid.setEnabled(b);
+	}
+	
+	/*
+	 * @name : getCurrentBid
+	 * 
+	 * @decr : returns the generated label for the current bid
+	 * 
+	 * @param : void
+	 */
+	public JLabel getCurrentBid() {
+		return this.lblCurrentBid;
+	}
+	
+	
 } // end class Player

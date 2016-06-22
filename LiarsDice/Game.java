@@ -486,9 +486,8 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static void setLose(Player p) {
 		
-		p.lblMsg.setText("<html>You lost this round but you can still win the game. "
+		p.setMessage("<html>You lost this round but you can still win the game. "
 				+ "Please enter a bid to start the next round.</html>");
-		p.lblMsg.setVisible(true);
 		
 		// player who looses losses a die
 		p.removeDieFromCup();
@@ -521,12 +520,9 @@ public class Game extends JFrame implements ActionListener {
 			 //System.out.println("startingplayer id = " + startingPlayer.getPlayerID());
 			 
 			 //disable player's window
-			 p.pnlAction.setVisible(false);
-			 p.btnBid.setVisible(false);
-			 p.btnChallenge.setVisible(false);
-			 p.btnHideDice.setVisible(false);			 
+			 p.disableWindow();			 
 			 
-			 p.lblMsg.setText("<html>You are out of the game.</html>");
+			 p.setMessage("<html>You are out of the game.</html>");
 			 
 			 // remove player
 			 players.removeElementAt(index);
@@ -617,7 +613,7 @@ public class Game extends JFrame implements ActionListener {
 		for (int i = 0; i < players.size(); i++) {
 			String s = "Current Bid = Dice Number: " + faceValue 
 					+  " : " + dieNum + " times"; // don't use s
-			players.elementAt(i).lblCurrentBid.setText(s);
+			players.elementAt(i).getCurrentBid().setText(s);
 		}
 
 		return true;
@@ -643,8 +639,7 @@ public class Game extends JFrame implements ActionListener {
 		// add all Player die vales to array
 		// each index represents a face value
 		for (int i = 0; i < players.size(); i++){
-			players.elementAt(i).btnChallenge.setEnabled(false);
-			players.elementAt(i).btnBid.setEnabled(false);
+			players.elementAt(i).setButtons(false);
 		}
 		
 		int[] diceValues = { 0, 0, 0, 0, 0, 0};
