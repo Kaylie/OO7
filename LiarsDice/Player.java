@@ -40,17 +40,21 @@ public class Player extends JFrame implements ActionListener {
 
 	// class GUI components
 
-	Container con;
+	private Container con;
 
-	JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlAction, pnlBid, pnlCup;
-
-	JLabel lblErrorMsg, lblMsg, lblCurrentBid, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
-
-	JButton btnBid, btnChallenge, btnHideDice;
-
-	JTextField txtBidDieValue, txtBidDieNum;
+	private JPanel pnlPortal, pnlRow1, pnlRow2, pnlRow3, pnlBid, pnlCup;
 	
-	Stack<JLabel> lblDice = new Stack<JLabel>();  
+	public JPanel pnlAction;
+
+	private JLabel lblErrorMsg, lblDie1, lblDie2, lblDie3, lblDie4, lblDie5;
+	
+	public JLabel lblMsg, lblCurrentBid;
+
+	public JButton btnBid, btnChallenge, btnHideDice;
+
+	private JTextField txtBidDieValue, txtBidDieNum;
+	
+	public Stack<JLabel> lblDice = new Stack<JLabel>();  
 	
 	
 	/*
