@@ -28,57 +28,51 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 /**
  * @name : Game
  * @author : Abraham Assad & Kaylie Anderson
  * @decr :
  */
+@SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
 
 	// class variables
 	
-	static Stack<Player> players = new Stack<Player>();
+	private static Stack<Player> players = new Stack<Player>();
 
-	static int[] currentValidBid = { 0, 0 };
+	private static int[] currentValidBid = { 0, 0 };
 
-	static int playerNum = 0; 
+	private static int playerNum = 0; 
 	
-	static boolean isCupShaken = true; 
+	private static boolean isCupShaken = true; 
 
-	static Player currentPlayer;
-	static Player startingPlayer;
-	static Player lastPlayer;
+	private static Player currentPlayer;
+	private static Player startingPlayer;
+	private static Player lastPlayer;
 
 	// class GUI components 
 	
-	Container con;
+	private Container con;
 
-	JPanel pnlGameTable, pnlOutcome, pnlRow1, pnlRow2, pnlRules, pnlSetup;
+	private JPanel pnlGameTable, pnlOutcome, pnlRow1, pnlRow2, pnlRules, pnlSetup;
 
-	JButton btnCancel, btnRules, btnStart;
+	private JButton btnCancel, btnRules, btnStart;
 
-	static JLabel lblBidder, lblChallenger;
+	private JLabel lblNumPlayers;
 
-	JLabel lblMsg, lblNumPlayers;
+	private static JLabel lblBidder, lblChallenger, lblTitle, lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, 
+    				lblPlayer4Dice;
 
-	static JLabel lblTitle, lblPlayer1Dice, lblPlayer2Dice, lblPlayer3Dice, 
-    				lblPlayer4Dice, lblPlayer5Dice;
-
-	JComboBox<String> cmbNumPlayers;
+	private JComboBox<String> cmbNumPlayers;
 	
-	JTextArea txtRules;
+	private JTextArea txtRules;
 	
-	static JTextArea txtWinner;
+	private static JTextArea txtWinner;
 
-	JScrollPane spRules;
-
-	JTextField txtBidDiceNum, txtBidDieValue;
+	private JScrollPane spRules;
 	
-	
-	
+	// Game constructor
 	public Game() {
 		
 		super("Game Table");
@@ -144,10 +138,8 @@ public class Game extends JFrame implements ActionListener {
 		lblTitle.setVisible(true);           
 		pnlRow1.add(lblTitle);
 		
-
 		
 		// import the game rules text below
-
         try {
 
     		// Creation of the game rules text
@@ -173,10 +165,10 @@ public class Game extends JFrame implements ActionListener {
              }
     		reader.close();
         } catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+        	
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -250,16 +242,6 @@ public class Game extends JFrame implements ActionListener {
 		lblPlayer4Dice.setVisible(false);
 		lblPlayer4Dice.setBorder(border);
 		pnlOutcome.add(lblPlayer4Dice);
-		
-		lblPlayer5Dice = new JLabel("");
-		lblPlayer5Dice.setLocation(308, 160);
-		lblPlayer5Dice.setSize(154, 40);
-		lblPlayer5Dice.setHorizontalAlignment(0);
-		lblPlayer5Dice.setFont(new Font("Lucida", Font.PLAIN, 12));
-		lblPlayer5Dice.setForeground(Color.black);
-		lblPlayer5Dice.setVisible(false);
-		lblPlayer5Dice.setBorder(border);
-		pnlOutcome.add(lblPlayer5Dice);
 
 		// Button for user to advance past rules
 		btnRules = new JButton("Got it!");
@@ -356,7 +338,7 @@ public class Game extends JFrame implements ActionListener {
 			
 			// generate player windows depending on combo
 			// box selection
-			int playerNum = cmbNumPlayers.getSelectedIndex() + 2;
+			playerNum = cmbNumPlayers.getSelectedIndex() + 2;
 			createPlayers(playerNum);
 			
 			// create player flags for specific number of players
@@ -418,7 +400,7 @@ public class Game extends JFrame implements ActionListener {
 			
 			
 			// set text for player lbls
-			switch(i) {
+			switch(players.elementAt(i).getPlayerID()) {
 			case 0: 
 				//System.out.println("Player1 = " + s);
 				lblPlayer1Dice.setText(s); 
@@ -751,7 +733,7 @@ public class Game extends JFrame implements ActionListener {
 			lblPlayer2Dice.setVisible(false);
 			lblPlayer3Dice.setVisible(false);
 			lblPlayer4Dice.setVisible(false);
-			lblPlayer5Dice.setVisible(false);
+			//lblPlayer5Dice.setVisible(false);
 			
 			//start new round
 			// shake dice for next round

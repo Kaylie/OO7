@@ -5,15 +5,6 @@ import java.util.*;
  * @decr :
  */public class Die {
     private int faceValue = 0;
-
-    /*
-     * @name : Die
-     * @decr : Is the constructor for the class
-     * @param : void
-     */
-    public Die(){  
-        
-    }
     
     /*
      * @name : getFaceValue
